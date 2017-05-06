@@ -609,11 +609,11 @@ form .send_button:hover {
 
 
 .reveal-title {
-    font-size: 8.375em;
+    font-size: 5.375em;
     line-height: 1em;
     font-weight: 700;
     letter-spacing: -6px;
-    color: #ececec;
+    color: #8fcbf3;
     margin-top: 0.01em;
     margin-bottom: 0.01em;
 }
