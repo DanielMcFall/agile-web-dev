@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <title>Fitness Friends</title>
+    <!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu:500,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+    <!-- Fonts for icons -->
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <!-- bootstrap -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <!-- Styles CSS-->
+    <link href="css/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+</head>
+
+<body>
+    <div id="main-content" class="m-scene">
+        <!-- Header -->
+        <nav class="navbar">
+            <div class="full-width-container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="images/logo.png" width="162" height="45" alt="Logo">
+                </a>
+				
+                <div class="fullscreen-menu-holder">
+                    <div class="d-flex align-items-center">
+                        <ul class="sidebar-menu">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="listing.html">My Matches</a></li>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="hamburger-menu-btn pull-right for-fullscreen hamburger-circle">
+                    <span>toggle menu</span>
+                </button>
+                <div class="pull-right">
+                	<a href="#register" class="top_link">Register</a>
+                	<a href="#login" class="top_link">Login</a>
+                </div>
+                <div id="login" class="overlay">
+                    <div class="popup">
+                        <div class="popover-title popup_header"><h2 class="text-center">Login</h2></div>
+                        <a class="close" href="#">&times;</a>
+                        <div class="content">
+                            <div class="col-sm-12 col-xs-12">
+                                <input type="email" name="name" placeholder="Username">
+                            </div>
+                            <div class="col-sm-12 col-xs-12">
+                                <input type="text" name="name" placeholder="Password">
+                            </div>
+                            <div class="pull-right pop_btn"><a href="#" class="top_link">Login</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="register" class="overlay">
+                    <div class="popup">
+                        <div class="popover-title popup_header"><h2 class="text-center">Register</h2></div>
+                        <a class="close" href="#">&times;</a>
+                        <div class="content">
+                            <div class="col-sm-12 col-xs-12"><input type="email" name="name" placeholder="Username"></div>
+                            <div class="col-sm-12 col-xs-12"><input type="text" name="name" placeholder="Password"></div>
+                            <div class="pull-right pop_btn"><a href="#" class="top_link">Login</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- End Header -->
+        
+        <div class="page-container">
+
+	        <!-- Banner -->
+            <div id="main-carousel" class="owl-carousel mb-5">
+                    <div class="bg-image"> 
+                        <img src="images/banner/3.jpg" alt="Banner1" width="1920" height="1082">
+                    </div>
+                    <div class="bg-image"> 
+                        <img src="images/banner/4.jpg" alt="Banner2" width="1920" height="1280">
+                    </div>
+                    <div class="bg-image"> 
+                        <img src="images/banner/5.jpg" alt="Banner3" width="1920" height="1413">
+                    </div>
+            </div>
+            <!-- End Banner -->
+            
+            <!-- About content -->
+            <div class="container">
+                <div class="mt_60 mb_60">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="reveal-title">We Are</span>
+                            <h2>Fitness friend finder</h2>
+                            <div class="separator"></div>
+                            <p class="lead"><span class="orange">Meet over 2 million active singles now for Free!</span><br>
+With over two million members, we are the largest community of fitness-minded singles on the web. As a member, you can search by fitness categories, share photos, and let those potential matches know you’re interested — all for free. So, don’t wait. Join now!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End About content -->
+
+            <!-- How it works -->
+            <div class="how_works">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-7 offset-md-5 col-lg-6 offset-lg-6 ">
+                            <div class="mb_50">
+                                <div>
+                                    <span class="reveal-title" style="margin-left:-10px">How</span>
+                                    <h3>It works</h3>
+                                    <div class="separator"></div>
+                                    <p>Follow 3 simple steps.</p>
+                                </div>
+                                <div class="content_box content_box_align_left mt_40">
+                                    <div class="content_icon">
+                                        <i class="fa fa-heart-o orange"></i>
+                                    </div>
+                                    <div class="content_info">
+                                        <h3>Register</h3>
+                                        <p>Register yourself with all your preferences.</p>
+                                    </div>
+                                </div>
+                                <div class="content_box content_box_align_left">
+                                    <div class="content_icon">
+                                        <i class="fa fa-video-camera orange"></i>
+                                    </div>
+                                    <div class="content_info">
+                                        <h3>Get notification on match profile</h3>
+                                        <p>You will get a notification when your preffered matching <br>profile will be found.</p>
+                                    </div>
+                                </div>
+                                <div class="content_box content_box_align_left">
+                                    <div class="content_icon">
+                                        <i class="fa fa-handshake-o orange"></i>
+                                    </div>
+                                    <div class="content_info">
+                                        <h3>Connect</h3>
+                                        <p>Connect with your friends and make your own fitness group.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <!-- End how it works -->
+
+			<!-- Team -->
+            <div class="bg-orange whole-container-text-white pt_100 pb_100">
+                <div class="row">
+                    <div class="col-md-10 offset-md-1">
+                        <div class="align-center">
+                            <h3>Creative Team</h3>
+                            <div class="separator" style="background:#fff"></div>
+                            <p>We are the creators.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row mt_50">
+                        <div class="col-md-4 col-lg-4">
+                            <div class="align-center">
+                                <div class="team-image">	
+                                    <img class="rounded-circle" src="images/team/keyur.jpg" alt="team" width="550" height="550">
+                                </div>
+                                <div class="mt-4">
+                                     <h5>Keyur Modi</h5>
+                                     <p>Student ID : 21845191</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4">
+                            <div class="align-center">
+                                <div class="team-image">
+                                    <img class="rounded-circle" src="images/team/madeline.jpg" alt="team" width="550" height="550">
+                                </div>
+                                <div class="mt-4">
+                                      <h5>Madeline King</h5>
+                                      <p>Student ID : 21845191</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4">
+                            <div class="align-center">
+                                <div class="team-image">
+                                    <img class="rounded-circle" src="images/team/daniel.jpg" alt="team" width="550" height="550">
+                                </div>
+                                <div class="mt-4">
+                                     <h5>Daniel McFall</h5>
+                                     <p>Student ID : 21845191</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+        	<!-- End Team -->
+        </div>
+        
+        <!-- Footer -->
+        <footer>Copyright 2017 © University of Western Australia</footer>
+        <!-- End Footer -->
+        
+    </div>
+
+    <!-- Placed js files at the end of the document so the pages load faster -->
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js "></script>
+    <script type="text/javascript" src="js/owl.carousel.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    
+</body>
+</html>
+
