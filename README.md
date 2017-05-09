@@ -1,4 +1,7 @@
 # agile-web-dev
 
+Deployed on Heroku:
 https://agile-web-dev.herokuapp.com/
-https://git.heroku.com/agile-web-dev.git
+
+Run locally (localhost:3000):
+npm start
