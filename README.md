@@ -1,4 +1,4 @@
-# agile-web-dev
+# Agile Web Development: CITS3403
 
 Deployed on Heroku:
 https://agile-web-dev.herokuapp.com/

@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h3= title
+  form#add_user(name="adduser", method="post", action="/adduser")
+    span Name
+    span &nbsp;
+    input#input_name(type="text", placeholder="Name", name="name")
+    br
+    br
+    span Age
+    span &nbsp;
+    input#input_age(type="text", placeholder="Age", name="age")
+    br
+    br
+    button#submit_user(type="submit") submit
