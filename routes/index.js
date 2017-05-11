@@ -22,13 +22,13 @@ router.get('/userlist', function(req, res){
     var collection = db.collection('users');
 
     // Return all users
-    collection.find({}).toArray(function (err, res) {
+    collection.find({}).toArray(function (err, result) {
       if (err) {
         console.log(err);
       } else if (result.length) {
         res.render('userlist',{
           // Pass back to Jade
-          "userlist" : res
+          "userlist" : result
         });
       } else {
         res.send('No user documents found');
