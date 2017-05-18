@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var mongodb = require('mongodb');
 var mongoUrl = 'mongodb://admin:password@ds133231.mlab.com:33231/agile-web-dev';
+var passport = require('passport');
+var Account = require('../models/account');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -44,7 +46,7 @@ router.get('/register', function(req, res){
     res.render('register', {title: 'Fitness Friends | Sign Up' });
 });
 
-router.post('/adduser', function(req, res){
+router.post('/register', function(req, res){
 
     var MongoClient = mongodb.MongoClient;
 
