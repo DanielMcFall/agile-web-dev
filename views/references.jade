@@ -1,0 +1,169 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    // favicon
+    link(rel='shortcut icon', href='images/favicon.ico')
+    title Fitness Friends
+    // Google Fonts
+    link(href='https://fonts.googleapis.com/css?family=Ubuntu:500,700', rel='stylesheet')
+    link(href='https://fonts.googleapis.com/css?family=Roboto:300,400', rel='stylesheet')
+    // Fonts for icons
+    link(href='css/font-awesome.min.css', rel='stylesheet')
+    // bootstrap
+    link(href='css/bootstrap.css', rel='stylesheet')
+    // Styles CSS
+    link(href='css/style.css', rel='stylesheet')
+    // HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
+    //if lt IE 9
+      script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
+      script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
+  body
+    #main-content.m-scene
+      // Header
+      nav.navbar
+        .full-width-container
+          a.navbar-brand(href='index.html')
+            img(src='images/logo.png', width='162', height='45', alt='Logo')
+          .fullscreen-menu-holder
+            .d-flex.align-items-center
+              ul.sidebar-menu
+                li
+                  a(href='index.html') Home
+                li
+                  a(href='listing.html') My Matches
+                li
+                  a(href='#') About Us
+                li
+                  a(href='#') Contact Us
+          button.hamburger-menu-btn.pull-right.for-fullscreen.hamburger-circle
+            span toggle menu
+          .pull-right
+            a.top_link(href='register.html') Register
+            a.top_link(href='#login') Login
+          #login.overlay
+            .popup
+              .popover-title.popup_header
+                h2.text-center Login
+              a.close(href='#') ×
+              .content
+                .col-sm-12.col-xs-12.mb-3
+                  input(type='email', name='name', placeholder='Username')
+                .col-sm-12.col-xs-12
+                  input(type='text', name='name', placeholder='Password')
+                .pull-right.pop_btn
+                  a.top_link(href='#') Login
+      // End Header
+      .page-container
+        // Banner
+        .inner_banner.about_img
+        // End Banner
+        // About content
+        .container
+          .mt_60.mb_60
+            .row
+              .col-md-12
+                span.reveal-title Useful
+                h2 References
+                .separator
+                p.lead.line-height
+                  span.orange.font-bold
+                    br
+                    | Logo :
+                  br
+                  a.small.blue_link(href='https://s-media-cache-ak0.pinimg.com/originals/88/26/52/8826526c465b07881a0ab99f42d6e0ec.png', target='_blank')
+                    | https://s-media-cache-ak0.pinimg.com/originals/88/26/52/8826526c465b07881a0ab99f42d6e0ec.png
+                p.lead.line-height
+                  span.orange.font-bold Images :
+                  br
+                  a.small.blue_link(href='http://www.freepik.com/free-photo/group-of-people-performing-stretching-exercise_1009179.htm#term=fitness&page=2&position=18', target='_blank')
+                    | http://www.freepik.com/free-photo/group-of-people-performing-stretching-exercise_1009179.htm#term=fitness&page=2&position=18
+                  br
+                  a.small.blue_link(href='http://www.freepik.com/free-photo/adventurer-cycle-adventure-equipment-men_1108659.htm#term=fitness&page=2&position=9', target='_blank')
+                    | http://www.freepik.com/free-photo/adventurer-cycle-adventure-equipment-men_1108659.htm#term=fitness&page=2&position=9
+                  br
+                  a.small.blue_link(href='http://www.freepik.com/free-photo/couple-training-in-the-morning_866655.htm#term=fitness&page=4&position=27', target='_blank')
+                    | http://www.freepik.com/free-photo/couple-training-in-the-morning_866655.htm#term=fitness&page=4&position=27
+        // End About content
+      // Footer
+      footer.bg-orange.mt_150.whole-container-text-white
+        | Copyright 2017 © University of Western Australia
+      // End Footer
+    // Placed js files at the end of the document so the pages load faster
+    script(type='text/javascript', src='js/jquery.min.js')
+    script(src='js/jquery.validate.js')
+    script(src='js/bootstrap.min.js ')
+    script(type='text/javascript', src='js/owl.carousel.js')
+    script(type='text/javascript', src='js/main.js')
+    script(type='text/javascript').
+      $(document).ready(function(){
+      var current = 1;
+      widget      = $(".step");
+      btnnext     = $(".next");
+      btnback     = $(".back");
+      btnsubmit   = $(".submit");
+      // Init buttons and UI
+      widget.not(':eq(0)').hide();
+      hideButtons(current);
+      setProgress(current);
+      // Next button click action
+      btnnext.click(function(){
+      if(current < widget.length){
+      // Check validation
+      if($(".form").valid()){
+      widget.show();
+      widget.not(':eq('+(current++)+')').hide();
+      setProgress(current);
+      }
+      }
+      hideButtons(current);
+      })
+      // Back button click action
+      btnback.click(function(){
+      if(current > 1){
+      current = current - 2;
+      if(current < widget.length){
+      widget.show();
+      widget.not(':eq('+(current++)+')').hide();
+      setProgress(current);
+      }
+      }
+      hideButtons(current);
+      })
+      $('.form').validate({ // initialize plugin
+      ignore:":not(:visible)",
+      rules: {
+      name     : "required",
+      email    : {required : true, email:true},
+      country  : "required",
+      username : "required",
+      password : "required",
+      rpassword: { required : true, equalTo: "#password"},
+      },
+      });
+      });
+      // Change progress bar action
+      setProgress = function(currstep){
+      var percent = parseFloat(100 / widget.length) * currstep;
+      percent = percent.toFixed();
+      $(".progress-bar").css("width",percent+"%").html(percent+"%");
+      }
+      // Hide buttons according to the current step
+      hideButtons = function(current){
+      var limit = parseInt(widget.length);
+      $(".action").hide();
+      if(current < limit) btnnext.show();
+      if(current > 1) btnback.show();
+      if (current == limit) {
+      // Show entered values
+      $(".display label:not(.control-label)").each(function(){
+      console.log($(this).find("label:not(.control-label)").html($("#"+$(this).data("id")).val()));
+      });
+      btnnext.hide();
+      btnsubmit.show();
+      }
+      }

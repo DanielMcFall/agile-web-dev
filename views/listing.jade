@@ -1,17 +1,39 @@
-extends layout
-
-block content
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    // favicon
+    link(rel='shortcut icon', href='images/favicon.ico')
+    title Fitness Friends
+    // Google Fonts
+    link(href='https://fonts.googleapis.com/css?family=Ubuntu:300,400,500', rel='stylesheet')
+    link(href='https://fonts.googleapis.com/css?family=Roboto:300,400', rel='stylesheet')
+    // Fonts for icons
+    link(href='css/font-awesome.min.css', rel='stylesheet')
+    // bootstrap
+    link(href='css/bootstrap.css', rel='stylesheet')
+    // Styles CSS
+    link(href='css/style.css', rel='stylesheet')
+    // HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
+    //if lt IE 9
+      script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
+      script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
+  body
     #main-content.m-scene
       // Header
       nav.navbar
         .full-width-container
-          a.navbar-brand(href='/')
+          a.navbar-brand(href='index')
             img(src='images/logo.png', width='162', height='45', alt='Logo')
           .fullscreen-menu-holder
             .d-flex.align-items-center
               ul.sidebar-menu
                 li
-                  a(href='/') Home
+                  a(href='index') Home
                 li
                   a(href='listing') My Matches
                 li
@@ -24,47 +46,105 @@ block content
       .page-container
         // Page title
         .bg-orange.mb_120.whole-container-text-white.text-center.pt-4.pb-4
-          h2 Profile Detail
+          h2 Profile Match
         // End page title
-        // Profile detail
-        .mt_80.mb_50
-          .container
-            .row.mb_60
-              // Profile photos
-              .col-md-6
-                #main-carousel_two.owl-carousel
-                  img(src='images/team/keyur.jpg', alt='picture', width='1200', height='570')
-                  img(src='images/team/madeline.jpg', alt='picture', width='1200', height='570')
-                  img(src='images/team/daniel.jpg', alt='picture', width='1200', height='570')
-              // End Profile photos
-              // Profile info
-              .col-md-6
-                .sticky-top.mt_10.ml-4
-                  h3.font-weight-normal Keyur Modi
-                  .separator
-                  blockquote Looking for a fitness buddy to motivate and encourage each other.
-                  .details_list.mt_40.mb_40
-                    ul
-                      li
-                        i.fa.fa-map-marker.orange
-                        |    Perth, WA
-                      li
-                        i.fa.fa-male.orange
-                        |    Male
-                      li
-                        i.fa.fa-birthday-cake.orange(style='font-size:10px')
-                        |    27Years
-                      li
-                        i.fa.fa-bolt.orange
-                        |    Intermediate
-              // End Profile info
-        // End Profile detail
-        // Footer
-        footer.bg-orange.mt_150.whole-container-text-white
-          | Copyright 2017 © University of Western Australia
-        // End Footer
+        // Listing
+        .container
+          .row
+            .col-md-3.no-padding.relative
+              img(src='images/team/keyur.jpg', alt='match', width='1024', height='674')
+              .left_arrow
+            .col-md-3
+              .mt-3.ml-4
+                h4.font-weight-normal Keyur Modi
+                .separator
+                div
+                  i.fa.fa-map-marker.orange
+                  |    Perth, WA
+                div
+                  i.fa.fa-male.orange
+                  |    Male
+                div
+                  i.fa.fa-birthday-cake.orange(style='font-size:10px')
+                  |    27Years
+                div
+                  i.fa.fa-bolt.orange
+                  |    Intermediate
+                div
+                  a.top_link.top_link_pad(href='listing-detail') Read More
+            .col-md-3.no-padding
+              img(src='images/team/madeline.jpg', alt='match', width='1024', height='674')
+              .left_arrow
+            .col-md-3.padding_right_left_5
+              .mt-3.ml-4
+                h4.font-weight-normal Madeline King
+                .separator
+                div
+                  i.fa.fa-map-marker.orange
+                  |    Perth, WA
+                div
+                  i.fa.fa-female.orange
+                  |    Female
+                div
+                  i.fa.fa-birthday-cake.orange(style='font-size:10px')
+                  |    27Years
+                div
+                  i.fa.fa-bolt.orange
+                  |    Intermediate
+                div
+                  a.top_link.top_link_pad(href='listing-detail') Read More
+        .container
+          .row
+            .col-md-3.padding_right_left_5
+              .mt-3.ml-4
+                h4.font-weight-normal Daniel McFall
+                .separator
+                div
+                  i.fa.fa-map-marker.orange
+                  |    Perth, WA
+                div
+                  i.fa.fa-male.orange
+                  |    Male
+                div
+                  i.fa.fa-birthday-cake.orange(style='font-size:10px')
+                  |    27Years
+                div
+                  i.fa.fa-bolt.orange
+                  |    Intermediate
+                div
+                  a.top_link.top_link_pad(href='listing-detail') Read More
+            .col-md-3.no-padding
+              img(src='images/team/daniel.jpg', alt='match', width='1024', height='674')
+              .right_arrow
+            .col-md-3.padding_right_left_5
+              .mt-3.ml-4
+                h4.font-weight-normal Anthony Malloy
+                .separator
+                div
+                  i.fa.fa-map-marker.orange
+                  |    Perth, WA
+                div
+                  i.fa.fa-female.orange
+                  |    Female
+                div
+                  i.fa.fa-birthday-cake.orange(style='font-size:10px')
+                  |    27Years
+                div
+                  i.fa.fa-bolt.orange
+                  |    Intermediate
+                div
+                  a.top_link.top_link_pad(href='listing-detail') Read More
+            .col-md-3.no-padding(data-aos='overlay-slide-right')
+              img(src='images/team/noname.jpg', alt='match', width='1024', height='674')
+              .right_arrow
+        // End Listing
+      // Footer
+      footer.bg-orange.mt_150.whole-container-text-white
+        | Copyright 2017 © University of Western Australia
+      // End Footer
+    // ==================================================
     // Placed js files at the end of the document so the pages load faster
     script(type='text/javascript', src='js/jquery.min.js')
     script(src='js/bootstrap.min.js ')
-    script(type='text/javascript', src='js/owl.carousel.js')
     script(type='text/javascript', src='js/main.js')
+// Localized

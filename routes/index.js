@@ -75,5 +75,30 @@ router.post('/adduser', function(req, res){
     });
 });
 
+//updating index.js to load about, algorithm, daniel, madeline, keyur, references pages
+router.get('/about', function(req, res){
+    res.render('about', {title:  '' });
+});
+
+router.get('/algorithm', function(req, res){
+    res.render('algorithm', {title:  '' });
+});
+
+router.get('/daniel', function(req, res){
+    res.render('daniel', {title:  '' });
+});
+
+router.get('/madeline', function(req, res){
+    res.render('madeline', {title:  '' });
+});
+
+router.get('/keyur', function(req, res){
+    res.render('keyur', {title:  '' });
+});
+
+router.get('/references', function(req, res){
+    res.render('references', {title:  '' });
+});
+
 
 module.exports = router;

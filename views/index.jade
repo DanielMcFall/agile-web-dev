@@ -21,7 +21,7 @@ block content
         button.hamburger-menu-btn.pull-right.for-fullscreen.hamburger-circle
           span toggle menu
         .pull-right
-          a.top_link(href='#register') Register
+          a.top_link(href='register') Register
           a.top_link(href='#login') Login
         #login.overlay
           .popup
@@ -29,24 +29,13 @@ block content
               h2.text-center Login
             a.close(href='#') ×
             .content
-              .col-sm-12.col-xs-12
+              .col-sm-12.col-xs-12.mb-3
                 input(type='email', name='name', placeholder='Username')
               .col-sm-12.col-xs-12
                 input(type='text', name='name', placeholder='Password')
               .pull-right.pop_btn
                 a.top_link(href='#') Login
-        #register.overlay
-          .popup
-            .popover-title.popup_header
-              h2.text-center Register
-            a.close(href='#') ×
-            .content
-              .col-sm-12.col-xs-12
-                input(type='email', name='name', placeholder='Username')
-              .col-sm-12.col-xs-12
-                input(type='text', name='name', placeholder='Password')
-              .pull-right.pop_btn
-                a.top_link(href='#') Login
+
     // End Header
     .page-container
       // Banner

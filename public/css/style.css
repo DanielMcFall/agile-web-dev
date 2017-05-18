@@ -72,11 +72,13 @@ h6,
     font-size: 4.236em;
     line-height: 1.21818182em;
 }
-
+button{border:none}
+button:focus { outline: none;}
+.line-height{line-height:1.4}
 .font-bold {
     font-weight: bold;
 }
-
+.blue_link:hover{color:#3494E6}
 p,
 ul,
 ol,
@@ -266,6 +268,7 @@ footer {
     padding-top: 20px;
     padding-bottom: 20px;
     z-index: 9999;
+	box-shadow: 0 -3px 5px 1px;
 }
 
 .navbar-nav > li:not(:last-child) {
@@ -609,11 +612,11 @@ form .send_button:hover {
 
 
 .reveal-title {
-    font-size: 5.375em;
+    font-size: 8.375em;
     line-height: 1em;
     font-weight: 700;
-    letter-spacing: -6px;
-    color: #8fcbf3;
+    letter-spacing: -2px;
+    color: #ececec;
     margin-top: 0.01em;
     margin-bottom: 0.01em;
 }
@@ -716,7 +719,7 @@ form .send_button:hover {
 }
 
 
-/*
+/* 
  *  Core Owl Carousel CSS File
  */
 
@@ -1336,7 +1339,7 @@ background: linear-gradient(-135deg, #EC6EAD, #3494E6); /* W3C, IE 10+/ Edge, Fi
   background-image: linear-gradient(45deg, #EC6EAD 0%, #3494E6 100%);
   z-index: -1;
   border-radius: inherit;}
-
+  
 .top_link:hover{color:#fff; background: #3494E6;
     background: -webkit-linear-gradient(45deg, #EC6EAD 20%, #3494E6);
     background: linear-gradient(45deg, #EC6EAD 20%, #3494E6);}
@@ -1361,17 +1364,17 @@ background: linear-gradient(-135deg, #EC6EAD, #3494E6); /* W3C, IE 10+/ Edge, Fi
   margin: 70px auto;
   background: #fff;
   border-radius: 5px;
-  width: 30%;
+  width: 40%;
   position: relative;
   transition: all 5s ease-in-out;
 }
 .popup_header{background: #3494E6;
     background: -webkit-linear-gradient(-135deg, #EC6EAD, #3494E6);
     background: linear-gradient(-135deg, #EC6EAD, #3494E6);
-	margin-bottom:30px;
+	margin-bottom:40px;
 }
 .popup_header h2{color:#fff; font-family: 'Roboto', sans-serif;}
-
+	
 .popup .close {
   position: absolute;
   top: 5px;
@@ -1386,8 +1389,7 @@ background: linear-gradient(-135deg, #EC6EAD, #3494E6); /* W3C, IE 10+/ Edge, Fi
 .popup .close:hover {
   color: #000;
 }
-.popup .content{min-height: 210px;}
-.popup input{ margin: 5% 2% 0 2%; width: 96%;}
+.popup .content{min-height:210px;padding: 1px 20px;}
 .pop_btn{position:relative; z-index:9; margin-top:21px}
 .top_link_pad{padding: 5px 20px; font-size: 14px; margin-top:20px}
 .no-padding{padding:0}
@@ -1413,7 +1415,7 @@ background: linear-gradient(-135deg, #EC6EAD, #3494E6); /* W3C, IE 10+/ Edge, Fi
   background-image: linear-gradient(45deg, #EC6EAD 0%, #3494E6 100%);
   z-index: -1;
   border-radius: inherit;}
-
+  
 .icon_link:hover{color:#fff; background: #3494E6;
     background: -webkit-linear-gradient(45deg, #EC6EAD 20%, #3494E6);
     background: linear-gradient(45deg, #EC6EAD 20%, #3494E6);}
@@ -1427,3 +1429,31 @@ background: linear-gradient(-135deg, #EC6EAD, #3494E6); /* W3C, IE 10+/ Edge, Fi
     letter-spacing: 1px;
     padding: 50px 40px;
 }
+
+
+/* Register page form */
+
+select.form-control:not([size]):not([multiple]) {height: calc(2.7rem + 2px);}
+.text-big{font-size:20px}
+.col-sm-33{max-width: 30.5% !important; flex: 0 0 30.5% !important ;}
+.mr-20{margin-right:20px}
+
+
+/* About page */
+
+.inner_banner{height:50vh;  background-size: cover !important; background-position: center !important;}
+.about_img{background:url(../images/banner/3.jpg) no-repeat;}
+.accordion .card-header {
+    background: transparent;
+    border-bottom: 2px solid #ecf1f5;
+    padding: 1.25rem 0.25rem;
+}
+.accordion .card-header h5 a.collapsed:after {
+    content: "\f067";
+}
+.accordion .card-header h5 a:after {
+    font-family: 'FontAwesome';
+    content: "\f068";
+    float: right;
+}
+.accordion .card-header h5 a:hover, .accordion .card-header h5 a:active{color:#EC6EAD}

@@ -1,19 +1,41 @@
-extends layout
-
-block content
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    // favicon
+    link(rel='shortcut icon', href='images/favicon.ico')
+    title Fitness Friends
+    // Google Fonts
+    link(href='https://fonts.googleapis.com/css?family=Ubuntu:300,400,500', rel='stylesheet')
+    link(href='https://fonts.googleapis.com/css?family=Roboto:300,400', rel='stylesheet')
+    // Fonts for icons
+    link(href='css/font-awesome.min.css', rel='stylesheet')
+    // bootstrap
+    link(href='css/bootstrap.css', rel='stylesheet')
+    // Styles CSS
+    link(href='css/style.css', rel='stylesheet')
+    // HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
+    //if lt IE 9
+      script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
+      script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
+  body
     #main-content.m-scene
       // Header
       nav.navbar
         .full-width-container
-          a.navbar-brand(href='index')
+          a.navbar-brand(href='index.html')
             img(src='images/logo.png', width='162', height='45', alt='Logo')
           .fullscreen-menu-holder
             .d-flex.align-items-center
               ul.sidebar-menu
                 li
-                  a(href='index') Home
+                  a(href='index.html') Home
                 li
-                  a(href='listing') My Matches
+                  a(href='listing.html') My Matches
                 li
                   a(href='#') About Us
                 li
@@ -24,7 +46,7 @@ block content
       .page-container
         // Page title
         .bg-orange.mb_120.whole-container-text-white.text-center.pt-4.pb-4
-          h2 Profile Detail
+          h2 Keyur Modi
         // End page title
         // Profile detail
         .mt_80.mb_50
@@ -32,16 +54,11 @@ block content
             .row.mb_60
               // Profile photos
               .col-md-6
-                #main-carousel_two.owl-carousel
-                  img(src='images/team/keyur.jpg', alt='picture', width='1200', height='570')
-                  img(src='images/team/madeline.jpg', alt='picture', width='1200', height='570')
-                  img(src='images/team/daniel.jpg', alt='picture', width='1200', height='570')
+                img(src='images/team/keyur.jpg', alt='picture', width='1200', height='570')
               // End Profile photos
               // Profile info
               .col-md-6
                 .sticky-top.mt_10.ml-4
-                  h3.font-weight-normal Keyur Modi
-                  .separator
                   blockquote Looking for a fitness buddy to motivate and encourage each other.
                   .details_list.mt_40.mb_40
                     ul
