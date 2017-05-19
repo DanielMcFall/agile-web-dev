@@ -70,37 +70,37 @@ html(lang='en')
                 form#contact-form.form-fields-bg-alabaster(method='post', action='/register ', role='form')
                   .form-group.row
                     .col-sm-6.col-xs-12
-                      label Your Name :
+                      label Your name:
                       input(type='text', name='name')
                     .col-sm-6.col-xs-12
                       label
                         span.orange *
-                        |  Email Address :
+                        |  Email address:
                       input(type='email', name='email', required='')
                   .form-group.row
                     .col-sm-6.col-xs-12
                       label
                         span.orange *
-                        |  Password :
+                        |  Password:
                       input(type='password', name='password', required='')
                     .col-sm-6.col-xs-12
                       label
                         span.orange *
-                        |  Confirm Password :
+                        |  Confirm password:
                       input(type='password', name='rePassword', required='')
                   .form-group.row
                     .col-sm-4.col-xs-12
-                      label City :
-                      input(type='text', name='city')
+                      label Suburb:
+                      input(type='text', name='suburb')
                     .col-sm-33.col-sm-3.col-xs-12
                       label
                         span.orange *
-                        |  Postcode :
+                        |  Postcode:
                       input(type='text', name='postcode', required='')
                     a.mr-20(href='#')
                       i.fa.fa-map-marker.mt-5.text-big
                     .col-sm-4.col-xs-12
-                      label Area range within (km) :
+                      label Area range within (km):
                       select.form-control(name='areaRange')
                         option 0
                         option 2
@@ -110,30 +110,34 @@ html(lang='en')
                     .col-sm-3.col-xs-12
                       label
                         span.orange *
-                        |  Fitness level :
+                        |  Fitness level:
                       select.form-control(name='fitnessLevel')
                         option Beginner
                         option Intermediate
-                        option Expert
+                        option Advanced
                     .col-sm-3.col-xs-12
                       label
                         span.orange *
-                        |  Fitness activity :
+                        |  Fitness activity:
                       select.form-control(name='fitnessActivity')
-                        option Sports
-                        option Running
+                        option Cardio
+                        option Strength
                         option Yoga
                     .col-sm-3.col-xs-12
-                      label Gender :
+                      label 
+                        span.orange *
+                        | Gender:
                       select.form-control(name='gender')
                         option Male
                         option Female
                     .col-sm-3.col-xs-12
-                      label Birthdate :
+                      label 
+                        span.orange *
+                        | Birthdate:
                       input(type='date', name='age')
                   .form-group.row
                     .col-sm-12.col-xs-12
-                      label Describe yourself :
+                      label Describe yourself:
                       textarea(rows='8', name='message')
                   .form-group.row
                     .col-sm-12.col-xs-12.align-right.mt-3
