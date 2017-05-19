@@ -1,135 +1,140 @@
 extends layout
 
 block content
-  #main-content.m-scene
-    // Header
-    nav.navbar
-      .full-width-container
-        a.navbar-brand(href='/')
-          img(src='/images/logo.png', width='400', height='45', alt='Logo')
-        .fullscreen-menu-holder
-          .d-flex.align-items-center
-            ul.sidebar-menu
-              li
-                a(href='/') Home
-              li
-                a(href='listing') My Matches
-              li
-                a(href='#') About Us
-              li
-                a(href='#') Contact Us
-        button.hamburger-menu-btn.pull-right.for-fullscreen.hamburger-circle
-          span toggle menu
-        .pull-right
-          a.top_link(href='register') Register
-          a.top_link(href='#login') Login
-        #login.overlay
-          .popup
-            .popover-title.popup_header
-              h2.text-center Login
-            a.close(href='#') ×
-            .content
-              .col-sm-12.col-xs-12.mb-3
-                input(type='email', name='name', placeholder='Username')
-              .col-sm-12.col-xs-12
-                input(type='text', name='name', placeholder='Password')
-              .pull-right.pop_btn
-                a.top_link(href='#') Login
+  if (user)
+    p Currently logged in as #{user.username}
+    a(href="/logout")
+      button#logout(type="button") Logout
+  if (!user)
+    #main-content.m-scene
+      //- Header
+      nav.navbar
+        .full-width-container
+          a.navbar-brand(href='/')
+            img(src='/images/logo.png', width='400', height='45', alt='Logo')
+          .fullscreen-menu-holder
+            .d-flex.align-items-center
+              ul.sidebar-menu
+                li
+                  a(href='/') Home
+                li
+                  a(href='listing') My Matches
+                li
+                  a(href='#') About Us
+                li
+                  a(href='#') Contact Us
+          button.hamburger-menu-btn.pull-right.for-fullscreen.hamburger-circle
+            span toggle menu
+          .pull-right
+            a.top_link(href='register') Register
+            a.top_link(href='#login') Login
+          #login.overlay
+            .popup
+              .popover-title.popup_header
+                h2.text-center Login
+              a.close(href='#') ×
+              .content
+                .col-sm-12.col-xs-12.mb-3
+                  input(type='email', name='name', placeholder='Username')
+                .col-sm-12.col-xs-12
+                  input(type='text', name='name', placeholder='Password')
+                .pull-right.pop_btn
+                  a.top_link(href='#') Login
 
-    // End Header
-    .page-container
-      // Banner
-      #main-carousel.owl-carousel.mb-5
-        .bg-image
-          img(src='images/banner/3.jpg', alt='Banner1', width='1920', height='1082')
-        .bg-image
-          img(src='images/banner/4.jpg', alt='Banner2', width='1920', height='1280')
-        .bg-image
-          img(src='images/banner/5.jpg', alt='Banner3', width='1920', height='1413')
-      // End Banner
-      // About content
-      .container
-        .mt_60.mb_60
-          .row
-            .col-md-12
-              span.reveal-title We Are
-              h2 Fitness Friends
-              .separator
-              p.lead
-                span.orange Find your perfect fitness friend today for free!
-                br
-                | With over two million members, we are the largest community of fitness-minded individuals on the web. As a member you can search by fitness categories, share photos, and let potential matches know you’re interested — all for free. So, don’t wait. Join now!
-      // End About content
-      // How it works
-      .how_works
+      //- End Header
+      .page-container
+        //- Banner
+        #main-carousel.owl-carousel.mb-5
+          .bg-image
+            img(src='images/banner/3.jpg', alt='Banner1', width='1920', height='1082')
+          .bg-image
+            img(src='images/banner/4.jpg', alt='Banner2', width='1920', height='1280')
+          .bg-image
+            img(src='images/banner/5.jpg', alt='Banner3', width='1920', height='1413')
+        //- End Banner
+        //- About content
         .container
+          .mt_60.mb_60
+            .row
+              .col-md-12
+                span.reveal-title We Are
+                h2 Fitness Friends
+                .separator
+                p.lead
+                  span.orange Find your perfect fitness friend today for free!
+                  br
+                  | With over two million members, we are the largest community of fitness-minded individuals on the web. As a member you can search by fitness categories, share photos, and let potential matches know you’re interested — all for free. So, don’t wait. Join now!
+        //- End About content
+        //- How it works
+        .how_works
+          .container
+            .row
+              .col-md-7.offset-md-5.col-lg-6.offset-lg-6
+                .mb_50
+                  div
+                    span.reveal-title(style='margin-left:-10px') How
+                    h3 It works
+                    .separator
+                    p Follow 3 simple steps.
+                  .content_box.content_box_align_left.mt_40
+                    .content_icon
+                      i.fa.fa-heart-o.orange
+                    .content_info
+                      h3 Register
+                      p Register yourself with all your preferences.
+                  .content_box.content_box_align_left
+                    .content_icon
+                      i.fa.fa-video-camera.orange
+                    .content_info
+                      h3 Get notification on match profile
+                      p
+                        | You will get a notification when your preferred matching
+                        br
+                        | profile will be found.
+                  .content_box.content_box_align_left
+                    .content_icon
+                      i.fa.fa-handshake-o.orange
+                    .content_info
+                      h3 Connect
+                      p Connect with your friends and make your own fitness group.
+        //- End how it works
+        //- Team
+        .bg-orange.whole-container-text-white.pt_100.pb_100
           .row
-            .col-md-7.offset-md-5.col-lg-6.offset-lg-6
-              .mb_50
-                div
-                  span.reveal-title(style='margin-left:-10px') How
-                  h3 It works
-                  .separator
-                  p Follow 3 simple steps.
-                .content_box.content_box_align_left.mt_40
-                  .content_icon
-                    i.fa.fa-heart-o.orange
-                  .content_info
-                    h3 Register
-                    p Register yourself with all your preferences.
-                .content_box.content_box_align_left
-                  .content_icon
-                    i.fa.fa-video-camera.orange
-                  .content_info
-                    h3 Get notification on match profile
-                    p
-                      | You will get a notification when your preferred matching
-                      br
-                      | profile will be found.
-                .content_box.content_box_align_left
-                  .content_icon
-                    i.fa.fa-handshake-o.orange
-                  .content_info
-                    h3 Connect
-                    p Connect with your friends and make your own fitness group.
-      // End how it works
-      // Team
-      .bg-orange.whole-container-text-white.pt_100.pb_100
-        .row
-          .col-md-10.offset-md-1
-            .align-center
-              h3 Creative Team
-              .separator(style='background:#fff')
-              p We are the creators.
-        .container
-          .row.mt_50
-            .col-md-4.col-lg-4
+            .col-md-10.offset-md-1
               .align-center
-                .team-image
-                  img.rounded-circle(src='images/team/keyur.jpg', alt='team', width='550', height='550')
-                .mt-4
-                  h5 Keyur Modi
-                  p Student ID: 21845191
-            .col-md-4.col-lg-4
-              .align-center
-                .team-image
-                  img.rounded-circle(src='images/team/madeline.jpg', alt='team', width='550', height='550')
-                .mt-4
-                  h5 Madeline King
-                  p Student ID: 21493664
-            .col-md-4.col-lg-4
-              .align-center
-                .team-image
-                  img.rounded-circle(src='images/team/daniel.jpg', alt='team', width='550', height='550')
-                .mt-4
-                  h5 Daniel McFall
-                  p Student ID: 21312007
-      // End Team
-    // Footer
-    footer Copyright 2017 © University of Western Australia
-    // End Footer
-  // Placed js files at the end of the document so the pages load faster
-  script(type='text/javascript', src='js/jquery.min.js')
-  script(src='js/bootstrap.min.js ')
-  script(type='text/javascript', src='js/owl.carousel.js')
-  script(type='text/javascript', src='js/main.js')
+                h3 Creative Team
+                .separator(style='background:#fff')
+                p We are the creators.
+          .container
+            .row.mt_50
+              .col-md-4.col-lg-4
+                .align-center
+                  .team-image
+                    img.rounded-circle(src='images/team/keyur.jpg', alt='team', width='550', height='550')
+                  .mt-4
+                    h5 Keyur Modi
+                    p Student ID: 21845191
+              .col-md-4.col-lg-4
+                .align-center
+                  .team-image
+                    img.rounded-circle(src='images/team/madeline.jpg', alt='team', width='550', height='550')
+                  .mt-4
+                    h5 Madeline King
+                    p Student ID: 21493664
+              .col-md-4.col-lg-4
+                .align-center
+                  .team-image
+                    img.rounded-circle(src='images/team/daniel.jpg', alt='team', width='550', height='550')
+                  .mt-4
+                    h5 Daniel McFall
+                    p Student ID: 21312007
+        //- End Team
+      //- Footer
+      footer Copyright 2017 © University of Western Australia
+      // End Footer
+    //- Placed js files at the end of the document so the pages load faster
+    script(type='text/javascript', src='js/jquery.min.js')
+    script(src='js/bootstrap.min.js ')
+    script(type='text/javascript', src='js/owl.carousel.js')
+    script(type='text/javascript', src='js/main.js')

@@ -2,43 +2,18 @@ extends layout
 
 block content
   h3= title
-  form#add_user(name="register", method="post", action="/adduser")
+  h3= error
+  form#register(name="register", method="post", action="/register")
+    br
     span Email
     span &nbsp;
-    input#input_name(type="text", placeholder="Email", name="Your Email")
-    br
+    input#input_email(type="email", placeholder="Email", name="email")
     br
     span Password
     span &nbsp;
-    input#input_age(type="text", placeholder="Password", name="Password")
+    input#input_password(type="password", placeholder="Password", name="password")
     br
-    br
-    span Birthdate
-    span &nbsp;
-    input#input_age(type="date", placeholder="mm/dd/yyyy", name="birthdate")
-    br
-    br
-    span First Name
-    span &nbsp;
-    input#input_age(type="text", placeholder="John", name="firstname")
-    br
-    br
-    span Last Name
-    span &nbsp;
-    input#input_age(type="text", placeholder="Smith", name="lastname")
-    br
-    br
-    span Fitness Level
-    span &nbsp;
-    input#input_age(type="text", placeholder="Fitness level", name="fitness")
-    br
-    br
-    span Postcode
-    span &nbsp;
-    input#input_age(type="text", placeholder="xxxx", name="postcode")
-    br
-    br
-    button#submit_user(type="submit") submit
+    button#submit_user(type="submit") Submit
     &nbsp;
     a(href='/')
       button#cancel_registration(type="button") Cancel

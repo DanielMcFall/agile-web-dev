@@ -1,13 +1,13 @@
 var express = require('express');
 var router = express.Router();
 var mongodb = require('mongodb');
-var mongoUrl = 'mongodb://admin:password@ds133231.mlab.com:33231/agile-web-dev';
 var passport = require('passport');
 var Account = require('../models/account');
+var mongoUrl = "mongodb://admin:password@ds133231.mlab.com:33231/agile-web-dev";
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Fitness Friends' });
+  res.render('index', { title: 'Fitness Friends', user: req.user});
 });
 
 //Temporary page to display registered users
@@ -21,7 +21,7 @@ router.get('/userlist', function(req, res){
   } else {
     console.log('(Read) Connection established to', mongoUrl);
 
-    var collection = db.collection('users');
+    var collection = db.collection('accounts');
 
     // Return all users
     collection.find({}).toArray(function (err, result) {
@@ -47,34 +47,28 @@ router.get('/register', function(req, res){
 });
 
 router.post('/register', function(req, res){
+  Account.register(new Account({ email : req.body.email }), req.body.password, function(err, account) {
+    if(err) {
+      return res.render('register', { title: 'Fitness Friends | Sign Up', error: err.message });
+    }
 
-    var MongoClient = mongodb.MongoClient;
+    console.log('user registered!');
 
-    MongoClient.connect(mongoUrl, function(err, db){
-      if (err) {
-        console.log(err);
-      } else {
-        console.log('(Write) Connection established to', mongoUrl);
+    res.redirect('userlist');
+  });
+});
 
-        var collection = db.collection('users');
+router.get('/login', function(req, res) {
+    res.render('login', { user : req.user });
+});
 
-        // Get data from form
-        var newuser = {name: req.body.name, age: req.body.age};
+router.post('/login', passport.authenticate('local'), function(req, res) {
+    res.redirect('/');
+});
 
-        collection.insert([newuser], function (err, result){
-          if (err) {
-            console.log(err);
-          } else {
-
-            //temporary - redirect to user list
-            res.redirect("userlist");
-          }
-
-          db.close();
-        });
-
-      }
-    });
+router.get('/logout', function(req, res) {
+    req.logout();
+    res.redirect('/');
 });
 
 //updating index.js to load about, algorithm, daniel, madeline, keyur, references pages
