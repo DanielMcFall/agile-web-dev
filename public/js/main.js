@@ -123,4 +123,61 @@
 		 owl_main_carousel_two();
          et_nav_menu();
      });
+     
+     
+     /* ---------------------------------------------
+      Register page upload photo 
+      --------------------------------------------- */
+
+	$('#fileUpload').on('change',function(){
+		  $('.avatar').removeClass('open');
+		});
+		$('.avatar').on('click',function(){
+		  $(this).addClass('open');
+		});
+		// added code to close the modal if you click outside
+		$('html').click(function() {
+		 $('.avatar').removeClass('open');
+		});
+		
+		$('.avatar').click(function(event){
+			event.stopPropagation();
+		});
+		
+		function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#avatar')
+                        .attr('src', e.target.result)
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+		
+		
+		/ Password verification script /
+		var password = document.getElementById("password")
+		  , confirm_password = document.getElementById("repeat-password");
+		
+		function validatePassword(){
+		  if(password.value != confirm_password.value) {
+			confirm_password.setCustomValidity("Password and confirm password should be same");
+		  } else {
+			confirm_password.setCustomValidity('');
+		  }
+		  document.getElementById("postcode").setCustomValidity("Please enter valid postcode");
+		}
+		password.onchange = validatePassword;
+		confirm_password.onkeyup = validatePassword;
+		/ Password verification script end /
+			
+		$(document).ready(function() {
+		$('#datePicker')
+			.datepicker({
+				format: 'mm/dd/yyyy'
+			})
+		});
 
