@@ -45,7 +45,7 @@ app.use('/listing-detail', listingDetail);
 
 // passport config
 var Account = require('./models/account');
-passport.use(new LocalStrategy(Account.authenticate()));
+passport.use(Account.createStrategy());
 passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
 
