@@ -1,19 +1,150 @@
-extends layout
-
-block content
-  h3= title
-  h3= error
-  form#register(name="register", method="post", action="/register")
-    br
-    span Email
-    span &nbsp;
-    input#input_email(type="email", placeholder="Email", name="email")
-    br
-    span Password
-    span &nbsp;
-    input#input_password(type="password", placeholder="Password", name="password")
-    br
-    button#submit_user(type="submit") Submit
-    &nbsp;
-    a(href='/')
-      button#cancel_registration(type="button") Cancel
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    // favicon
+    link(rel='shortcut icon', href='images/favicon.ico')
+    title Fitness Friends
+    // Google Fonts
+    link(href='https://fonts.googleapis.com/css?family=Ubuntu:500,700', rel='stylesheet')
+    link(href='https://fonts.googleapis.com/css?family=Roboto:300,400', rel='stylesheet')
+    // Fonts for icons
+    link(href='css/font-awesome.min.css', rel='stylesheet')
+    // bootstrap
+    link(href='css/bootstrap.css', rel='stylesheet')
+    // Styles CSS
+    link(href='css/style.css', rel='stylesheet')
+    // HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
+    //if lt IE 9
+      script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
+      script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
+  body
+    #main-content.m-scene
+      // Header
+      nav.navbar
+        .full-width-container
+          a.navbar-brand(href='index.html')
+            img(src='images/logo.png', width='162', height='45', alt='Logo')
+          .fullscreen-menu-holder
+            .d-flex.align-items-center
+              ul.sidebar-menu
+                li
+                  a(href='index.html') Home
+                li
+                  a(href='listing.html') My Matches
+                li
+                  a(href='#') About Us
+                li
+                  a(href='#') Contact Us
+          button.hamburger-menu-btn.pull-right.for-fullscreen.hamburger-circle
+            span toggle menu
+          .pull-right
+            a.top_link(href='#login') Login
+          #login.overlay
+            .popup
+              .popover-title.popup_header
+                h2.text-center Login
+              a.close(href='#') ×
+              .content
+                .col-sm-12.col-xs-12.mb-3
+                  input(type='email', name='name', placeholder='Username')
+                .col-sm-12.col-xs-12
+                  input(type='text', name='name', placeholder='Password')
+                .pull-right.pop_btn
+                  a.top_link(href='#') Login
+      // End Header
+      .page-container
+        // About content
+        .container
+          .mt_60.mb_60
+            .row
+              .col-md-12
+                span.reveal-title Register
+                h2 With Us
+                .separator
+                br
+                form#contact-form.form-fields-bg-alabaster(method='post', action='/adduser ', role='form')
+                  .form-group.row
+                    .col-sm-6.col-xs-12
+                      label Your Name :
+                      input(type='text', name='name')
+                    .col-sm-6.col-xs-12
+                      label
+                        span.orange *
+                        |  Email Address :
+                      input(type='email', name='email', required='')
+                  .form-group.row
+                    .col-sm-6.col-xs-12
+                      label
+                        span.orange *
+                        |  Password :
+                      input(type='password', name='password', required='')
+                    .col-sm-6.col-xs-12
+                      label
+                        span.orange *
+                        |  Confirm Password :
+                      input(type='password', name='rePassword', required='')
+                  .form-group.row
+                    .col-sm-4.col-xs-12
+                      label City :
+                      input(type='text', name='city')
+                    .col-sm-33.col-sm-3.col-xs-12
+                      label
+                        span.orange *
+                        |  Postcode :
+                      input(type='text', name='postcode', required='')
+                    a.mr-20(href='#')
+                      i.fa.fa-map-marker.mt-5.text-big
+                    .col-sm-4.col-xs-12
+                      label Area range within :
+                      select.form-control(name='areaRange')
+                        option 0 km
+                        option 2 km
+                        option 5 km
+                        option 10 km
+                  .form-group.row
+                    .col-sm-3.col-xs-12
+                      label
+                        span.orange *
+                        |  Fitness level :
+                      select.form-control(name='fitnessLevel')
+                        option Beginner
+                        option Intermediate
+                        option Expert
+                    .col-sm-3.col-xs-12
+                      label
+                        span.orange *
+                        |  Fitness activity :
+                      select.form-control(name='fitnessActivity')
+                        option Sports
+                        option Running
+                        option Yoga
+                    .col-sm-3.col-xs-12
+                      label Gender :
+                      select.form-control(name='gender')
+                        option Male
+                        option Female
+                    .col-sm-3.col-xs-12
+                      label Age :
+                      input(type='text', name='age')
+                  .form-group.row
+                    .col-sm-12.col-xs-12
+                      label Describe yourself :
+                      textarea(rows='8', name='message')
+                  .form-group.row
+                    .col-sm-12.col-xs-12.align-right.mt-3
+                      button.top_link(type='submit') Register
+                  .loading-spinner
+                  .messages
+        // End About content
+      // Footer
+      footer.bg-orange.mt_150.whole-container-text-white
+        | Copyright 2017 © University of Western Australia
+      // End Footer
+    // Placed js files at the end of the document so the pages load faster
+    script(type='text/javascript', src='js/jquery.min.js')
+    script(src='js/bootstrap.min.js ')
