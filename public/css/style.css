@@ -460,10 +460,10 @@ footer {
 
 .fullscreen-menu-holder .sidebar-menu > li {
     line-height: 1.5em;
-    font-size: 2.5em;
+    font-size: 1.7em;
     margin-bottom: .4206684rem;
     margin-top: .5793316rem;
-    font-weight: 800;
+    font-weight: 300;
 }
 
 .fullscreen-menu-holder .sidebar-menu > li li,
@@ -472,7 +472,7 @@ footer {
     font-size: 0.8em;
     margin-bottom: .4206684rem;
     margin-top: .5793316rem;
-    font-weight: 600;
+    font-weight: 300;
 }
 
 .fullscreen-menu-holder .sidebar-menu li > a > .fa-plus {
@@ -502,10 +502,12 @@ footer {
 
 .sidebar-menu > li {
     font-size: 1.1em;
-    font-weight: 600;
+    font-weight: 300;
     position: relative;
     margin: 0;
     padding: 0;
+	float: left;
+    padding: 0 2%;
 }
 
 .sidebar-menu > li > a {
@@ -528,6 +530,18 @@ footer {
     margin-top: 3px;
     margin-right: 5px;
 }
+
+.bottom-menu > li {
+    font-size: 1.1em;
+    font-weight: 300;
+    position: relative;
+    margin: 0;
+    padding: 0;
+	float: left;
+	color:#fff;
+    padding: 0 8%;
+}
+.bottom-menu > li a{color:#fff}
 
 
 
@@ -1586,6 +1600,7 @@ select.form-control:not([size]):not([multiple]) {height: calc(2.7rem + 2px);}
   -webkit-transform: scale(0.95);
 }
 
+
 .avatar.open > #fileUpload {
   opacity: 1;
   -webkit-transition-delay: 250ms;
@@ -1594,8 +1609,6 @@ select.form-control:not([size]):not([multiple]) {height: calc(2.7rem + 2px);}
 .avatar.open > #camera {
   visibility: hidden;
 }
-
-
 
 /* About page */
 

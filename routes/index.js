@@ -67,7 +67,7 @@ router.get('/logout', function(req, res) {
     res.redirect('/');
 });
 
-//updating index.js to load about, algorithm, daniel, madeline, keyur, references pages
+//updating index.js to load about, algorithm, daniel, madeline, keyur, references, login menu(temp) pages
 router.get('/about', function(req, res){
     res.render('about', {title:  '' });
 });
@@ -92,5 +92,8 @@ router.get('/references', function(req, res){
     res.render('references', {title:  '' });
 });
 
+router.get('/menuLogin', function(req, res){
+    res.render('menuLogin', {title:  '' });
+});
 
 module.exports = router;

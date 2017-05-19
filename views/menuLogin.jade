@@ -1,0 +1,97 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    // favicon
+    link(rel='shortcut icon', href='images/favicon.ico')
+    title Fitness Friends
+    // Google Fonts
+    link(href='https://fonts.googleapis.com/css?family=Ubuntu:500,700', rel='stylesheet')
+    link(href='https://fonts.googleapis.com/css?family=Roboto:300,400', rel='stylesheet')
+    // Fonts for icons
+    link(href='css/font-awesome.min.css', rel='stylesheet')
+    // bootstrap
+    link(href='css/bootstrap.css', rel='stylesheet')
+    // Styles CSS
+    link(href='css/style.css', rel='stylesheet')
+    // HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
+    //if lt IE 9
+      script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
+      script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
+  body
+    #main-content.m-scene
+      // Header
+      nav.navbar
+        .full-width-container
+          a.navbar-brand(href='index.html')
+            img(src='images/logo.png', width='162', height='45', alt='Logo')
+          .fullscreen-menu-holder
+            .align-items-center
+              .row.col-sm-12.mt-5
+                .col-sm-3.col-xs-12.mt-5
+                  .align-center
+                    a(href='#')
+                      img.rounded-circle(src='images/team/noname.jpg', alt='team', width='550', height='550')
+                    .mt-4
+                      h4.text-white Username
+                .col-sm-1
+                .col-sm-3.col-xs-12.mt-5
+                  ul.sidebar-menu.mt-5
+                    li
+                      a(href='#')
+                        i.fa.fa-edit
+                        |    Edit Profile
+                    li
+                      a(href='listing.html')
+                        i.fa.fa-list
+                        |    My Matches
+                .col-sm-1
+                .col-sm-3.col-xs-12.mt-5
+                  ul.sidebar-menu.mt-5
+                    li
+                      a(href='#')
+                        i.fa.fa-bell
+                        |    Notifications
+                    li
+                      a(href='#')
+                        i.fa.fa-power-off
+                        |    Logout
+              .row.col-sm-12.mt_150
+                .col-sm-12.col-xs-12
+                  hr
+                  ul.bottom-menu
+                    li
+                      a(href='index.html') Home
+                    li
+                      a(href='about.html') About Website
+                    li
+                      a(href='algorithm.html') Algorithm
+                    li
+                      a(href='references.html') References
+          button.hamburger-menu-btn.pull-right.for-fullscreen.hamburger-circle
+            span toggle menu
+          .pull-right
+            a.top_link(href='register.html') Register
+            a.top_link(href='#login') Login
+          #login.overlay
+            .popup
+              .popover-title.popup_header
+                h2.text-center Login
+              a.close(href='#') ×
+              .content
+                .col-sm-12.col-xs-12.mb-3
+                  input(type='email', name='name', placeholder='Username')
+                .col-sm-12.col-xs-12
+                  input(type='text', name='name', placeholder='Password')
+                .pull-right.pop_btn
+                  a.top_link(href='#') Login
+      // End Header
+    // Placed js files at the end of the document so the pages load faster
+    script(type='text/javascript', src='js/jquery.min.js')
+    script(src='js/bootstrap.min.js ')
+    script(type='text/javascript', src='js/owl.carousel.js')
+    script(type='text/javascript', src='js/main.js')
