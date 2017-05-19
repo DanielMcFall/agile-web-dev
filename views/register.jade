@@ -68,6 +68,7 @@ html(lang='en')
                 h2 With Us
                 .separator
                 br
+<<<<<<< HEAD
                 br
                 form#contact-form.form-fields-bg-alabaster(method='post', action=' ', role='form')
                   .row.form-group
@@ -104,12 +105,37 @@ html(lang='en')
                             |  Confirm Password :
                           input#repeat-password(type='password', name='repeat-password', required='')
                   .form-group.row.mb-5.mt-5
+=======
+                form#contact-form.form-fields-bg-alabaster(method='post', action='/register ', role='form')
+                  .form-group.row
+                    .col-sm-6.col-xs-12
+                      label Your name:
+                      input(type='text', name='name')
+                    .col-sm-6.col-xs-12
+                      label
+                        span.orange *
+                        |  Email address:
+                      input(type='email', name='email', required='')
+                  .form-group.row
+                    .col-sm-6.col-xs-12
+                      label
+                        span.orange *
+                        |  Password:
+                      input(type='password', name='password', required='')
+                    .col-sm-6.col-xs-12
+                      label
+                        span.orange *
+                        |  Confirm password:
+                      input(type='password', name='rePassword', required='')
+                  .form-group.row
+>>>>>>> 506bec9ad8f917ab3fc2f0b650abec6b9cd8a8cf
                     .col-sm-4.col-xs-12
-                      label City :
-                      input(type='text', name='city')
+                      label Suburb:
+                      input(type='text', name='suburb')
                     .col-sm-33.col-sm-3.col-xs-12
                       label
                         span.orange *
+<<<<<<< HEAD
                         |  Postcode :
                       input#postcode(type='text', name='postcode', pattern='[0-9\s]*', required='')
                     a.mr-20.mt_50(href='#')
@@ -117,40 +143,75 @@ html(lang='en')
                     .col-sm-4.col-xs-12
                       label Area range within (km):
                       select.form-control(name='area')
+=======
+                        |  Postcode:
+                      input(type='text', name='postcode', required='')
+                    a.mr-20(href='#')
+                      i.fa.fa-map-marker.mt-5.text-big
+                    .col-sm-4.col-xs-12
+                      label Area range within (km):
+                      select.form-control(name='areaRange')
+>>>>>>> 506bec9ad8f917ab3fc2f0b650abec6b9cd8a8cf
                         option 0
                         option 2
                         option 5
                         option 10
+<<<<<<< HEAD
                   .form-group.row.mb-5
                     .col-sm-3.col-xs-12
                       label
                         span.orange *
                         |  Fitness level :
                       select.form-control(name='fitness-level')
-                        option Beginner
-                        option Intermediate
-                        option Expert
+=======
+                  .form-group.row
                     .col-sm-3.col-xs-12
                       label
                         span.orange *
+                        |  Fitness level:
+                      select.form-control(name='fitnessLevel')
+>>>>>>> 506bec9ad8f917ab3fc2f0b650abec6b9cd8a8cf
+                        option Beginner
+                        option Intermediate
+                        option Advanced
+                    .col-sm-3.col-xs-12
+                      label
+                        span.orange *
+<<<<<<< HEAD
                         |  Fitness activity :
                       select.form-control(name='fitness-activity')
                         option Sports
                         option Running
+=======
+                        |  Fitness activity:
+                      select.form-control(name='fitnessActivity')
+                        option Cardio
+                        option Strength
+>>>>>>> 506bec9ad8f917ab3fc2f0b650abec6b9cd8a8cf
                         option Yoga
                     .col-sm-3.col-xs-12
-                      label Gender :
+                      label 
+                        span.orange *
+                        |  Gender:
                       select.form-control(name='gender')
                         option Male
                         option Female
                     .col-sm-3.col-xs-12
+<<<<<<< HEAD
                       label Birthdate :
                       #datePicker.input-group.input-append.date
                         input.form-control(type='text', name='date')
                         span.add-on
                   .form-group.row.mb-5
+=======
+                      label 
+                        span.orange *
+                        |  Birthdate:
+                      input(type='date', name='age')
+                  .form-group.row
+>>>>>>> 506bec9ad8f917ab3fc2f0b650abec6b9cd8a8cf
                     .col-sm-12.col-xs-12
-                      label Describe yourself :
+                      label Describe yourself:
                       textarea(rows='8', name='message')
                   .form-group.row
                     .col-sm-12.col-xs-12.align-right.mt-3
