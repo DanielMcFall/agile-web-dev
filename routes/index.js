@@ -47,7 +47,18 @@ router.get('/register', function(req, res){
 });
 
 router.post('/register', function(req, res){
-  Account.register(new Account({ email : req.body.email }), req.body.password, function(err, account) {
+  Account.register(new Account({
+    email : req.body.email,
+    name: req.body.name,
+    birthdate: req.body.date,
+    gender: req.body.gender,
+    suburb: req.body.suburb,
+    postcode: req.body.postcode,
+    range: req.body.range,
+    level: req.body.level,
+    activity: req.body.activity,
+    bio: req.body.bio }), 
+  req.body.password, function(err, account) {
     if(err) {
       return res.render('register', { title: 'Fitness Friends | Sign Up', error: err.message });
     }
