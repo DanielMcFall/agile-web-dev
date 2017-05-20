@@ -170,7 +170,6 @@ function validatePassword() {
   } else {
     confirm_password.setCustomValidity('');
   }
-  document.getElementById("postcode").setCustomValidity("Please enter valid postcode");
 }
 password.onchange = validatePassword;
 confirm_password.onkeyup = validatePassword;
