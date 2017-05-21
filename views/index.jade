@@ -12,11 +12,11 @@ block content
             .d-flex.align-items-center
               ul.sidebar-menu
                 li
-                  a(href='/') Home
+                  a(href='/match') Match
                 li
-                  a(href='listing') My Matches
+                  a(href='/messages') Messages
                 li
-                  a(href='#') Contact Us
+                  a(href='/settings') Settings
                 li
                   a(href="/logout") Logout
           button.hamburger-menu-btn.pull-right.for-fullscreen.hamburger-circle
@@ -26,6 +26,34 @@ block content
               p #{user.email}
       //- End Header
       .page-container
+        // Profile detail
+        .mt_80.mb_50
+          .container
+            .row.mb_60
+              // Profile photos
+              .col-md-6.match-pic
+                  img(src=user.photo)
+        //- Profile info
+        .col-md-6
+          .sticky-top.mt_10.ml-4
+              h3.font-weight-normal.match-name #{user.name}
+                .separator
+                blockquote.match-bio #{user.bio}
+                .details_list.mt_40.mb_40
+                  ul
+                    li
+                      i.fa.fa-map-marker.orange.match-loca
+                      |    #{user.suburb}
+                    li
+                      i.fa.fa-male.orange.match-gender
+                      |    #{user.gender}
+                    li
+                      i.fa.fa-birthday-cake.orange.match-age(style='font-size:10px')
+                      |    #{age}Years
+                    li
+                      i.fa.fa-bolt.orange
+                      |    #{user.level}
+            //- End Profile info
       //- Footer
       footer Copyright 2017 © University of Western Australia
     //- Placed js files at the end of the document so the pages load faster

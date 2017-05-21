@@ -1,0 +1,59 @@
+extends layout
+
+block content
+  #main-content.m-scene
+    //- Header
+    nav.navbar
+      .full-width-container
+        a.navbar-brand(href='/')
+          img(src='/images/logo.png', width='400', height='45', alt='Logo')
+        .fullscreen-menu-holder
+          .d-flex.align-items-center
+            ul.sidebar-menu
+              li
+                a(href='/') Match
+              li
+                a(href='/listing') Messages
+              li
+                a(href='/about') Settings
+              li
+                a(href="/logout") Logout
+        button.hamburger-menu-btn.pull-right.for-fullscreen.hamburger-circle
+          span toggle menu
+        .pull-right
+          .email-display
+            p #{user.email}
+    //- End Header
+    .page-container
+      // Profile detail
+      .mt_80.mb_50
+        .container
+          .row.mb_60
+            // Profile photos
+            .col-md-6.match-pic
+                #{match.photo}
+      //- Page title
+      .bg-orange.mb_120.whole-container-text-white.text-center.pt-4.pb-4
+        h2 Profile Detail
+      //- End page title
+      //- Profile info
+      .col-md-6
+        .sticky-top.mt_10.ml-4
+            h3.font-weight-normal.match-name {match.name}
+              .separator
+              blockquote.match-bio #{match.bio}
+              .details_list.mt_40.mb_40
+                ul
+                  li
+                    i.fa.fa-map-marker.orange.match-loca
+                    |    #{match.suburb}
+                  li
+                    i.fa.fa-male.orange.match-gender
+                    |    #{match.gender}
+                  li
+                    i.fa.fa-birthday-cake.orange.match-age(style='font-size:10px')
+                    |    #{age}Years
+                  li
+                    i.fa.fa-bolt.orange
+                    |    #{match.level}
+          //- End Profile info

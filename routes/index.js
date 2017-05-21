@@ -4,10 +4,12 @@ var mongodb = require('mongodb');
 var passport = require('passport');
 var Account = require('../models/account');
 var mongoUrl = "mongodb://admin:password@ds133231.mlab.com:33231/agile-web-dev";
+var datejs = require('../private/js/date.js');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Fitness Friends', user: req.user});
+  if(req.user) res.render('index', { title: 'Fitness Friends', user: req.user, age: datejs.calculateAge(req.user.birthdate)});
+  if(!req.user) res.render('index', { title: 'Fitness Friends'});
 });
 
 //Temporary page to display registered users
@@ -57,7 +59,7 @@ router.post('/register', function(req, res){
     range: req.body.range,
     level: req.body.level,
     activity: req.body.activity,
-    bio: req.body.bio }), 
+    bio: req.body.bio }),
   req.body.password, function(err, account) {
     if(err) {
       return res.render('register', { title: 'Fitness Friends | Sign Up', error: err.message });
@@ -106,5 +108,19 @@ router.get('/references', function(req, res){
 router.get('/menuLogin', function(req, res){
     res.render('menuLogin', {title:  '' });
 });
+
+router.get('/match', function(req, res){
+    if(!req.user) res.redirect('/');
+    res.render('match', {user: req.user});
+});
+
+router.get('/settings', function(req, res){
+    res.render('profile', {title:  '' });
+});
+
+router.get('/messages', function(req, res){
+    res.render('message', {title:  '' });
+});
+
 
 module.exports = router;
