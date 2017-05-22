@@ -72,9 +72,9 @@ router.post('/register', function(req, res){
   });
 });
 
-router.get('/userimage', function(req, res, next) {
-  if(req.user) res.render('index', { title: 'Fitness Friends', user: req.user, age: datejs.calculateAge(req.user.birthdate)});
-  if(!req.user) res.render('index', { title: 'Fitness Friends'});
+router.get('/settings', function(req, res, next) {
+  if(req.user) res.render('profile', { title: 'Fitness Friends', user: req.user, age: datejs.calculateAge(req.user.birthdate)});
+  if(!req.user) res.redirect('/');
 });
 
 

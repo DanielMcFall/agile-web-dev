@@ -1,173 +1,147 @@
-doctype html
-html(lang='en')
-  head
-    meta(charset='utf-8')
-    meta(http-equiv='X-UA-Compatible', content='IE=edge')
-    meta(name='viewport', content='width=device-width, initial-scale=1')
-    meta(name='description', content='')
-    meta(name='author', content='')
-    // favicon
-    link(rel='shortcut icon', href='images/favicon.ico')
-    title Fitness Friends
-    // Google Fonts
-    link(href='https://fonts.googleapis.com/css?family=Ubuntu:500,700', rel='stylesheet')
-    link(href='https://fonts.googleapis.com/css?family=Roboto:300,400', rel='stylesheet')
-    // Fonts for icons
-    link(href='css/font-awesome.min.css', rel='stylesheet')
-    // bootstrap
-    link(href='css/bootstrap.css', rel='stylesheet')
-    // Styles CSS
-    link(href='css/style.css', rel='stylesheet')
-    // HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
-    //if lt IE 9
-      script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
-      script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
-    link(rel='stylesheet', href='css/datepicker.min.css')
-    // google map API
-    script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBUNXgIQw-I2vuTzV85WUvgWNSe057MiMw')
+extends layout
 
-  body
-    #main-content.m-scene
-      // Header
-      nav.navbar
-        .full-width-container
-          a.navbar-brand(href='index.html')
-            img(src='images/logo.png', width='400', height='45', alt='Logo')
-          .fullscreen-menu-holder
-            .d-flex.align-items-center
-              ul.sidebar-menu
-                li
-                  a(href='index.html') Home
-                li
-                  a(href='listing.html') My Matches
-                li
-                  a(href='#') About Us
-                li
-                  a(href='#') Contact Us
-          button.hamburger-menu-btn.pull-right.for-fullscreen.hamburger-circle
-            span toggle menu
-          .pull-right
-            a.top_link(href='#login') Login
-          #login.overlay
-            .popup
-              .popover-title.popup_header
-                h2.text-center Login
-              a.close(href='#') ×
-              .content
-                .col-sm-12.col-xs-12.mb-3
-                  input(type='email', name='name', placeholder='Username')
-                .col-sm-12.col-xs-12
-                  input(type='text', name='name', placeholder='Password')
-                .pull-right.pop_btn
-                  a.top_link(href='#') Login
-      // End Header
-      .page-container
-        // Register content
-        .container
-          .mt_60.mb_60
-            .row
-              .col-md-12
-                span.reveal-title Register
-                h2 With Us
-                .separator
-                br
-                br
-                form#contact-form.form-fields-bg-alabaster(method='post', action=' ', role='form')
-                  .row.form-group
-                    .col-sm-3.col-xs-12.ml-2.mr-5
-                      .avatar
-                        input#fileUpload(type='file', name='photo', onchange='readURL(this);')
-                        img#avatar(src='images/team/noname.jpg', alt='your image')
-                        svg#camera(viewbox='0 0 25 15', enable-background='new 0 0 25 15')
-                          path#cameraFrame(fill='none', stroke='white', stroke-miterlimit='10', d='M23.1,14.1H1.9c-0.6,0-1-0.4-1-1V1.9c0-0.6,0.4-1,1-1h21.2c0.6,0,1,0.4,1,1v11.3C24.1,13.7,23.7,14.1,23.1,14.1z')
-                          path#circle(fill='none', stroke='#ffffff', stroke-width='1.4', stroke-miterlimit='12', d='M17.7,7.5c0-2.8-2.3-5.2-5.2-5.2S7.3,4.7,7.3,7.5s2.3,5.2,5.2,5.2S17.7,10.3,17.7,7.5z')
-                          g#plus
-                            path#plusLine.line(fill='none', stroke='#ffffff', stroke-linecap='round', stroke-miterlimit='10', d='M20.9,2.3v4.4')
-                            path.line(fill='none', stroke='#ffffff', stroke-linecap='round', stroke-miterlimit='10', d='M18.7,4.6h4.4')
-                        #openModal
-                    .col-sm-8.col-xs-12.ml-2
-                      .form-group.row.mb-4.mt-4
-                        .col-sm-6.col-xs-12
-                          label
-                            span.orange *
-                            |  Your first name:
-                          input(type='text', name='name')
-                        .col-sm-6.col-xs-12
-                          label
-                            span.orange *
-                            |  Email address:
-                          input(type='email', name='email', required='')
-                      .form-group.row
-                        .col-sm-6.col-xs-12
-                          label
-                            span.orange *
-                            |  Password:
-                          input#password(type='password', name='password', required='')
-                        .col-sm-6.col-xs-12
-                          label
-                            span.orange *
-                            |  Confirm password:
-                          input#repeat-password(type='password', name='repeat-password', required='')
-                  .form-group.row.mb-5.mt-5
-                    .col-sm-4.col-xs-12
-                      label Suburb:
-                      input(type='text', name='suburb')
-                    .col-sm-33.col-sm-3.col-xs-12
-                      label
-                        span.orange *
-                        |  Postcode:
-                      input#postcode(type='text', name='postcode', pattern='[0-9\s]*', required='', value='')
-                    .mr-20.mt_50(onclick='myCurrentPosition()')
-                      img(src='images/gps.png', width='18', height='18')
-                    .col-sm-4.col-xs-12
-                      label Area range within (km):
-                      select.form-control(name='range')
-                        option 0
-                        option 2
-                        option 5
-                        option 10
-                  .form-group.row.mb-5
-                    .col-sm-3.col-xs-12
-                      label
-                        span.orange *
-                        |  Fitness level:
-                      select.form-control(name='level')
-                        option Beginner
-                        option Intermediate
-                        option Advanced
-                    .col-sm-3.col-xs-12
-                      label
-                        span.orange *
-                        |  Fitness activity:
-                      select.form-control(name='activity')
-                        option Cardio
-                        option Strength
-                        option Flexibility
-                        option Sports
-                    .col-sm-3.col-xs-12
-                      label Gender:
-                      select.form-control(name='gender')
-                        option Male
-                        option Female
-                    .col-sm-3.col-xs-12
-                      label Birthdate:
-                      #datePicker.input-group.input-append.date
-                        input.form-control(type='text', name='date')
-                        span.add-on
-                  .form-group.row.mb-5
-                    .col-sm-12.col-xs-12
-                      label Describe yourself:
-                      textarea(rows='8', name='bio')
-                  .form-group.row
-                    .col-sm-12.col-xs-12.align-right.mt-3
-                      button.top_link(type='submit') Register
-        // End About content
-        // Footer
-        footer.bg-orange.mt_150.whole-container-text-white
-          | Copyright 2017 © University of Western Australia
-        // End Footer
-        // Placed js files at the end of the document so the pages load faster
-        script(type='text/javascript', src='js/jquery.min.js')
-        script(src='js/bootstrap.min.js ')
-        script(src='js/bootstrap-datepicker.min.js')
-        script(src='js/main.js')
+block content
+  #main-content.m-scene
+    // Header
+    nav.navbar
+      .full-width-container
+        a.navbar-brand(href='index.html')
+          img(src='images/logo.png', width='400', height='45', alt='Logo')
+        .fullscreen-menu-holder
+          .d-flex.align-items-center
+            ul.sidebar-menu
+              li
+                a(href='index.html') Home
+              li
+                a(href='listing.html') My Matches
+              li
+                a(href='#') About Us
+              li
+                a(href='#') Contact Us
+        button.hamburger-menu-btn.pull-right.for-fullscreen.hamburger-circle
+          span toggle menu
+        .pull-right
+          a.top_link(href='#login') Login
+        #login.overlay
+          .popup
+            .popover-title.popup_header
+              h2.text-center Login
+            a.close(href='#') ×
+            .content
+              .col-sm-12.col-xs-12.mb-3
+                input(type='email', name='name', placeholder='Username')
+              .col-sm-12.col-xs-12
+                input(type='text', name='name', placeholder='Password')
+              .pull-right.pop_btn
+                a.top_link(href='#') Login
+    // End Header
+    .page-container
+      // Register content
+      .container
+        .mt_60.mb_60
+          .row
+            .col-md-12
+              span.reveal-title Register
+              h2 With Us
+              .separator
+              br
+              br
+              form#contact-form.form-fields-bg-alabaster(method='post', action=' ', role='form')
+                .row.form-group
+                  .col-sm-3.col-xs-12.ml-2.mr-5
+                    .avatar
+                      input#fileUpload(type='file', name='photo', onchange='readURL(this);')
+                      img#avatar(src='images/team/noname.jpg', alt='your image')
+                      svg#camera(viewbox='0 0 25 15', enable-background='new 0 0 25 15')
+                        path#cameraFrame(fill='none', stroke='white', stroke-miterlimit='10', d='M23.1,14.1H1.9c-0.6,0-1-0.4-1-1V1.9c0-0.6,0.4-1,1-1h21.2c0.6,0,1,0.4,1,1v11.3C24.1,13.7,23.7,14.1,23.1,14.1z')
+                        path#circle(fill='none', stroke='#ffffff', stroke-width='1.4', stroke-miterlimit='12', d='M17.7,7.5c0-2.8-2.3-5.2-5.2-5.2S7.3,4.7,7.3,7.5s2.3,5.2,5.2,5.2S17.7,10.3,17.7,7.5z')
+                        g#plus
+                          path#plusLine.line(fill='none', stroke='#ffffff', stroke-linecap='round', stroke-miterlimit='10', d='M20.9,2.3v4.4')
+                          path.line(fill='none', stroke='#ffffff', stroke-linecap='round', stroke-miterlimit='10', d='M18.7,4.6h4.4')
+                      #openModal
+                  .col-sm-8.col-xs-12.ml-2
+                    .form-group.row.mb-4.mt-4
+                      .col-sm-6.col-xs-12
+                        label
+                          span.orange *
+                          |  Your first name:
+                        input(type='text', name='name')
+                      .col-sm-6.col-xs-12
+                        label
+                          span.orange *
+                          |  Email address:
+                        input(type='email', name='email', required='')
+                    .form-group.row
+                      .col-sm-6.col-xs-12
+                        label
+                          span.orange *
+                          |  Password:
+                        input#password(type='password', name='password', required='')
+                      .col-sm-6.col-xs-12
+                        label
+                          span.orange *
+                          |  Confirm password:
+                        input#repeat-password(type='password', name='repeat-password', required='')
+                .form-group.row.mb-5.mt-5
+                  .col-sm-4.col-xs-12
+                    label Suburb:
+                    input(type='text', name='suburb')
+                  .col-sm-3.col-xs-12
+                    label
+                      span.orange *
+                      |  Postcode:
+                    input#postcode(type='text', name='postcode', pattern='[0-9\s]*', required='', value='')
+                  .mr-20.mt_50(onclick='myCurrentPosition()')
+                    img(src='images/gps.png', width='18', height='18')
+                  .col-sm-4.col-xs-12
+                    label Area range within (km):
+                    select.form-control(name='range')
+                      option 0
+                      option 2
+                      option 5
+                      option 10
+                .form-group.row.mb-5
+                  .col-sm-3.col-xs-12
+                    label
+                      span.orange *
+                      |  Fitness level:
+                    select.form-control(name='level')
+                      option Beginner
+                      option Intermediate
+                      option Advanced
+                  .col-sm-3.col-xs-12
+                    label
+                      span.orange *
+                      |  Fitness activity:
+                    select.form-control(name='activity')
+                      option Cardio
+                      option Strength
+                      option Flexibility
+                      option Sports
+                  .col-sm-3.col-xs-12
+                    label Gender:
+                    select.form-control(name='gender')
+                      option Male
+                      option Female
+                  .col-sm-3.col-xs-12
+                    label Birthdate:
+                    #datePicker.input-group.input-append.date
+                      input.form-control(type='text', name='date')
+                      span.add-on
+                .form-group.row.mb-5
+                  .col-sm-12.col-xs-12
+                    label Describe yourself:
+                    textarea(rows='8', name='bio')
+                .form-group.row
+                  .col-sm-12.col-xs-12.align-right.mt-3
+                    button.top_link(type='submit') Register
+      // End About content
+      // Footer
+      footer.bg-orange.mt_150.whole-container-text-white
+        | Copyright 2017 © University of Western Australia
+      // End Footer
+      // Placed js files at the end of the document so the pages load faster
+      script(type='text/javascript', src='js/jquery.min.js')
+      script(src='js/bootstrap.min.js ')
+      script(src='js/bootstrap-datepicker.min.js')
+      script(src='js/main.js')
