@@ -76,7 +76,7 @@ html(lang='en')
                   .row.form-group
                     .col-sm-3.col-xs-12.ml-2.mr-5
                       .avatar
-                        input#fileUpload(type='file', onchange='readURL(this);')
+                        input#fileUpload(type='file', name='photo', onchange='readURL(this);')
                         img#avatar(src='images/team/noname.jpg', alt='your image')
                         svg#camera(viewbox='0 0 25 15', enable-background='new 0 0 25 15')
                           path#cameraFrame(fill='none', stroke='white', stroke-miterlimit='10', d='M23.1,14.1H1.9c-0.6,0-1-0.4-1-1V1.9c0-0.6,0.4-1,1-1h21.2c0.6,0,1,0.4,1,1v11.3C24.1,13.7,23.7,14.1,23.1,14.1z')
@@ -88,7 +88,7 @@ html(lang='en')
                     .col-sm-8.col-xs-12.ml-2
                       .form-group.row.mb-4.mt-4
                         .col-sm-6.col-xs-12
-                          label 
+                          label
                             span.orange *
                             |  Your first name:
                           input(type='text', name='name')

@@ -59,6 +59,7 @@ router.post('/register', function(req, res){
     range: req.body.range,
     level: req.body.level,
     activity: req.body.activity,
+    photo: req.body.photo,
     bio: req.body.bio }),
   req.body.password, function(err, account) {
     if(err) {
@@ -70,6 +71,12 @@ router.post('/register', function(req, res){
     res.redirect('userlist');
   });
 });
+
+router.get('/userimage', function(req, res, next) {
+  if(req.user) res.render('index', { title: 'Fitness Friends', user: req.user, age: datejs.calculateAge(req.user.birthdate)});
+  if(!req.user) res.render('index', { title: 'Fitness Friends'});
+});
+
 
 router.post('/login', passport.authenticate('local'), function(req, res) {
     res.redirect('/');
