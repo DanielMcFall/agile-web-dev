@@ -147,6 +147,7 @@ a:focus,
     color: #5d5d5d;
     text-decoration: none;
 }
+
 .orange{color:#EC6EAD}
 
 
@@ -1628,8 +1629,18 @@ select.form-control:not([size]):not([multiple]) {height: calc(2.7rem + 2px);}
 }
 .accordion .card-header h5 a:hover, .accordion .card-header h5 a:active{color:#EC6EAD}
 
+/* new */
+
 .email-display {
   padding-top: 10px;
   padding-right: 20px;
   font-size: 16px;
+}
+
+.btn-auto {
+  width: 100%;
+}
+
+.lg-font {
+  font-size: 30px;
 }
