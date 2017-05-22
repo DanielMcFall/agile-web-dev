@@ -31,7 +31,10 @@ block content
           .row.mt_40.mb_40
             // Profile photos
             .col-lg-6.col-md-6.col-sm-12.col-xs-12
-                img.user-pic.img-responsive.img-rounded(src=user.photo, alt='picture')
+              if(user.gender == 'Male')
+                img.user-pic.img-responsive.img-rounded(src='images/male.jpg', alt='picture', height = '570', width = '1200')
+              else if(user.gender == 'Female')
+                img.user-pic.img-responsive.img-rounded(src='images/female.jpg', alt='picture', height = '570', width = '1200')
             // End Profile photos
             //- Profile info
             .col-lg-6.col-md-6.col-sm-12.col-xs-12
