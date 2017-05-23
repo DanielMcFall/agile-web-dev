@@ -92,6 +92,10 @@ router.get('/about', function(req, res){
     res.render('about', {title:  '' });
 });
 
+router.get('/testing', function(req, res){
+    res.render('testing',{title: ''});
+});
+
 router.get('/algorithm', function(req, res){
     res.render('algorithm', {title:  '' });
 });
