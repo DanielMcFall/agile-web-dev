@@ -5,7 +5,7 @@ block content
     // Header
     nav.navbar
       .full-width-container
-        a.navbar-brand(href='index.html')
+        a.navbar-brand(href='index')
           img(src='images/logo.png', width='400', height='45', alt='Logo')
         .fullscreen-menu-holder
           .d-flex.align-items-center
@@ -22,18 +22,20 @@ block content
           span toggle menu
         .pull-right
           a.top_link(href='#login') Login
-        #login.overlay
-          .popup
-            .popover-title.popup_header
-              h2.text-center Login
-            a.close(href='#') ×
-            .content
-              .col-sm-12.col-xs-12.mb-3
-                input(type='email', name='name', placeholder='Username')
-              .col-sm-12.col-xs-12
-                input(type='text', name='name', placeholder='Password')
-              .pull-right.pop_btn
-                a.top_link(href='#') Login
+          #login.overlay
+            .popup
+              .popover-title.popup_header
+                h2.text-center Login
+              a.close(href='#') ×
+              .content
+                form.login_form(role='form', action="/login", method="post")
+                  .col-sm-12.col-xs-12.mb-3
+                    input(type='email', name='email', placeholder='Email')
+                  .col-sm-12.col-xs-12
+                    input(type='password', name='password', placeholder='Password')
+                  .pull-right.pop_btn
+                    button.top_link(type="submit") Login
+                    &nbsp;
     // End Header
     .page-container
       // Register content

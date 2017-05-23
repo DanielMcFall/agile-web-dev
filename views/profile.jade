@@ -58,7 +58,7 @@ block content
               .col-sm-3.col-xs-6
                 label Birthdate:
                 #datePicker.input-group.input-append.date
-                  input.form-control(type='text', name='date', value='#{user.birthdate}')
+                  input.form-control(type='text', name='date', value='#{user.birthdate.toDateString()}')
                   span.add-on
             .row.mt_10
               .col-sm-6.col-xs-12
