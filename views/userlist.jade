@@ -4,6 +4,5 @@ block content
   h3.
     List of users
   ul
-    each user, i in userlist
-      li#user_list_item
-        #{user.email}
+    each user in userlist
+      li #{user.email}

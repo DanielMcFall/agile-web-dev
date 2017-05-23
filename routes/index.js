@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
 });
 
 //Temporary page to display registered users
-router.get('/userlist', function(req, res){
+router.get('/userlist', function(req, res) {
 
   var MongoClient = mongodb.MongoClient;
 
@@ -26,10 +26,12 @@ router.get('/userlist', function(req, res){
     var collection = db.collection('accounts');
 
     // Return all users
-    collection.find({}).toArray(function (err, result) {
+    collection.find().toArray(function (err, result) {
       if (err) {
         console.log(err);
       } else if (result.length) {
+//        console.log(result);
+
         res.render('userlist',{
           // Pass back to Jade
           "userlist" : result
