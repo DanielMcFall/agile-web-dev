@@ -6,14 +6,31 @@ var Account = require('../models/account');
 var mongoUrl = "mongodb://admin:password@ds133231.mlab.com:33231/agile-web-dev";
 var datejs = require('../private/js/date.js');
 
+//user details variables
+var userFitnessLevel = '';
+var userFitnessActivity = '';
+var userPostCode = '';
+var userGender = '';
+var userEmail = '';
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  if(req.user) res.render('index', { title: 'Fitness Friends', user: req.user, age: datejs.calculateAge(req.user.birthdate)});
+  if(req.user) {
+    //save user values for matching algorithm
+    userFitnessLevel = req.user.level;
+    userFitnessActivity = req.user.activity;
+    userPostCode = req.user.postcode;
+    userGender = req.user.gender;
+    userEmail = req.user.email;
+
+    res.render('index', { title: 'Fitness Friends', user: req.user, age: datejs.calculateAge(req.user.birthdate)});
+
+  }
   if(!req.user) res.render('index', { title: 'Fitness Friends'});
 });
 
 //Temporary page to display registered users
-router.get('/userlist', function(req, res) {
+router.get('/listing', function(req, res) {
 
   var MongoClient = mongodb.MongoClient;
 
@@ -25,14 +42,14 @@ router.get('/userlist', function(req, res) {
 
     var collection = db.collection('accounts');
 
-    // Return all users
-    collection.find().toArray(function (err, result) {
+    // Return beginner and sports users ..temp hard coded
+    collection.find({ $and: [ {'level' : userFitnessLevel}, {'activity': userFitnessActivity}, { 'email': { $ne : userEmail} } ] }).toArray(function (err, result) {
       if (err) {
         console.log(err);
       } else if (result.length) {
 //        console.log(result);
 
-        res.render('userlist',{
+        res.render('listing', {
           // Pass back to Jade
           "userlist" : result
         });
@@ -70,7 +87,7 @@ router.post('/register', function(req, res){
 
     console.log('user registered!');
 
-    res.redirect('userlist');
+    res.redirect('listing');
   });
 });
 

@@ -91,15 +91,19 @@ block content
                       span.orange *
                       |  Postcode:
                     input#postcode(type='text', name='postcode', pattern='[0-9\s]*', required='', value='')
-                  .mr-20.mt_50(onclick='myCurrentPosition()')
+                  .mr-60.mt_50(onclick='myCurrentPosition()')
                     img(src='images/gps.png', width='18', height='18')
                   .col-sm-4.col-xs-12
-                    label Area range within (km):
-                    select.form-control(name='range')
-                      option 0
-                      option 2
-                      option 5
-                      option 10
+                    label Area range within :
+                    .range
+                      input(type='range', min='1', max='6', steps='1', value='1')
+                    ul.range-labels
+                      li.active.selected 0km
+                      li 1km
+                      li 2km
+                      li 5km
+                      li 10km
+                      li 20km
                 .form-group.row.mb-5
                   .col-sm-3.col-xs-12
                     label

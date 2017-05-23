@@ -1444,13 +1444,15 @@ background: linear-gradient(-135deg, #EC6EAD, #3494E6); /* W3C, IE 10+/ Edge, Fi
     padding: 50px 40px;
 }
 
+.row_manage:nth-child(4n)>.col-md-6.no-padding, .row_manage:nth-child(4n-1)>.col-md-6.no-padding{ position:absolute; right:0}
+.row_manage:nth-child(4n)>.col-md-6.no-padding>.left_arrow, .row_manage:nth-child(4n-1)>.col-md-6.no-padding>.left_arrow{ left:0; background:url(../images/right_arrow.png) no-repeat;}
 
 /* Register page form */
 
 select.form-control:not([size]):not([multiple]) {height: calc(2.7rem + 2px);}
 .text-big{font-size:20px}
 .col-sm-33{max-width: 30% !important; flex: 0 0 30% !important ;}
-.mr-20{margin-right:20px}
+.mr-60{margin-right:60px}
 .avatar {
   float: left;
   display: inline-block;
@@ -1607,6 +1609,114 @@ select.form-control:not([size]):not([multiple]) {height: calc(2.7rem + 2px);}
 
 .avatar.open > #camera {
   visibility: hidden;
+}
+
+.range {
+  position: relative;
+  width: 98%;
+  height: 5px;
+}
+
+.range input {
+  width: 100%;
+  position: absolute;
+  top: 2px;
+  height: 0;
+  padding:0;
+  -webkit-appearance: none;
+}
+.range input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  margin: -8px 0  0;
+  border-radius: 50%;
+  background: #EC6EAD;
+  cursor: pointer;
+  border: 0 !important;
+}
+.range input::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  margin: -8px 0  0;
+  border-radius: 50%;
+  background: #EC6EAD;
+  cursor: pointer;
+  border: 0 !important;
+}
+.range input::-ms-thumb {
+  width: 18px;
+  height: 18px;
+  margin: -8px 0  0;
+  border-radius: 50%;
+  background: #EC6EAD;
+  cursor: pointer;
+  border: 0 !important;
+}
+.range input::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 2px;
+  cursor: pointer;
+  background: #b2b2b2;
+}
+.range input::-moz-range-track {
+  width: 100%;
+  height: 2px;
+  cursor: pointer;
+  background: #b2b2b2;
+}
+.range input::-ms-track {
+  width: 100%;
+  height: 2px;
+  cursor: pointer;
+  background: #b2b2b2;
+}
+.range input:focus {
+  background: none;
+  outline: none;
+}
+.range input::-ms-track {
+  width: 100%;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+
+.range-labels {
+  margin:18px -30px 0;
+  padding: 0;
+  list-style: none;
+}
+.range-labels li {
+  position: relative;
+  float: left;
+  text-align: center;
+  color: #b2b2b2;
+  font-size: 14px;
+  cursor: pointer;
+  width: 67px;
+}
+.range-labels li::before {
+  position: absolute;
+  top: -25px;
+  right: 0;
+  left: 0;
+  content: "";
+  margin: 0 auto;
+  width: 9px;
+  height: 9px;
+  background: #EC6EAD;
+  border-radius: 50%;
+}
+.range-labels .active {
+  color: #EC6EAD;
+}
+.range-labels .selected::before {
+  background: #EC6EAD;
+}
+.range-labels .active.selected::before {
+  display: none;
 }
 
 /* About page */

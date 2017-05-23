@@ -7,5 +7,6 @@ exports.calculateAge = function(birthday) { // birthday is a date
     var ageDate = new Date(ageDifMs); // milliseconds from epoch
     return Math.abs(ageDate.getUTCFullYear() - 1970);
   }
+  return '';
 
 }
