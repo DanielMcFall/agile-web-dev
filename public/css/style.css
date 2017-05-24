@@ -496,7 +496,7 @@ footer {
     animation: text_up_animate .4s ease-out both .5s;
     animation-delay: 70ms;
 }
-
+.home-menu ul li{float: none !important; }
 /*Side nav menu */
 
 
