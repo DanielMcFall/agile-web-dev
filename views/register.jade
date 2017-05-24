@@ -125,14 +125,18 @@ block content
                       option Flexibility
                       option Sports
                   .col-sm-3.col-xs-12
-                    label Gender:
-                    select.form-control(name='gender')
+                    label 
+                      span.orange *
+                      |  Gender:
+                    select.form-control(name='gender', required='')
                       option Male
                       option Female
                   .col-sm-3.col-xs-12
-                    label Birthdate:
+                    label 
+                      span.orange *
+                      | Birthdate:
                     #datePicker.input-group.input-append.date
-                      input.form-control(type='text', name='date')
+                      input.form-control(type='text', name='date', required='')
                       span.add-on
                 .form-group.row.mb-5
                   .col-sm-12.col-xs-12
