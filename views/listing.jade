@@ -29,52 +29,52 @@ html(lang='en')
         .full-width-container
           a.navbar-brand(href='')
             img(src='images/logo.png', width='400', height='45', alt='Logo')
-            .fullscreen-menu-holder
-              .align-items-center
-                .row.col-sm-12.mt-5
-                  .col-sm-3.col-xs-12.mt-5
-                    .align-center
+          .fullscreen-menu-holder
+            .align-items-center
+              .row.col-sm-12.mt-5
+                .col-sm-3.col-xs-12.mt-5
+                  .align-center
+                    a(href='#')
+                      img.rounded-circle(src='images/team/noname.jpg', alt='team', width='550', height='550')
+                    .mt-4
+                      h4.text-white Username
+                .col-sm-1
+                .col-sm-3.col-xs-12.mt-5
+                  ul.sidebar-menu.mt-5
+                    li
+                      a(href='/settings')
+                        i.fa.fa-edit.mr-20
+                        | Edit Profile
+                    li
+                      a(href='/listing')
+                        i.fa.fa-list.mr-20
+                        |    My Matches
+                .col-sm-1
+                .col-sm-3.col-xs-12.mt-5
+                  ul.sidebar-menu.mt-5
+                    li
                       a(href='#')
-                        img.rounded-circle(src='images/team/noname.jpg', alt='team', width='550', height='550')
-                      .mt-4
-                        h4.text-white Username
-                  .col-sm-1
-                  .col-sm-3.col-xs-12.mt-5
-                    ul.sidebar-menu.mt-5
-                      li
-                        a(href='/settings')
-                          i.fa.fa-edit.mr-20
-                          |    Edit Profile
-                      li
-                        a(href='listing')
-                          i.fa.fa-list.mr-20
-                          |    My Matches
-                  .col-sm-1
-                  .col-sm-3.col-xs-12.mt-5
-                    ul.sidebar-menu.mt-5
-                      li
-                        a(href='#')
-                          i.fa.fa-bell.mr-20
-                          |    Notifications
-                      li
-                        a(href='/logout')
-                          i.fa.fa-power-off.mr-20
-                          |    Logout
-                .row.col-sm-12.mt_100
-                  .col-sm-12.col-xs-12
-                    hr
-                    ul.bottom-menu
-                      li
-                        a(href='#') Home
-                      li
-                        a(href='#') About Website
-                      li
-                        a(href='#') Algorithm
-                      li
-                        a(href='#') References
-                        
+                        i.fa.fa-bell.mr-20
+                        |    Notifications
+                    li
+                      a(href='/logout')
+                        i.fa.fa-power-off.mr-20
+                        |    Logout
+              .row.col-sm-12.mt_150
+                .col-sm-12.col-xs-12
+                  hr
+                  ul.bottom-menu
+                    li
+                      a(href='#') Home
+                    li
+                      a(href='#') About Website
+                    li
+                      a(href='#') Algorithm
+                    li
+                      a(href='references.html') References
           button.hamburger-menu-btn.pull-right.for-fullscreen.hamburger-circle
             span toggle menu
+
       // End Header
       .page-container
         // Page title
