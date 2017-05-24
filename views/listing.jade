@@ -42,36 +42,37 @@ html(lang='en')
                   .col-sm-3.col-xs-12.mt-5
                     ul.sidebar-menu.mt-5
                       li
-                        a(href='#')
-                          i.fa.fa-edit
+                        a(href='/settings')
+                          i.fa.fa-edit.mr-20
                           |    Edit Profile
                       li
-                        a(href='listing.html')
-                          i.fa.fa-list
+                        a(href='listing')
+                          i.fa.fa-list.mr-20
                           |    My Matches
                   .col-sm-1
                   .col-sm-3.col-xs-12.mt-5
                     ul.sidebar-menu.mt-5
                       li
                         a(href='#')
-                          i.fa.fa-bell
+                          i.fa.fa-bell.mr-20
                           |    Notifications
                       li
-                        a(href='#')
-                          i.fa.fa-power-off
+                        a(href='/logout')
+                          i.fa.fa-power-off.mr-20
                           |    Logout
                 .row.col-sm-12.mt_100
                   .col-sm-12.col-xs-12
                     hr
                     ul.bottom-menu
                       li
-                        a(href='index.html') Home
+                        a(href='#') Home
                       li
-                        a(href='about.html') About Website
+                        a(href='#') About Website
                       li
-                        a(href='algorithm.html') Algorithm
+                        a(href='#') Algorithm
                       li
-                        a(href='references.html') References
+                        a(href='#') References
+                        
           button.hamburger-menu-btn.pull-right.for-fullscreen.hamburger-circle
             span toggle menu
       // End Header

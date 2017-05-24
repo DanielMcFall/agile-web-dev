@@ -1453,6 +1453,7 @@ select.form-control:not([size]):not([multiple]) {height: calc(2.7rem + 2px);}
 .text-big{font-size:20px}
 .col-sm-33{max-width: 30% !important; flex: 0 0 30% !important ;}
 .mr-60{margin-right:60px}
+.mr-20{margin-right: 20px}
 .avatar {
   float: left;
   display: inline-block;
@@ -1718,6 +1719,7 @@ select.form-control:not([size]):not([multiple]) {height: calc(2.7rem + 2px);}
 .range-labels .active.selected::before {
   display: none;
 }
+.row_manage>.col-md-6 {min-height: 285px;}
 
 /* About page */
 
