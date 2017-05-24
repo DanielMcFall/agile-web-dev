@@ -171,8 +171,8 @@ function validatePassword() {
     confirm_password.setCustomValidity('');
   }
 }
-password.onchange = validatePassword;
-confirm_password.onkeyup = validatePassword;
+if(password) password.onchange = validatePassword;
+if(confirm_password) confirm_password.onkeyup = validatePassword;
 / Password verification script end /
 
 $(document).ready(function() {

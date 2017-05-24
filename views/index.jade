@@ -69,7 +69,7 @@ block content
                 i.fa.fa-user-plus.lg-font
                 p.lg-font Match
             .col-lg-3.col-md-3.col-sm-6.col-xs-6
-              a.btn.btn-default.btn-lg.btn-auto(href='/message')
+              a.btn.btn-default.btn-lg.btn-auto(href='/messages')
                 i.fa.fa-comments.lg-font
                 p.lg-font Messages
             .col-lg-3.col-md-3.col-sm-6.col-xs-6
@@ -84,9 +84,7 @@ block content
       script(src='js/bootstrap.min.js ')
       script(type='text/javascript', src='js/owl.carousel.js')
       script(type='text/javascript', src='js/main.js')
-        p Currently logged in as #{user.email}
-        a(href="/logout")
-          button#logout(type="button") Logout
+
   if (!user)
     #main-content.m-scene
       //- Header
@@ -123,7 +121,6 @@ block content
                     input(type='password', name='password', placeholder='Password')
                   .pull-right.pop_btn
                     button.top_link(type="submit") Login
-                    &nbsp;
 
 
       //- End Header

@@ -14,7 +14,7 @@ block content
                 li
                   a(href='/match') Match
                 li
-                  a(href='/message') Messages
+                  a(href='/messages') Messages
                 li
                   a(href='/settings') Settings
                 li
@@ -25,14 +25,42 @@ block content
             .email-display
               p #{user.email}
       //- End Header
-      .page-container
+      //- Main content
+      .row.mt_20
+        //- Area for current matches
+        .col-md-4
+
+        //- Area for messages
+        .col-md-8
+          .chat
+            #chat-messages
+              .chat-message
+            textarea#new-message(placeholder='Enter message')
+
+      //- Navigation-bottom
+      .row.mt_20
+        .col-lg-3.col-md-3.col-sm-6.col-xs-6
+          a.btn.btn-default.btn-lg.btn-auto(href='/')
+            i.fa.fa-user-circle.lg-font
+            p.lg-font Home
+        .col-lg-3.col-md-3.col-sm-6.col-xs-6
+          a.btn.btn-default.btn-lg.btn-auto(href='/match')
+            i.fa.fa-user-plus.lg-font
+            p.lg-font Match
+        .col-lg-3.col-md-3.col-sm-6.col-xs-6
+          a.btn.btn-default.btn-lg.btn-auto(href='/messages')
+            i.fa.fa-comments.lg-font
+            p.lg-font Messages
+        .col-lg-3.col-md-3.col-sm-6.col-xs-6
+          a.btn.btn-default.btn-lg.btn-auto(href='/settings')
+            i.fa.fa-wrench.lg-font
+            p.lg-font Settings
+      //- End Navigation-bottom
       //- Footer
       footer Copyright 2017 © University of Western Australia
-    //- Placed js files at the end of the document so the pages load faster
-    script(type='text/javascript', src='js/jquery.min.js')
-    script(src='js/bootstrap.min.js ')
-    script(type='text/javascript', src='js/owl.carousel.js')
-    script(type='text/javascript', src='js/main.js')
-      p Currently logged in as #{user.email}
-      a(href="/logout")
-        button#logout(type="button") Logout
+      //- Placed js files at the end of the document so the pages load faster
+      script(type='text/javascript', src='js/jquery.min.js')
+      script(src='js/bootstrap.min.js ')
+      script(type='text/javascript', src='js/owl.carousel.js')
+      script(type='text/javascript', src='js/main.js')
+      script(src='/js/message.js')

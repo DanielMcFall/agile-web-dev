@@ -85,7 +85,9 @@ router.post('/register', function(req, res){
       return res.render('register', { title: 'Fitness Friends | Sign Up', error: err.message });
     }
 
-    res.redirect('listing');
+    passport.authenticate('local')(req, res, function() {
+        res.redirect('/');
+    });
   });
 });
 
@@ -143,8 +145,8 @@ router.get('/match', function(req, res){
 });
 
 router.get('/messages', function(req, res){
-    if(req.user) res.render('message', { title: 'Fitness Friends', user: req.user });
-    if(!req.user) res.redirect('/');
+  if(req.user) res.render('message', { title: 'Fitness Friends', user: req.user });
+  if(!req.user) res.redirect('/');
 });
 
 

@@ -11,6 +11,7 @@ var LocalStrategy = require('passport-local').Strategy;
 
 //Used for MongoDB database connection
 var mongo = require('mongodb')
+var mongoUrl = "mongodb://admin:password@ds133231.mlab.com:33231/agile-web-dev";
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -50,7 +51,7 @@ passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
 
 // mongoose
-mongoose.connect('mongodb://admin:password@ds133231.mlab.com:33231/agile-web-dev');
+mongoose.connect(mongoUrl);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -69,5 +70,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 module.exports = app;
