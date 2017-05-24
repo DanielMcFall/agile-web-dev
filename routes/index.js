@@ -97,7 +97,7 @@ router.post('/register', function(req, res){
 });
 
 router.get('/settings', function(req, res, next) {
-  if(req.user) res.render('profile', { title: 'Fitness Friends', user: req.user, age: datejs.calculateAge(req.user.birthdate)});
+  if(req.user) res.render('profile', { title: 'Fitness Friends', user: req.user, age: req.user.date});
   if(!req.user) res.redirect('/');
 });
 
