@@ -68,9 +68,12 @@ html(lang='en')
             .row
               .col-md-12
                 span.reveal-title How
-                h2 the matching algorithm works
+                h2 the Matching Algorithm Works
                 .separator
-                p.lead To find your perfect Fitness Friend, we implement a special tailor designed algorithm which finds you a perfect match based on your location, fitness level and activity and also (optionally) your gender and age.
+                p.lead
+                span.orange To find your perfect Fitness Friend, we implement a special tailor designed algorithm to find your potential matches.
+                br
+                | Using your information, we will cross reference you with millions of other users to present to you your top matches based on our matching criteria.
           .mt_60.mb_60
             .row
               .col-md-12
@@ -84,8 +87,11 @@ html(lang='en')
                           | Location Based
                     #collapseOne.collapse.show(role='tabpanel', aria-labelledby='headingOne')
                       .card-block
-                        | At Fitness Friends, we implement current location tracking to pin point where you are to find you other users in your area.
-                        | etc
+                        | In the registration page we ask that you submit your postcode, whereas suburb input is optional.
+                        | However, we also implement geotracking to pin point your location.
+                        | We also ask that you input a distance (km) range of how far you are willing to travel,
+                        | this is not mandatory and will default to 10km if no range is specified.
+                        | Using this data, we find you your perfect match in your surrounding suburbs within the range.
                   .card.border-0
                     #headingTwo.card-header(role='tab')
                       h5.mb-0
@@ -93,8 +99,8 @@ html(lang='en')
                           | Fitness Level & Activity
                     #collapseTwo.collapse(role='tabpanel', aria-labelledby='headingTwo')
                       .card-block
-                        | Users may select from three different fitness levels: beginner, intermediate and advanced, as well as four different fitness activities: cardio, strength, flexibility and sports. This allows for us to find you a match with the same fitness level and activity type.
-                        | etc
+                        | Users may select from three different fitness levels: beginner, intermediate and advanced, as well as four different fitness activities: cardio, strength, flexibility and sports.
+                        | This allows for us to find you a match with the same fitness level and activity type.
                   .card.border-0
                     #headingThree2.card-header(role='tab')
                       h5.mb-0
@@ -102,8 +108,8 @@ html(lang='en')
                           | Age & Gender
                     #collapseThree.collapse(role='tabpanel', aria-labelledby='headingThree2')
                       .card-block
-                        | If you have a preference for what age or gender you would like to find in a match, you can also specify this when signing up with Fitness Friends.
-                        | etc
+                        | If you have a preference for what age or gender you would like to find in a match, you can also specify this when signing up with Fitness Friends,
+                        | and we will take this into consideration when generating your matches.
         // End About content
       // Footer
       footer.bg-orange.mt_150.whole-container-text-white
