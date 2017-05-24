@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose')
 var passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy;
+//var multer = require('multer');
 
 //Used for MongoDB database connection
 var mongo = require('mongodb')
@@ -60,6 +61,7 @@ app.use(function(req, res, next) {
   next(err);
 });
 
+
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
@@ -71,5 +73,12 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+
+//multer
+// app.use(multer({ dest: ‘./uploads/’,
+//  rename: function (fieldname, filename) {
+//    return filename;
+//  },
+// }));
 
 module.exports = app;

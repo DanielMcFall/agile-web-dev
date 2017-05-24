@@ -11,7 +11,7 @@ var Account = new Schema({
   range: {type: Number, default: 10},
   level: {type: String, require: true},
   activity: {type: String, require: true},
-  photo: Buffer, 
+  photo: { data: Buffer, contentType: String }, 
   bio: String
  });
 

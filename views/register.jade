@@ -1,19 +1,21 @@
 extends layout
 
+script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBUNXgIQw-I2vuTzV85WUvgWNSe057MiMw')
+
 block content
   #main-content.m-scene
     // Header
     nav.navbar
       .full-width-container
-        a.navbar-brand(href='index')
+        a.navbar-brand(href='/')
           img(src='images/logo.png', width='400', height='45', alt='Logo')
         .fullscreen-menu-holder
           .d-flex.align-items-center
             ul.sidebar-menu
               li
-                a(href='index.html') Home
+                a(href='/') Home
               li
-                a(href='listing.html') My Matches
+                a(href='listing') My Matches
               li
                 a(href='#') About Us
               li
@@ -125,14 +127,14 @@ block content
                       option Flexibility
                       option Sports
                   .col-sm-3.col-xs-12
-                    label 
+                    label
                       span.orange *
                       |  Gender:
                     select.form-control(name='gender', required='')
                       option Male
                       option Female
                   .col-sm-3.col-xs-12
-                    label 
+                    label
                       span.orange *
                       | Birthdate:
                     #datePicker.input-group.input-append.date
@@ -150,6 +152,7 @@ block content
       footer.bg-orange.mt_150.whole-container-text-white
         | Copyright 2017 © University of Western Australia
       // End Footer
+
       // Placed js files at the end of the document so the pages load faster
       script(type='text/javascript', src='js/jquery.min.js')
       script(src='js/bootstrap.min.js ')

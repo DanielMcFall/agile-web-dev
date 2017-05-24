@@ -13,6 +13,7 @@ var userPostCode = '';
 var userGender = '';
 var userEmail = '';
 
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   if(req.user) {
@@ -32,6 +33,8 @@ router.get('/', function(req, res, next) {
 //Temporary page to display registered users
 router.get('/listing', function(req, res) {
 
+  console.log('listing page user details: ' +req.user);
+
   var MongoClient = mongodb.MongoClient;
 
   MongoClient.connect(mongoUrl, function (err, db) {
@@ -43,7 +46,7 @@ router.get('/listing', function(req, res) {
     var collection = db.collection('accounts');
 
     // Return beginner and sports users ..temp hard coded
-    collection.find({ $and: [ {'level' : userFitnessLevel}, {'activity': userFitnessActivity}, { 'email': { $ne : userEmail} } ] }).toArray(function (err, result) {
+    collection.find({ $and: [ {'level' : req.user.level}, {'activity': req.user.activity}, { 'email': { $ne : req.user.email} } ] }).toArray(function (err, result) {
       if (err) {
         console.log(err);
       } else if (result.length) {
@@ -68,7 +71,8 @@ router.get('/register', function(req, res){
 });
 
 router.post('/register', function(req, res){
-  Account.register(new Account({
+
+  Account.register( new Account ( {
     email : req.body.email,
     name: req.body.name,
     birthdate: req.body.date,
@@ -78,16 +82,19 @@ router.post('/register', function(req, res){
     range: req.body.range,
     level: req.body.level,
     activity: req.body.activity,
-    photo: req.body.photo,
     bio: req.body.bio }),
   req.body.password, function(err, account) {
     if(err) {
       return res.render('register', { title: 'Fitness Friends | Sign Up', error: err.message });
     }
 
-    passport.authenticate('local')(req, res, function() {
-        res.redirect('/');
-    });
+    // account.photo.data = fs.readFileSync(req.files.photo.path);
+    // account.photo.contentType = 'image/png';
+    // account.save();
+
+    console.log('user registered!');
+
+    res.redirect('listing');
   });
 });
 
@@ -98,7 +105,7 @@ router.get('/settings', function(req, res, next) {
 
 
 router.post('/login', passport.authenticate('local'), function(req, res) {
-    res.redirect('/');
+    res.redirect('listing');
 });
 
 router.get('/logout', function(req, res) {

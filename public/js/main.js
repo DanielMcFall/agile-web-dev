@@ -178,7 +178,8 @@ if(confirm_password) confirm_password.onkeyup = validatePassword;
 $(document).ready(function() {
   $('#datePicker')
     .datepicker({
-      format: 'mm/dd/yyyy'
+      format: 'mm/dd/yyyy',
+      autoclose: true
     })
 });
 

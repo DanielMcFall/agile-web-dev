@@ -27,19 +27,51 @@ html(lang='en')
       // Header
       nav.navbar
         .full-width-container
-          a.navbar-brand(href='index.html')
-            img(src='images/logo.png', width='162', height='45', alt='Logo')
-          .fullscreen-menu-holder
-            .d-flex.align-items-center
-              ul.sidebar-menu
-                li
-                  a(href='index.html') Home
-                li
-                  a(href='listing.html') My Matches
-                li
-                  a(href='#') About Us
-                li
-                  a(href='#') Contact Us
+          a.navbar-brand(href='')
+            img(src='images/logo.png', width='400', height='45', alt='Logo')
+            .fullscreen-menu-holder
+              .align-items-center
+                .row.col-sm-12.mt-5
+                  .col-sm-3.col-xs-12.mt-5
+                    .align-center
+                      a(href='#')
+                        img.rounded-circle(src='images/team/noname.jpg', alt='team', width='550', height='550')
+                      .mt-4
+                        h4.text-white Username
+                  .col-sm-1
+                  .col-sm-3.col-xs-12.mt-5
+                    ul.sidebar-menu.mt-5
+                      li
+                        a(href='#')
+                          i.fa.fa-edit
+                          |    Edit Profile
+                      li
+                        a(href='listing.html')
+                          i.fa.fa-list
+                          |    My Matches
+                  .col-sm-1
+                  .col-sm-3.col-xs-12.mt-5
+                    ul.sidebar-menu.mt-5
+                      li
+                        a(href='#')
+                          i.fa.fa-bell
+                          |    Notifications
+                      li
+                        a(href='#')
+                          i.fa.fa-power-off
+                          |    Logout
+                .row.col-sm-12.mt_100
+                  .col-sm-12.col-xs-12
+                    hr
+                    ul.bottom-menu
+                      li
+                        a(href='index.html') Home
+                      li
+                        a(href='about.html') About Website
+                      li
+                        a(href='algorithm.html') Algorithm
+                      li
+                        a(href='references.html') References
           button.hamburger-menu-btn.pull-right.for-fullscreen.hamburger-circle
             span toggle menu
       // End Header
@@ -54,7 +86,7 @@ html(lang='en')
             each user in userlist
               .col-md-6.float-left.row_manage.no-padding
                 .col-md-6.no-padding.float-left
-                  img(src='images/team/keyur.jpg', alt='match', width='1024', height='674')
+                  img(src='images/team/noname.jpg', alt='picture', width='1024', height='674')
                   .left_arrow
                 .col-md-6.float-left
                   .mt-3.ml-4
@@ -73,7 +105,7 @@ html(lang='en')
                       i.fa.fa-bolt.orange
                       |    #{user.level}
                     div
-                      a.top_link.top_link_pad(href='listing-detail.html') Read More
+                      a.top_link.top_link_pad(href='listing-detail') Read More
         // End Listing
       // Footer
       footer.bg-orange.mt_150.whole-container-text-white
@@ -83,4 +115,5 @@ html(lang='en')
     // Placed js files at the end of the document so the pages load faster
     script(type='text/javascript', src='js/jquery.min.js')
     script(src='js/bootstrap.min.js ')
+    script(type='text/javascript', src='js/main.js')
 // Localized
