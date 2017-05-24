@@ -33,8 +33,6 @@ router.get('/', function(req, res, next) {
 //Temporary page to display registered users
 router.get('/listing', function(req, res) {
 
-  console.log('listing page user details: ' +req.user);
-
   var MongoClient = mongodb.MongoClient;
 
   MongoClient.connect(mongoUrl, function (err, db) {
@@ -111,6 +109,10 @@ router.post('/login', passport.authenticate('local'), function(req, res) {
 router.get('/logout', function(req, res) {
     req.logout();
     res.redirect('/');
+});
+
+router.get('/listing-detail', function (req, res) {
+ res.render('listing-detail');
 });
 
 //updating index.js to load about, algorithm, daniel, madeline, keyur, references, login menu(temp) pages
