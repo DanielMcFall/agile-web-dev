@@ -9,7 +9,7 @@ io.on('connection', function(socket){
    ctrlChat.message(msg, io);
   });
   socket.on('update', function(id){
-    ctrlChat.sendUpdate(id, io);
+    ctrlChat.sendUpdate(id.id, io);
   })
 });
 

@@ -14,13 +14,12 @@ module.exports.disconnect = function(){
 }
 
 module.exports.message = function(msg, io){
-  console.log('Received input!' + msg);
+  console.log('Received input!' + msg.id + " " + msg.email);
   id = msg.id;
-  var message = {name: msg.email, message:msg.message, time: new Date()};
 
   var whitespacePattern = /^\s*$/;
 
-  if(whitespacePattern.test(message)){
+  if(whitespacePattern.test(msg.message)){
     //don't do anything if it's just whitespace
   }else{
     var MongoClient = mongodb.MongoClient;
@@ -32,17 +31,26 @@ module.exports.message = function(msg, io){
       else {
         console.log('(Write) Connection established to', mongoUrl);
 
-        db.conversations.update(
-          {_id : id},
-          {$push: {messages : message}}
-        )
+        var conversations = db.collection('conversations');
+        var time = new Date();
+
+        conversations.update(
+          { id : id},
+          {
+            $push: {
+              messages : {
+                $each: [{ name: msg.email, message: msg.message, time: time }]
+              }
+            }
+          }
+        );
 
         db.close();
 
       }
     });
 
-    io.emit('output', message);
+    io.emit('update', msg.message);
   }
 }
 
@@ -60,17 +68,26 @@ module.exports.sendUpdate = function(id, io){
       var collection = db.collection('conversations');
 
       //Get array of messages
-      var messages = collection.find({'_id' : id}).messages;
-      db.close();
+      collection.find({id: id}, {_id: 0, messages: 1}).toArray(function (err, result) {
+      if (err) {
+        res.send(err);
+      } else if (result) {
 
-      //only send last 20 messages
-      if(messages.length > 21){
-        messages = messages.slice(messages.length - 20);
+        var messages = result[0].messages;
+
+
+        if(messages.length > 21){
+          messages = messages.slice(messages.length - 20);
+        }
+
+        //output to socket
+        io.emit('output', messages);
+        db.close();
       }
 
-      io.emit('output', messages);
-    }
   });
+  }
+});
 }
 
 module.exports.findConversation = function(user1, user2){
@@ -85,7 +102,7 @@ module.exports.findConversation = function(user1, user2){
 
       var collection = db.collection('conversations');
 
-      var id = collection.find($or [{ $and: [{'user1' : user1}, {'user2': user2} ] },{ $and: [{'user1' : user2}, {'user2': user1} ] } ])._id;
+      var id = collection.find($or [{ $and: [{'user1' : user1}, {'user2': user2} ] },{ $and: [{'user1' : user2}, {'user2': user1} ] } ]).id;
 
       db.close();
 
@@ -97,7 +114,7 @@ module.exports.findConversation = function(user1, user2){
 
 module.exports.createConversation = function(user1, user2){
   var MongoClient = mongodb.MongoClient;
-
+  var id;
   MongoClient.connect(mongoUrl, function (err, db) {
     if (err) {
       console.log(err);
@@ -107,17 +124,19 @@ module.exports.createConversation = function(user1, user2){
 
       var conversations = db.collection('conversations');
       var newConversation = new Conversation({user1: user1, user2: user2});
+      newConversation.id = newConversation._id;
 
       conversations.insert(newConversation, function(err){
        if (err) return;
 
        var id = newConversation._id;
-      });
 
-      db.accounts.update(
-        {$or:[{email : user1}, {email : user2}]},
-        {$push: {conversations : id}}
-      )
+       var accounts = db.collection('accounts');
+       accounts.update(
+         {$or:[{email : user1}, {email : user2}]},
+         {$push: {conversations : id}}
+       );
+      });
 
     }
   });

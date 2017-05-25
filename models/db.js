@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 
 var Conversation = new Schema({
 
+  id : String,
   user1 : String,
   user2 : String,
   messages: [{

@@ -25,15 +25,7 @@ var userEmail = '';
 /* GET home page. */
 router.get('/', function(req, res, next) {
   if(req.user) {
-    //save user values for matching algorithm
-    userFitnessLevel = req.user.level;
-    userFitnessActivity = req.user.activity;
-    userPostCode = req.user.postcode;
-    userGender = req.user.gender;
-    userEmail = req.user.email;
-
     res.render('index', { title: 'Fitness Friends', user: req.user, age: datejs.calculateAge(req.user.birthdate)});
-
   }
   if(!req.user) res.render('index', { title: 'Fitness Friends'});
 });
@@ -62,7 +54,7 @@ router.get('/listing', function(req, res) {
           // Pass back to Jade
           userlist : result,
           username : req.user.name,
-           useremail : req.user.email
+          useremail : req.user.email
         });
       } else {
         res.send('No user documents found');
@@ -110,7 +102,7 @@ router.post('/register', upload.single('photo'), function(req, res){
 
     console.log('user registered!');
     passport.authenticate('local')(req, res, function () {
-      res.redirect('listing', {username: req.user.name, useremail: req.user.email });
+      res.redirect('listing');
     });
   });
 });

@@ -28,8 +28,9 @@ block content
       .row.mt_20
         //- Area for current matches
         .col-md-4
-          p#activeChat 100
-          p #{convID}
+          p#active-chat #{user.conversations[0]}
+          each conversation in user.conversations
+            li #{conversation}
 
         //- Area for messages
         .col-md-8

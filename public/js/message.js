@@ -11,12 +11,24 @@ function chat(){
 
   if(socket !== undefined){
 
-    socket.emit('update', id : activeChat);
+    socket.emit('update', { id : activeChat });
 
     console.log('Connection established to server');
+
     //Listen for Output
+    socket.on('update', function(data){
+
+      var message = document.createElement('div');
+      message.setAttribute('class','chat-message');
+      message.innerHTML = data;
+
+      // Append
+      outputArea.appendChild(message);
+    });
+
     socket.on('output', function(data){
       if(data.length){
+        console.log(data);
         //Loop through the results
 
         for(var x =0; x < data.length; x++){
@@ -25,8 +37,7 @@ function chat(){
           message.innerHTML = data[x].message;
 
           // Append
-          messagesVar.appendChild(message);
-          messagesVar.insertBefore(message, messagesVar.firstChild);
+          outputArea.appendChild(message);
         }
       }
     });
