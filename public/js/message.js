@@ -5,10 +5,13 @@ function chat(){
   var inputArea = document.getElementById('new-message');
   var outputArea = document.getElementById('chat-messages');
   var emailAddr = document.getElementById('email-display').innerHTML;
+  var activeChat = document.getElementById('active-chat').innerHTML;
 
   var socket = io();
 
   if(socket !== undefined){
+
+    socket.emit('update', id : activeChat);
 
     console.log('Connection established to server');
     //Listen for Output
@@ -33,6 +36,7 @@ function chat(){
       var self = this;
         if(event.which === 13 && event.shiftKey === false){
           socket.emit('input', {
+            id: activeChat,
             email: emailAddr,
             message:self.value
           });

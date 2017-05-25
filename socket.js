@@ -8,6 +8,9 @@ io.on('connection', function(socket){
   socket.on('input', function(msg){
    ctrlChat.message(msg, io);
   });
+  socket.on('update', function(id){
+    ctrlChat.sendUpdate(id, io);
+  })
 });
 
 module.exports = io;

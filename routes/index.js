@@ -186,11 +186,11 @@ router.post('/message', function(req, res){
     user2 = req.body.email;
     var convID = ctrlChat.findConversation(user1, user2);
     if(convID) {
-      res.redirect('/messages');
+      res.render('message', { title: 'Fitness Friends', user: req.user, convID : convID });
     }
     else {
       ctrlChat.createConversation(user1, user2);
-      res.redirect('/messages');
+      res.render('message', { title: 'Fitness Friends', user: req.user, convID : convID });
     }
   }
   if(!req.user) res.redirect('/');

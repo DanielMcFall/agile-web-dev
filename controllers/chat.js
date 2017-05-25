@@ -7,23 +7,6 @@ var mongoUrl = "mongodb://admin:password@ds133231.mlab.com:33231/agile-web-dev";
 
 module.exports.connect = function(socket){
   console.log('User connected');
-  /*
-  Conversation.find().sort({time:-1}).limit(10).exec(
-    function(err, messages){
-      if(err){
-        res.render('error', {
-          message:err.message,
-          error:err
-        })
-      }
-      else {
-        console.log('last 10 messages');
-        for(var i = messages.length - 1; i >= 0; i--){
-          socket.emit('message', messages[i].message);
-        }
-      }
-    });
-  */
 }
 
 module.exports.disconnect = function(){
@@ -32,23 +15,62 @@ module.exports.disconnect = function(){
 
 module.exports.message = function(msg, io){
   console.log('Received input!' + msg);
-  var message = {user: msg.email, message:msg.message, time: new Date()};
-  /*
-  message.save(function(err, data){
-    if(err){
+  id = msg.id;
+  var message = {name: msg.email, message:msg.message, time: new Date()};
+
+  var whitespacePattern = /^\s*$/;
+
+  if(whitespacePattern.test(message)){
+    //don't do anything if it's just whitespace
+  }else{
+    var MongoClient = mongodb.MongoClient;
+
+    MongoClient.connect(mongoUrl, function (err, db) {
+      if (err) {
+        console.log(err);
+      }
+      else {
+        console.log('(Write) Connection established to', mongoUrl);
+
+        db.conversations.update(
+          {_id : id},
+          {$push: {messages : message}}
+        )
+
+        db.close();
+
+      }
+    });
+
+    io.emit('output', message);
+  }
+}
+
+module.exports.sendUpdate = function(id, io){
+
+  var MongoClient = mongodb.MongoClient;
+
+  MongoClient.connect(mongoUrl, function (err, db) {
+    if (err) {
       console.log(err);
-      res.status(500);
-      res.render('error', {
-        message:err.message,
-        error:err
-      });
     }
     else {
-      console.log(data, 'message saved');
+      console.log('(Read) Connection established to', mongoUrl);
+
+      var collection = db.collection('conversations');
+
+      //Get array of messages
+      var messages = collection.find({'_id' : id}).messages;
+      db.close();
+
+      //only send last 20 messages
+      if(messages.length > 21){
+        messages = messages.slice(messages.length - 20);
+      }
+
+      io.emit('output', messages);
     }
   });
-  */
-  io.emit('output', msg);
 }
 
 module.exports.findConversation = function(user1, user2){
