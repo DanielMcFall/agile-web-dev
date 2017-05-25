@@ -4,8 +4,8 @@ var passport = require('passport');
 var Account = require('../models/account');
 var multer = require('multer');
 var fs = require('fs');
-
-
+var geocoding = require('../public/js/geocoding.js');
+var geolib = require('geolib');
 //Mongo variables
 var mongodb = require('mongodb');
 var mongoUrl = "mongodb://admin:password@ds133231.mlab.com:33231/agile-web-dev";
@@ -23,7 +23,7 @@ router.get('/', function(req, res, next) {
   if(!req.user) res.render('index', { title: 'Fitness Friends'});
 });
 
-//Temporary page to display registered users
+
 router.get('/listing', function(req, res) {
 
   var MongoClient = mongodb.MongoClient;
@@ -36,12 +36,26 @@ router.get('/listing', function(req, res) {
 
     var collection = db.collection('accounts');
 
-    // Return beginner and sports users ..temp hard coded
-    collection.find({ $and: [ {'level' : req.user.level}, {'activity': req.user.activity}, { 'email': { $ne : req.user.email} } ] }).toArray(function (err, result) {
+    /*if range is less than distance between user's lat, lng
+     and database user lat, lng
+    */
+    collection.find({ $and: [
+        { 'level' : req.user.level},
+        { 'activity': req.user.activity},
+        { 'email': { $ne : req.user.email}},
+        { 'range' : { $lt : (geolib.getDistance(
+          { latitude: req.user.latitude, longitude: req.user.longitude},
+          { latitude: -31.961310, longitude: 115.806648} ))/1000 }
+        }
+      ]
+    }).toArray(function (err, result) {
       if (err) {
         console.log(err);
       } else if (result.length) {
-//        console.log(result);
+
+        //filter based on location
+        console.log( (geolib.getDistance({latitude : -31.984533 , longitude : 115.816075}, {latitude: -31.961310, longitude:115.806648}))/1000 +'km' );
+
 
         res.render('listing', {
           // Pass back to Jade
@@ -82,8 +96,10 @@ router.post('/register', upload.single('photo'), function(req, res){
     range: req.body.range,
     level: req.body.level,
     activity: req.body.activity,
-    bio: req.body.bio
-    }),
+    bio: req.body.bio,
+    latitude : req.body.latitude,
+    longitude : req.body.longitude
+  }),
   req.body.password, function(err, account) {
     if(err) {
       return res.render('register', { title: 'Fitness Friends | Sign Up', error: err.message });

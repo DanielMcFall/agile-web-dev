@@ -71,7 +71,7 @@ module.exports.sendUpdate = function(id, io){
       collection.find({id: id}, {_id: 0, messages: 1}).toArray(function (err, result) {
       if (err) {
         res.send(err);
-      } else if (result) {
+      } else if (result.length) {
 
         var messages = result[0].messages;
 

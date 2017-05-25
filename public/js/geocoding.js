@@ -19,6 +19,12 @@ function printAddress(position) {
 
   console.log(longitude, latitude);
 
+  if(longitude != 'null' && latitude != 'null') {
+    document.getElementById("longitude").value = longitude;
+    document.getElementById("latitude").value = latitude;
+  }
+
+
   // turn coordinates into an object
   var yourLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
@@ -47,4 +53,20 @@ function printAddress(position) {
 
 function error(msg) {
   alert(msg);
+}
+
+function reverseGeocoding () {
+  var geocoder = new google.maps.Geocoder();
+  var lat = '';
+  var lng = '';
+  geocoder.geocode( { 'address': '6009' }, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+         lat = results[0].geometry.location.lat();
+         lng = results[0].geometry.location.lng();
+        }
+       else {
+        alert("Geocode was not successful for the following reason: " + status);
+      }
+    });
+    alert('Latitude: ' + lat + ' Logitude: ' + lng);
 }
