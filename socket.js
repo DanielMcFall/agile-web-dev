@@ -1,16 +1,13 @@
 /* Socket.io */
 var io = require('socket.io')();
+var ctrlChat = require('./controllers/chat');
 
 io.on('connection', function(socket){
-  console.log('a user connected');
-  socket.on('disconnect', function(){
-    console.log('user disconnected');
-  });
-
+  ctrlChat.connect(io, socket);
+  socket.on('disconnect', ctrlChat.disconnect);
   socket.on('input', function(msg){
-   console.log('message: ' + msg);
- });
-
+   ctrlChat.message(msg, io);
+  });
 });
 
 module.exports = io;

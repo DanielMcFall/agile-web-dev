@@ -1,43 +1,46 @@
 //Adopted from code from Resource : https://www.youtube.com/watch?v=QISU14OrRbI
 
-var inputArea = document.getElementById('new-message');
-var outputArea = document.getElementById('chat-messages');
 
-var socket = io();
+function chat(){
+  var inputArea = document.getElementById('new-message');
+  var outputArea = document.getElementById('chat-messages');
+  var emailAddr = document.getElementById('email-display').innerHTML;
 
-if(socket !== undefined){
+  var socket = io();
 
-  console.log('Connection Succeed');
-  //Listen for Output
-  socket.on('output', function(data){
-    if(data.length){
-      //Loop through the results
+  if(socket !== undefined){
 
-      for(var x =0; x < data.length; x++){
-        var message = document.createElement('div');
-        message.setAttribute('class','chat-message');
-        message.innerHTML = data[x].message;
+    console.log('Connection established to server');
+    //Listen for Output
+    socket.on('output', function(data){
+      if(data.length){
+        //Loop through the results
 
-        // Append
-        messagesVar.appendChild(message);
-        messagesVar.insertBefore(message, messagesVar.firstChild);
+        for(var x =0; x < data.length; x++){
+          var message = document.createElement('div');
+          message.setAttribute('class','chat-message');
+          message.innerHTML = data[x].message;
+
+          // Append
+          messagesVar.appendChild(message);
+          messagesVar.insertBefore(message, messagesVar.firstChild);
+        }
       }
-    }
-  });
+    });
 
-  //Listen for keydown
-  if(inputArea){
+    //Listen for keydown
     inputArea.addEventListener('keydown', function(event){
-        var self = this;
-
-          if(event.which === 13){
-            socket.emit('input', {
-              message:self.value
-            });
-            self.value = '';
-            event.preventDefault();
-          }
-
+      var self = this;
+        if(event.which === 13 && event.shiftKey === false){
+          socket.emit('input', {
+            email: emailAddr,
+            message:self.value
+          });
+          self.value = '';
+          event.preventDefault();
+        }
     });
   }
 }
+
+window.onload = chat;

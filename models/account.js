@@ -11,8 +11,9 @@ var Account = new Schema({
   range: {type: Number, default: 10},
   level: {type: String, require: true},
   activity: {type: String, require: true},
-  photo: { data: Buffer, contentType: String }, 
-  bio: String
+  photo: { data: Buffer, contentType: String },
+  bio: String,
+  conversations: [String]
  });
 
  Account.plugin(passportLocalMongoose, {
