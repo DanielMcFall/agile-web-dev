@@ -11,8 +11,12 @@ var Account = new Schema({
   range: {type: Number, default: 10},
   level: {type: String, require: true},
   activity: {type: String, require: true},
-  photo: { data: Buffer, contentType: String }, 
-  bio: String
+  photo: { data: Buffer, contentType: String },
+  bio: String,
+  loc: {
+    type: [Number],  // [<longitude>, <latitude>]
+    index: '2d'      // create the geospatial index
+    }
  });
 
  Account.plugin(passportLocalMongoose, {

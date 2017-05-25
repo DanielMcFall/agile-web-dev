@@ -2,7 +2,7 @@
 //calculate the straight line distance between two locations
 
 exports.findDistance = function(lat1, lat2, lon1, lon2) {
-  var R = 6371e3; // metres
+  var R = 6371e3; // metres (radius of earth)
   var φ1 = lat1.toRadians();
   var φ2 = lat2.toRadians();
   var Δφ = (lat2-lat1).toRadians();

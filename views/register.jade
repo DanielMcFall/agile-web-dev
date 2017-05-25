@@ -1,6 +1,5 @@
 extends layout
 
-script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBUNXgIQw-I2vuTzV85WUvgWNSe057MiMw')
 
 block content
   #main-content.m-scene
@@ -50,7 +49,9 @@ block content
               .separator
               br
               br
-              !{error}
+              span.orange !{error}
+              br
+              br
               form#contact-form.form-fields-bg-alabaster(method='post', action=' ', role='form')
                 .row.form-group
                   .col-sm-3.col-xs-12.ml-2.mr-5
@@ -159,3 +160,4 @@ block content
       script(src='js/bootstrap.min.js ')
       script(src='js/bootstrap-datepicker.min.js')
       script(src='js/main.js')
+      script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBUNXgIQw-I2vuTzV85WUvgWNSe057MiMw')
