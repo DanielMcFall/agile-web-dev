@@ -1,4 +1,3 @@
-//modified from example in lecture 16:Sockets
 require('../models/db');
 var mongoose = require('mongoose');
 var Conversation = mongoose.model('Conversation');
