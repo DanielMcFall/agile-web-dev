@@ -6,7 +6,7 @@ block content
       nav.navbar
         .full-width-container
           a.navbar-brand(href='')
-            img(src='images/logo.png', width='400', height='45', alt='Logo')
+            img(src='/images/logo.png', width='400', height='45', alt='Logo')
           .fullscreen-menu-holder
             .align-items-center
               .row.col-sm-12.mt-5
@@ -49,7 +49,7 @@ block content
                     li
                       a(href='#') Algorithm
                     li
-                      a(href='references.html') References
+                      a(href='#') References
           button.hamburger-menu-btn.pull-right.for-fullscreen.hamburger-circle
             span toggle menu
 
@@ -66,32 +66,35 @@ block content
               // Profile photos
               .col-md-6
                 #main-carousel_two.owl-carousel
-                  img(src='/images/team/keyur.jpg', alt='picture', width='1200', height='570')
+                  img(src='/images/team/noname.jpg', alt='picture', width='1200', height='570')
                   img(src='/images/team/madeline.jpg', alt='picture', width='1200', height='570')
                   img(src='/images/team/daniel.jpg', alt='picture', width='1200', height='570')
               // End Profile photos
               // Profile info
               .col-md-6
                 .sticky-top.mt_10.ml-4
-                  h3.font-weight-normal
-                      !{matchUser.name}
+                  h3.font-weight-normal #{matchUser.name}
                   .separator
-                  blockquote Looking for a fitness buddy to motivate and encourage each other.
+                  blockquote #{matchUser.bio}
                   .details_list.mt_40.mb_40
                     ul
                       li
                         i.fa.fa-map-marker.orange
-                        |    Perth, WA
+                        |    #{matchUser.postcode}
                       li
                         i.fa.fa-male.orange
-                        |    Male
+                        |    #{matchUser.gender}
                       li
                         i.fa.fa-birthday-cake.orange(style='font-size:10px')
-                        |    27Years
+                        |    #{matchUser.birthdate}
+                      li
+                        i.fa.fa-futbol-o.orange
+                        |    #{matchUser.activity}
                       li
                         i.fa.fa-bolt.orange
-                        |    Intermediate
+                        |    #{matchUser.level}
               // End Profile info
+
         // End Profile detail
         // Footer
         footer.bg-orange.mt_150.whole-container-text-white
