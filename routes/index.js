@@ -5,6 +5,8 @@ var passport = require('passport');
 var Account = require('../models/account');
 var mongoUrl = "mongodb://admin:password@ds133231.mlab.com:33231/agile-web-dev";
 var datejs = require('../private/js/date.js');
+var multer = require('multer');
+var fs= require('fs');
 
 //user details variables
 var userFitnessLevel = '';
@@ -68,7 +70,14 @@ router.get('/register', function(req, res){
     res.render('register', {title: 'Fitness Friends | Sign Up' });
 });
 
-router.post('/register', function(req, res){
+//multer
+var upload = multer({ dest: './uploads/',
+ rename: function (fieldname, filename) {
+   return filename;
+ },
+});
+
+router.post('/register', upload.single('photo'), function(req, res){
 
   Account.register( new Account ( {
     email : req.body.email,
@@ -86,13 +95,16 @@ router.post('/register', function(req, res){
       return res.render('register', { title: 'Fitness Friends | Sign Up', error: err.message });
     }
 
+    console.log(req.file);
+
     // account.photo.data = fs.readFileSync(req.files.photo.path);
     // account.photo.contentType = 'image/png';
     // account.save();
 
     console.log('user registered!');
-
-    res.redirect('listing');
+    passport.authenticate('local')(req, res, function () {
+      res.redirect('listing');
+    });
   });
 });
 
@@ -111,8 +123,11 @@ router.get('/logout', function(req, res) {
     res.redirect('/');
 });
 
-router.get('/listing-detail', function (req, res) {
- res.render('listing-detail');
+router.get('/listing-detail/:userId', function (req, res) {
+  // Look up the user Id in the database
+  Account.findOne({ _id: req.params.userId }, function(err, account) {
+    res.render('listing-detail', { matchUser: account });
+  })
 });
 
 //updating index.js to load about, algorithm, daniel, madeline, keyur, references, login menu(temp) pages

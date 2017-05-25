@@ -8,7 +8,6 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose')
 var passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy;
-//var multer = require('multer');
 
 //Used for MongoDB database connection
 var mongo = require('mongodb')
@@ -28,8 +27,8 @@ app.set('view engine', 'jade');
 //uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json({ limit: '100mb' }));
+app.use(bodyParser.urlencoded({ extended: false, limit: '100mb' }));
 app.use(cookieParser());
 app.use(require('express-session')({
     secret: 'secret',
@@ -72,13 +71,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-
-//multer
-// app.use(multer({ dest: ‘./uploads/’,
-//  rename: function (fieldname, filename) {
-//    return filename;
-//  },
-// }));
 
 module.exports = app;

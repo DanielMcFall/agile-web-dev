@@ -13,7 +13,7 @@ block content
                 .col-sm-3.col-xs-12.mt-5
                   .align-center
                     a(href='#')
-                      img.rounded-circle(src='images/team/noname.jpg', alt='team', width='550', height='550')
+                      img.rounded-circle(src='/images/team/noname.jpg', alt='team', width='550', height='550')
                     .mt-4
                       h4.text-white Username
                 .col-sm-1
@@ -66,14 +66,15 @@ block content
               // Profile photos
               .col-md-6
                 #main-carousel_two.owl-carousel
-                  img(src='images/team/keyur.jpg', alt='picture', width='1200', height='570')
-                  img(src='images/team/madeline.jpg', alt='picture', width='1200', height='570')
-                  img(src='images/team/daniel.jpg', alt='picture', width='1200', height='570')
+                  img(src='/images/team/keyur.jpg', alt='picture', width='1200', height='570')
+                  img(src='/images/team/madeline.jpg', alt='picture', width='1200', height='570')
+                  img(src='/images/team/daniel.jpg', alt='picture', width='1200', height='570')
               // End Profile photos
               // Profile info
               .col-md-6
                 .sticky-top.mt_10.ml-4
-                  h3.font-weight-normal Keyur Modi
+                  h3.font-weight-normal
+                      !{matchUser.name}
                   .separator
                   blockquote Looking for a fitness buddy to motivate and encourage each other.
                   .details_list.mt_40.mb_40
@@ -97,7 +98,7 @@ block content
           | Copyright 2017 © University of Western Australia
         // End Footer
     // Placed js files at the end of the document so the pages load faster
-    script(type='text/javascript', src='js/jquery.min.js')
-    script(src='js/bootstrap.min.js ')
-    script(type='text/javascript', src='js/owl.carousel.js')
-    script(type='text/javascript', src='js/main.js')
+    script(type='text/javascript', src='/js/jquery.min.js')
+    script(src='/js/bootstrap.min.js ')
+    script(type='text/javascript', src='/js/owl.carousel.js')
+    script(type='text/javascript', src='/js/main.js')
