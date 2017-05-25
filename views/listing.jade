@@ -37,7 +37,7 @@ html(lang='en')
 										a(href='#')
 											img.rounded-circle(src='images/team/noname.jpg', alt='team', width='550', height='550')
 										.mt-4
-											h4.text-white Username
+											h4.text-white #{username}
 								.col-sm-1
 								.col-sm-3.col-xs-12.mt-5
 									ul.sidebar-menu.mt-5
@@ -85,29 +85,29 @@ html(lang='en')
 				.container
 					.row
 						// iterate through each user
-						each user in userlist
+						each matchingUser in userlist
 							.col-md-6.float-left.row_manage.no-padding
 								.col-md-6.no-padding.float-left
 									img(src='images/team/noname.jpg', alt='picture', width='1024', height='674')
 									.left_arrow
 								.col-md-6.float-left
 									.mt-3.ml-4
-										h4.font-weight-normal #{user.name}
+										h4.font-weight-normal #{matchingUser.name}
 										.separator
 										div
 											i.fa.fa-map-marker.orange
-											|    #{user.postcode}
+											|    #{matchingUser.postcode}
 										div
 											i.fa.fa-male.orange
-											|    #{user.gender}
+											|    #{matchingUser.gender}
 										div
 											i.fa.fa-futbol-o.orange(style='font-size:10px')
-											|    #{user.activity}
+											|    #{matchingUser.activity}
 										div
 											i.fa.fa-bolt.orange
-											|    #{user.level}
+											|    #{matchingUser.level}
 										div
-											a.top_link.top_link_pad(href='listing-detail/#{user._id}') Read More
+											a.top_link.top_link_pad(href='listing-detail/#{matchingUser._id}') Read More
 				// End Listing
 				// Footer
 				footer.bg-orange.mt_150.whole-container-text-white

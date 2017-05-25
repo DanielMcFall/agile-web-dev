@@ -54,7 +54,9 @@ router.get('/listing', function(req, res) {
 
         res.render('listing', {
           // Pass back to Jade
-          "userlist" : result
+          userlist : result,
+          username : req.user.name,
+           useremail : req.user.email
         });
       } else {
         res.send('No user documents found');
@@ -95,15 +97,13 @@ router.post('/register', upload.single('photo'), function(req, res){
       return res.render('register', { title: 'Fitness Friends | Sign Up', error: err.message });
     }
 
-    console.log(req.file);
-
     // account.photo.data = fs.readFileSync(req.files.photo.path);
     // account.photo.contentType = 'image/png';
     // account.save();
 
     console.log('user registered!');
     passport.authenticate('local')(req, res, function () {
-      res.redirect('listing');
+      res.redirect('listing', {username: req.user.name, useremail: req.user.email });
     });
   });
 });
@@ -126,7 +126,7 @@ router.get('/logout', function(req, res) {
 router.get('/listing-detail/:userId', function (req, res) {
   // Look up the user Id in the database
   Account.findOne({ _id: req.params.userId }, function(err, account) {
-    res.render('listing-detail', { matchUser: account });
+    res.render('listing-detail', { matchUser: account, username: req.user.name, useremail: req.user.email });
   })
 });
 
