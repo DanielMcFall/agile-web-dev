@@ -11,12 +11,12 @@ function myCurrentPosition() {
 
 function printAddress(position) {
   // set up the Geocoder object
-  console.log('inside geocoder');
-  
+
   var geocoder = new google.maps.Geocoder();
 
   var longitude = position.coords.longitude;
   var latitude = position.coords.latitude;
+
   console.log(longitude, latitude);
 
   // turn coordinates into an object
@@ -37,7 +37,7 @@ function printAddress(position) {
           }
           if(component.types[0] == "locality") {
             document.getElementById("suburb").value = component.long_name;
-			}
+			    }
         }
       } else {
         error("Reverse Geocoding failed due to: " + status);

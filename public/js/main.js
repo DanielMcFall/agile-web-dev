@@ -2,6 +2,7 @@
  Nav Menu
  --------------------------------------------- */
 
+
 function et_nav_menu() {
   // Make multi level bootstrap menu
   $('.navbar  a.dropdown-toggle').on('click', function(e) {

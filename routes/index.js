@@ -3,7 +3,7 @@ var router = express.Router();
 var passport = require('passport');
 var Account = require('../models/account');
 var multer = require('multer');
-var fs= require('fs');
+var fs = require('fs');
 
 
 //Mongo variables
@@ -14,24 +14,10 @@ var mongoUrl = "mongodb://admin:password@ds133231.mlab.com:33231/agile-web-dev";
 var datejs = require('../private/js/date');
 var ctrlChat = require('../controllers/chat')
 
-//user details variables
-var userFitnessLevel = '';
-var userFitnessActivity = '';
-var userPostCode = '';
-var userGender = '';
-var userEmail = '';
-
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   if(req.user) {
-    //save user values for matching algorithm
-    userFitnessLevel = req.user.level;
-    userFitnessActivity = req.user.activity;
-    userPostCode = req.user.postcode;
-    userGender = req.user.gender;
-    userEmail = req.user.email;
-
     res.render('index', { title: 'Fitness Friends', user: req.user, age: datejs.calculateAge(req.user.birthdate)});
 
   }
