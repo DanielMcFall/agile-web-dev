@@ -8,7 +8,7 @@ block content
       .full-width-container
         a.navbar-brand(href='/')
           img(src='images/logo.png', width='400', height='45', alt='Logo')
-        .fullscreen-menu-holder
+        .fullscreen-menu-holder.home-menu
           .d-flex.align-items-center
             ul.sidebar-menu
               li
@@ -36,7 +36,7 @@ block content
                     input(type='password', name='password', placeholder='Password')
                   .pull-right.pop_btn
                     button.top_link(type="submit") Login
-                    &nbsp;
+                     &nbsp;
     // End Header
     .page-container
       // Register content
@@ -102,14 +102,14 @@ block content
                   .col-sm-4.col-xs-12
                     label Area range within :
                     .range
-                      input(type='range', min='1', max='6', steps='1', value='1')
+                      input(name='range', type='range', min='1', max='6', steps='1', value='1')
                     ul.range-labels
-                      li.active.selected 0km
-                      li 1km
-                      li 2km
-                      li 5km
-                      li 10km
-                      li 20km
+                      li.active.selected 0
+                      li 1
+                      li 2
+                      li 5
+                      li 10
+                      li 20
                 .form-group.row.mb-5
                   .col-sm-3.col-xs-12
                     label
@@ -160,4 +160,5 @@ block content
       script(src='js/bootstrap.min.js ')
       script(src='js/bootstrap-datepicker.min.js')
       script(src='js/main.js')
+      script(src='js/geocoding.js')
       script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBUNXgIQw-I2vuTzV85WUvgWNSe057MiMw')
