@@ -6,7 +6,7 @@ mongo.connect('mongodb://admin:password@ds133231.mlab.com:33231/agile-web-dev', 
 
 	client.on('connection', function(socket){
 
-		var col = db.collection('messages');
+		var col = db.collection('conversations');
 
 		//Display all the messages from Monogo DB
 		col.find().limit(20).sort({_id: 1}).toArray(function(err, res){

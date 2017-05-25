@@ -1742,7 +1742,7 @@ select.form-control:not([size]):not([multiple]) {height: calc(2.7rem + 2px);}
 
 /* new */
 
-.email-display {
+#email-display {
   padding-top: 10px;
   padding-right: 20px;
   font-size: 20px;

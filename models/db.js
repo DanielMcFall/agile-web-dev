@@ -1,15 +1,15 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var conversation = new Schema({
+var Conversation = new Schema({
 
   user1 : String,
-  user2: String,
+  user2 : String,
   messages: [{
-    user: String,
+    name: String,
     time: Date,
-    value: String
+    message: String
   }]
 });
 
-module.exports = mongoose.model('Conversation', conversation);
+module.exports = mongoose.model('Conversation', Conversation);

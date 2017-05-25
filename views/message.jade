@@ -22,13 +22,14 @@ block content
           button.hamburger-menu-btn.pull-right.for-fullscreen.hamburger-circle
             span toggle menu
           .pull-right
-            .email-display
-              p #{user.email}
+            #email-display #{user.email}
       //- End Header
       //- Main content
       .row.mt_20
         //- Area for current matches
         .col-md-4
+          p#activeChat 100
+          p #{convID}
 
         //- Area for messages
         .col-md-8

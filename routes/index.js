@@ -1,12 +1,18 @@
 var express = require('express');
 var router = express.Router();
-var mongodb = require('mongodb');
 var passport = require('passport');
 var Account = require('../models/account');
-var mongoUrl = "mongodb://admin:password@ds133231.mlab.com:33231/agile-web-dev";
-var datejs = require('../private/js/date.js');
 var multer = require('multer');
 var fs= require('fs');
+
+
+//Mongo variables
+var mongodb = require('mongodb');
+var mongoUrl = "mongodb://admin:password@ds133231.mlab.com:33231/agile-web-dev";
+
+//seperate js files
+var datejs = require('../private/js/date');
+var ctrlChat = require('../controllers/chat')
 
 //user details variables
 var userFitnessLevel = '';
@@ -91,7 +97,8 @@ router.post('/register', upload.single('photo'), function(req, res){
     range: req.body.range,
     level: req.body.level,
     activity: req.body.activity,
-    bio: req.body.bio }),
+    bio: req.body.bio
+    }),
   req.body.password, function(err, account) {
     if(err) {
       return res.render('register', { title: 'Fitness Friends | Sign Up', error: err.message });
@@ -173,6 +180,22 @@ router.get('/messages', function(req, res){
   if(req.user) res.render('message', { title: 'Fitness Friends', user: req.user });
   if(!req.user) res.redirect('/');
 });
+
+router.post('/message', function(req, res){
+  if(req.user) {
+    user1 = req.user.email;
+    user2 = req.body.email;
+    var convID = ctrlChat.findConversation(user1, user2);
+    if(convID) {
+      res.render('message', { title: 'Fitness Friends', user: req.user, convID : convID });
+    }
+    else {
+      ctrlChat.createConversation(user1, user2);
+      res.render('message', { title: 'Fitness Friends', user: req.user, convID : convID });
+    }
+  }
+  if(!req.user) res.redirect('/');
+})
 
 
 module.exports = router;

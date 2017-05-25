@@ -16,7 +16,8 @@ var Account = new Schema({
   loc: {
     type: [Number],  // [<longitude>, <latitude>]
     index: '2d'      // create the geospatial index
-    }
+  },
+  conversations: [String]
  });
 
  Account.plugin(passportLocalMongoose, {
