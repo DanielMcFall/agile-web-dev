@@ -99,14 +99,24 @@ module.exports.findConversation = function(user1, user2){
     else {
       console.log('(Read) Connection established to', mongoUrl);
 
-      var collection = db.collection('conversations');
+      //var collection = db.collection('conversations');
 
-      var id = collection.find($or [{ $and: [{'user1' : user1}, {'user2': user2} ] },{ $and: [{'user1' : user2}, {'user2': user1} ] } ]).id;
+      Conversation.findOne( $or [{ $and: [{'user1' : user1}, {'user2': user2} ] },{ $and: [{'user1' : user2}, {'user2': user1} ] } ], function(err, conv) {
+        if (err) {
+          console.log(err);
+        }
+        else{
+          db.close();
+          return conv._id;
+        }
+      })
 
-      db.close();
+      //var id = collection.find($or [{ $and: [{'user1' : user1}, {'user2': user2} ] },{ $and: [{'user1' : user2}, {'user2': user1} ] } ]).id;
 
-      if(id) return id;
-      return null;
+      //db.close();
+
+      //if(id) return id;
+      //return null;
     }
   });
 }
