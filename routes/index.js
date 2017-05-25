@@ -13,6 +13,7 @@ var mongoUrl = "mongodb://admin:password@ds133231.mlab.com:33231/agile-web-dev";
 //seperate js files
 var datejs = require('../private/js/date');
 var ctrlChat = require('../controllers/chat')
+var ctrlGeneral = require('../controllers/general')
 
 
 /* GET home page. */
@@ -185,7 +186,7 @@ router.get('/messages', function(req, res){
 router.post('/message', function(req, res){
   if(req.user) {
     user1 = req.user.email;
-    user2 = req.body.email;
+    user2 = ctrlGeneral.getEmail(req.body.id);
     var convID = ctrlChat.findConversation(user1, user2);
     if(convID) {
       res.render('message', { title: 'Fitness Friends', user: req.user, convID : convID });
