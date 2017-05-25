@@ -3,7 +3,7 @@ var router = express.Router();
 var passport = require('passport');
 var Account = require('../models/account');
 var multer = require('multer');
-var fs= require('fs');
+var fs = require('fs');
 
 
 //Mongo variables
@@ -13,13 +13,6 @@ var mongoUrl = "mongodb://admin:password@ds133231.mlab.com:33231/agile-web-dev";
 //seperate js files
 var datejs = require('../private/js/date');
 var ctrlChat = require('../controllers/chat')
-
-//user details variables
-var userFitnessLevel = '';
-var userFitnessActivity = '';
-var userPostCode = '';
-var userGender = '';
-var userEmail = '';
 
 
 /* GET home page. */
@@ -101,6 +94,7 @@ router.post('/register', upload.single('photo'), function(req, res){
     // account.save();
 
     console.log('user registered!');
+
     passport.authenticate('local')(req, res, function () {
       res.redirect('listing');
     });

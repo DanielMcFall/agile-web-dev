@@ -1,7 +1,5 @@
 extends layout
 
-script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBUNXgIQw-I2vuTzV85WUvgWNSe057MiMw')
-
 block content
   #main-content.m-scene
     // Header
@@ -9,7 +7,7 @@ block content
       .full-width-container
         a.navbar-brand(href='/')
           img(src='images/logo.png', width='400', height='45', alt='Logo')
-        .fullscreen-menu-holder
+        .fullscreen-menu-holder.home-menu
           .d-flex.align-items-center
             ul.sidebar-menu
               li
@@ -37,7 +35,7 @@ block content
                     input(type='password', name='password', placeholder='Password')
                   .pull-right.pop_btn
                     button.top_link(type="submit") Login
-                    &nbsp;
+                     &nbsp;
     // End Header
     .page-container
       // Register content
@@ -50,7 +48,9 @@ block content
               .separator
               br
               br
-              !{error}
+              span.orange !{error}
+              br
+              br
               form#contact-form.form-fields-bg-alabaster(method='post', action=' ', role='form')
                 .row.form-group
                   .col-sm-3.col-xs-12.ml-2.mr-5
@@ -90,7 +90,7 @@ block content
                 .form-group.row.mb-5.mt-5
                   .col-sm-4.col-xs-12
                     label Suburb:
-                    input(type='text', name='suburb')
+                    input#suburb(type='text', name='suburb')
                   .col-sm-3.col-xs-12
                     label
                       span.orange *
@@ -99,16 +99,16 @@ block content
                   .mr-60.mt_50(onclick='myCurrentPosition()')
                     img(src='images/gps.png', width='18', height='18')
                   .col-sm-4.col-xs-12
-                    label Area range within :
+                    label Area range within (km):
                     .range
-                      input(type='range', min='1', max='6', steps='1', value='1')
+                      input(name='range', type='range', min='1', max='6', steps='1', value='1')
                     ul.range-labels
-                      li.active.selected 0km
-                      li 1km
-                      li 2km
-                      li 5km
-                      li 10km
-                      li 20km
+                      li.active.selected 0
+                      li 1
+                      li 2
+                      li 5
+                      li 10
+                      li 20
                 .form-group.row.mb-5
                   .col-sm-3.col-xs-12
                     label
@@ -159,3 +159,4 @@ block content
       script(src='js/bootstrap.min.js ')
       script(src='js/bootstrap-datepicker.min.js')
       script(src='js/main.js')
+      script(src='js/geocoding.js')
