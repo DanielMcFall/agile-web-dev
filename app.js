@@ -5,6 +5,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var multer = require('multer');
 var mongoose = require('mongoose')
 var passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy;
@@ -29,6 +30,8 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(bodyParser.json({ limit: '100mb' }));
 app.use(bodyParser.urlencoded({ extended: false, limit: '100mb' }));
+//multer
+
 app.use(cookieParser());
 app.use(require('express-session')({
     secret: 'secret',

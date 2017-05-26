@@ -51,12 +51,11 @@ block content
               span.orange !{error}
               br
               br
-              form#contact-form.form-fields-bg-alabaster(method='post', action=' ', role='form')
+              form#contact-form.form-fields-bg-alabaster(method='post', action=' ', role='form', enctype='multipart/form-data')
                 .row.form-group
                   .col-sm-3.col-xs-12.ml-2.mr-5
-                    .avatar
+                    .avatar(style="background-image: url(images/team/noname.jpg);")
                       input#fileUpload(type='file', name='photo', onchange='readURL(this);')
-                      img#avatar(src='images/team/noname.jpg', alt='your image')
                       svg#camera(viewbox='0 0 25 15', enable-background='new 0 0 25 15')
                         path#cameraFrame(fill='none', stroke='white', stroke-miterlimit='10', d='M23.1,14.1H1.9c-0.6,0-1-0.4-1-1V1.9c0-0.6,0.4-1,1-1h21.2c0.6,0,1,0.4,1,1v11.3C24.1,13.7,23.7,14.1,23.1,14.1z')
                         path#circle(fill='none', stroke='#ffffff', stroke-width='1.4', stroke-miterlimit='12', d='M17.7,7.5c0-2.8-2.3-5.2-5.2-5.2S7.3,4.7,7.3,7.5s2.3,5.2,5.2,5.2S17.7,10.3,17.7,7.5z')

@@ -15,6 +15,7 @@ var datejs = require('../private/js/date');
 var ctrlChat = require('../controllers/chat')
 var ctrlGeneral = require('../controllers/general')
 
+var upload = multer({ dset: './uploads/' });
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -24,6 +25,16 @@ router.get('/', function(req, res, next) {
   if(!req.user) res.render('index', { title: 'Fitness Friends'});
 });
 
+router.get('/photo/:id', function(req, res) {
+  console.log('photo id', req.params.id);
+
+  Account.findOne({ _id: req.params.id }, function(err, account) {
+    var photo = account && account.photo || {};
+    console.log('photo =', photo);
+    res.contentType(photo.contentType || 'text/plain');
+    res.send(photo.data || '');
+  })
+});
 
 router.get('/listing', function(req, res) {
 
@@ -62,7 +73,8 @@ router.get('/listing', function(req, res) {
           // Pass back to Jade
           userlist : result,
           username : req.user.name,
-          useremail : req.user.email
+          useremail : req.user.email,
+          userid: req.user._id
         });
       } else {
         res.send('No user documents found');
@@ -78,12 +90,7 @@ router.get('/register', function(req, res){
     res.render('register', {title: 'Fitness Friends | Sign Up' });
 });
 
-//multer
-var upload = multer({ dest: './uploads/',
- rename: function (fieldname, filename) {
-   return filename;
- },
-});
+
 
 router.post('/register', upload.single('photo'), function(req, res){
 
@@ -106,9 +113,11 @@ router.post('/register', upload.single('photo'), function(req, res){
       return res.render('register', { title: 'Fitness Friends | Sign Up', error: err.message });
     }
 
-    // account.photo.data = fs.readFileSync(req.files.photo.path);
-    // account.photo.contentType = 'image/png';
-    // account.save();
+//    console.log('req.file', req.file);
+
+    account.photo.data = req.file.buffer;
+    account.photo.contentType = 'image/png';
+    account.save();
 
     console.log('user registered!');
 
