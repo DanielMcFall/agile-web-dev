@@ -123,6 +123,37 @@ router.get('/settings', function(req, res, next) {
   if(!req.user) res.redirect('/');
 });
 
+router.post('/settings',  function(req, res){
+  if(req.user){
+
+    Account.update({ email: req.user.email },{
+      name: req.body.name,
+      birthdate: req.body.date,
+      gender: req.body.gender,
+      suburb: req.body.suburb,
+      postcode: req.body.postcode,
+      range: req.body.range,
+      level: req.body.level,
+      activity: req.body.activity,
+      bio: req.body.bio,
+      //latitude : req.body.latitude,
+      //longitude : req.body.longitude
+    },
+    function(err, account) {
+      if(err) {
+        console.log(err);
+        res.redirect('/');
+      }
+
+      console.log('user settings updated');
+      res.redirect('/');
+    });
+  }
+  else{
+    res.redirect('/');
+  }
+});
+
 
 router.post('/login', passport.authenticate('local'), function(req, res) {
     res.redirect('/');
