@@ -71,39 +71,27 @@ html(lang='en')
                 h2 and validation
                 .separator
                 p.lead
-                  span.orange aiuefbjjwew
+                  span.orange
+                  | The testing for Fitness Friends was carried out in the
+                  span.orange   test.js
+                  |   script file that can be found inside the directory
+                  span.orange   test
+                  | , and on
+                  span.orange   Selenium IDE
+                  | .
                   br
-                  | jksdhgfkweaf
           .mt_60.mb_60
             .row
               .col-md-12
                 h2 Strategy and Results
                 .separator
-                #accordion.accordion(role='tablist', aria-multiselectable='true')
-                  .card.border-0
-                    #headingOne.card-header(role='tab')
-                      h5.mb-0
-                        a(data-toggle='collapse', data-parent='#accordion', href='#collapseOne', aria-expanded='true', aria-controls='collapseOne')
-                          | 1
-                    #collapseOne.collapse.show(role='tabpanel', aria-labelledby='headingOne')
-                      .card-block
-                        | Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in
-                  .card.border-0
-                    #headingTwo.card-header(role='tab')
-                      h5.mb-0
-                        a.collapsed(data-toggle='collapse', data-parent='#accordion', href='#collapseTwo', aria-expanded='false', aria-controls='collapseTwo')
-                          | 2
-                    #collapseTwo.collapse(role='tabpanel', aria-labelledby='headingTwo')
-                      .card-block
-                        | Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in
-                  .card.border-0
-                    #headingThree2.card-header(role='tab')
-                      h5.mb-0
-                        a.collapsed(data-toggle='collapse', data-parent='#accordion', href='#collapseThree', aria-expanded='false', aria-controls='collapseThree')
-                          | 3
-                    #collapseThree.collapse(role='tabpanel', aria-labelledby='headingThree2')
-                      .card-block
-                        | Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in
+                p.lead Inside the test folder we created a test scenario of adding a new user into our database and ensuring that all the required data was stored by fetching it back, using mocha as our test framework, and also requiring chai and should. These tests all passed the conditions when ran.
+                p.lead The next test we carried out was to test that our functions, calculating age from a user-input birthdate would be calculated correctly, and also finding the distance between two points (latitude, longitude) was calculated correctly. For the latter, we used the geolib for the calculations. This test we required assert to compare our test results and carried out 3 tests of each. They all passed.
+                p.lead For our user tests we carried out recording on the Selenium IDE FireFox plugin to test the functionality of basic functions, registration, logging in, viewing match potentials and sending them an email or a message, editing profile settings and logging off. Selenium IDE had some difficulties carrying out the tests, primarily on the registration and edit preferences page as it could not handle the date picker format we had designed for our date input. Other than that problem all other test cases were passed.
+                p.lead To enhance our user test, we manually combed through the application many times on our own to ensure that every functionality was working.
+
+
+
         // End About content
       // Footer
       footer.bg-orange.mt_150.whole-container-text-white
