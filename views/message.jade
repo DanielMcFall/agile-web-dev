@@ -13,8 +13,8 @@ block content
               .col-sm-3.col-xs-12.mt-5
                 .align-center
                   a(href='/')
-                    if (user.photo)
-                      img.rounded-circle(src='/photo/#{user._id}', alt='team', width='800', height='800')
+                    if (user.photo.data)
+                      img(src='/photo/#{user._id}', alt='team', width='800', height='800')
                     else if(user.gender == 'Male')
                       img.user-pic.img-responsive.rounded-circle(src='images/male.jpg', alt='picture', height = '570', width = '1200')
                     else if(user.gender == 'Female')

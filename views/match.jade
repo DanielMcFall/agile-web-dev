@@ -14,11 +14,11 @@ block content
 								.align-center
 									a(href='/')
 										if (user.photo.data)
-											img.rounded-circle(src='/photo/#{user._id}', alt='team', width='800', height='800')
+											img(src='/photo/#{user._id}', alt='team', width='800', height='800')
 										else if(user.gender == 'Male')
-											img.user-pic.img-responsive.rounded-circle(src='images/male.jpg', alt='picture', height = '570', width = '1200')
+											img.user-pic.img-responsive(src='images/male.jpg', alt='picture', height = '570', width = '1200')
 										else if(user.gender == 'Female')
-											img.user-pic.img-responsive.img-rounded-circle(src='images/female.jpg', alt='picture', height = '570', width = '1200')
+											img.user-pic.img-responsive(src='images/female.jpg', alt='picture', height = '570', width = '1200')
 									.mt-4
 										h4.text-white #{user.name}
 							.col-sm-1
@@ -74,7 +74,7 @@ block content
 						.col-md-6.float-left.row_manage.no-padding
 							.col-md-6.no-padding.float-left
 									if (matchingUser.photo)
-										img.rounded-circle(src='/photo/#{matchingUser._id}', alt='team', width='800', height='800')
+										img(src='/photo/#{matchingUser._id}', alt='team')
 									else
 										img(src='images/team/noname.jpg', alt='picture', width='1024', height='674')
 										.left_arrow

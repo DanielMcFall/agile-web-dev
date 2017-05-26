@@ -27,19 +27,21 @@ html(lang='en')
       // Header
       nav.navbar
         .full-width-container
-          a.navbar-brand(href='index.html')
+          a.navbar-brand(href='/')
             img(src='images/logo.png', width='400', height='45', alt='Logo')
-          .fullscreen-menu-holder
+          .fullscreen-menu-holder.home-menu
             .d-flex.align-items-center
               ul.sidebar-menu
                 li
-                  a(href='index.html') Home
+                  a(href='/') Home
                 li
-                  a(href='listing.html') My Matches
+                  a(href='/match') My Matches
                 li
-                  a(href='#') About Us
+                  a(href='/about') About Website
                 li
-                  a(href='#') Contact Us
+                  a(href='/algorithm') Matching Algorithm
+                li
+                  a(href='/testing') Testing
           button.hamburger-menu-btn.pull-right.for-fullscreen.hamburger-circle
             span toggle menu
           .pull-right

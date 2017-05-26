@@ -15,7 +15,7 @@ block content
                   .align-center
                     a(href='/')
                       if user.photo.data
-                        img.rounded-circle(src='/photo/#{user._id}', alt='team', width='800', height='800')
+                        img(src='/photo/#{user._id}', alt='team', width='800', height='800')
                       else if(user.gender == 'Male')
                         img.user-pic.img-responsive.rounded-circle(src='images/male.jpg', alt='picture', height = '570', width = '1200')
                       else if(user.gender == 'Female')
@@ -70,7 +70,7 @@ block content
             // Profile photos
             .col-lg-6.col-md-6.col-sm-12.col-xs-12
               if user.photo.data
-                img.rounded-circle(src='/photo/#{user._id}', alt='team', width='800', height='800')
+                img(src='/photo/#{user._id}', alt='team')
               else if(user.gender == 'Male')
                 img.user-pic.img-responsive.img-rounded(src='images/male.jpg', alt='picture', height = '570', width = '1200')
               else if(user.gender == 'Female')
