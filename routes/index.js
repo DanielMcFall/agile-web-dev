@@ -5,7 +5,6 @@ var Account = require('../models/account');
 var multer = require('multer');
 // var fs = require('fs');
 var geocoding = require('../public/js/geocoding.js');
-var geolib = require('geolib');
 //Mongo variables
 var mongodb = require('mongodb');
 var mongoUrl = "mongodb://admin:password@ds133231.mlab.com:33231/agile-web-dev";
