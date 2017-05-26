@@ -14,8 +14,8 @@ block content
                 .col-sm-3.col-xs-12.mt-5
                   .align-center
                     a(href='/')
-                      if (user.photo.length)
-                        img.rounded-circle(src='/photo/#{userid}', alt='team', width='800', height='800')
+                      if user.photo.length
+                        img.rounded-circle(src='/photo/#{user._id}', alt='team', width='800', height='800')
                       else if(user.gender == 'Male')
                         img.user-pic.img-responsive.rounded-circle(src='images/male.jpg', alt='picture', height = '570', width = '1200')
                       else if(user.gender == 'Female')
@@ -58,6 +58,7 @@ block content
                       a(href='/references') References
           button.hamburger-menu-btn.pull-right.for-fullscreen.hamburger-circle
             span toggle menu
+
           .pull-right
             #email-display
               p #{user.email}
@@ -142,15 +143,13 @@ block content
                 li
                   a(href='/') Home
                 li
-                  a(href='listing') My Matches
+                  a(href='/match') My Matches
                 li
-                  a(href='/about') About Us
+                  a(href='/about') About Website
                 li
                   a(href='/algorithm') Matching Algorithm
                 li
                   a(href='/testing') Testing
-                li
-                  a(href='#') Contact Us
           button.hamburger-menu-btn.pull-right.for-fullscreen.hamburger-circle
             span toggle menu
           .pull-right
