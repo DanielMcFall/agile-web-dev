@@ -16,7 +16,6 @@ var ctrlChat = require('../controllers/chat')
 var ctrlGeneral = require('../controllers/general')
 
 module.exports.getEmail = function(id){
-
   var MongoClient = mongodb.MongoClient;
 
   MongoClient.connect(mongoUrl, function (err, db) {
@@ -27,6 +26,8 @@ module.exports.getEmail = function(id){
       console.log('(Read) Connection established to', mongoUrl);
 
       Account.findOne({ _id: id }, function(err, account) {
+        if(!account) return 'unknown';
+        console.log('email: ' + account.email);
         return account.email;
       })
       }
