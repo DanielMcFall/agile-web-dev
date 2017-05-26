@@ -127,7 +127,7 @@ module.exports.register = function(req, res){
     console.log('user registered!');
 
     passport.authenticate('local')(req, res, function () {
-      res.redirect('match');
+      res.redirect('/');
     });
   });
 }
