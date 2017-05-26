@@ -104,7 +104,7 @@ describe('database testing', function() {
     });
   });
 
-
+/*
   var server = app.listen(3000, function() {
     console.log('listening');
   });
@@ -122,7 +122,7 @@ describe('database testing', function() {
         .end(done);
     });
   });
-
+*/
 
   after(function(done){
       mongoose.connection.close(done);
@@ -157,7 +157,7 @@ describe('User age test',function() {
   });
 });
 
-var geodistance = require('../private/js/geodistance');
+var geolib = require('geolib');
 
 describe('Geodistance calculation test', function(){
   before(function(){
@@ -179,15 +179,15 @@ describe('Geodistance calculation test', function(){
   });
 
   it('test distance between points 1 and 2', function(){
-    assert.equal(geodistance.findDistance(pt1lat,pt2lat,pt1lon,pt2lon),20,"");
+    assert.equal(geolib.getDistance({latitude: pt1lat, longitude: pt1lon},{latitude: pt2lat, longitude: pt2lon})/1000,200.13,"Distance should be 200.13");
   });
 
   it('test distance between points 2 and 3', function(){
-    assert.equal(geodistance.findDistance(pt3lat,pt2lat,pt3lon,pt2lon),20,"");
+    assert.equal(geolib.getDistance({latitude: pt3lat, longitude: pt3lon},{latitude: pt2lat, longitude: pt2lon})/1000,158.458,"Distance should be 158.458");
   });
 
   it('test distance between points 1 and 3', function(){
-    assert.equal(geodistance.findDistance(pt1lat,pt3lat,pt1lon,pt3lon),20,"");
+    assert.equal(geolib.getDistance({latitude: pt1lat, longitude: pt1lon},{latitude: pt3lat, longitude: pt3lon})/1000,65.539,"Distance should be 65.536");
   });
 
 });
