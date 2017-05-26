@@ -15,7 +15,7 @@ module.exports.disconnect = function(){
 module.exports.message = function(msg, io){
   console.log('Received input!' + msg.id + " " + msg.email);
   id = msg.id;
-
+  var time = new Date();
   var whitespacePattern = /^\s*$/;
 
   if(whitespacePattern.test(msg.message)){
@@ -31,7 +31,6 @@ module.exports.message = function(msg, io){
         console.log('(Write) Connection established to', mongoUrl);
 
         var conversations = db.collection('conversations');
-        var time = new Date();
 
         conversations.update(
           { id : id},
@@ -48,8 +47,8 @@ module.exports.message = function(msg, io){
 
       }
     });
-
-    io.emit('update', msg.message);
+    var send = {name: msg.email, message: msg.message, time: time};
+    io.emit('update', send);
   }
 }
 
@@ -70,7 +69,7 @@ module.exports.sendUpdate = function(id, io){
       collection.find({id: id}, {_id: 0, messages: 1}).toArray(function (err, result) {
       if (err) {
         res.send(err);
-      } else if (result) {
+      } else if (result.length) {
 
         var messages = result[0].messages;
 
@@ -149,4 +148,38 @@ module.exports.createConversation = function(user1, user2){
 
     }
   });
+}
+
+module.exports.getMessage = function(req, res){
+  if(req.user) {
+
+      var MongoClient = mongodb.MongoClient;
+
+      MongoClient.connect(mongoUrl, function (err, db) {
+        if (err) {
+          console.log(err);
+        }
+        else {
+
+          console.log('(Read) Connection established to', mongoUrl);
+
+          var collection = db.collection('conversations');
+
+          collection.find({ id: { $in: req.user.conversations }}).toArray(function (err, result) {
+            if (err) {
+              console.log(err);
+              res.redirect('/')
+            }
+            else if (result.length) {
+
+              db.close();
+              console.log(result);
+              var conversationArray = result;
+              res.render('message', { title: 'Fitness Friends', user: req.user, conversations: result });
+            }
+          });
+        }
+      });
+  }
+  if(!req.user) res.redirect('/');
 }

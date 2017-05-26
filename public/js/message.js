@@ -20,21 +20,21 @@ function chat(){
 
       var message = document.createElement('div');
       message.setAttribute('class','chat-message');
-      message.innerHTML = data;
+      message.innerHTML = data.name + ": " + data.message;
 
       // Append
       outputArea.appendChild(message);
     });
 
     socket.on('output', function(data){
+      outputArea.innerHTML = "";
       if(data.length){
-        console.log(data);
         //Loop through the results
 
         for(var x =0; x < data.length; x++){
           var message = document.createElement('div');
           message.setAttribute('class','chat-message');
-          message.innerHTML = data[x].message;
+          message.innerHTML = data[x].name + ": " + data[x].message;
 
           // Append
           outputArea.appendChild(message);
