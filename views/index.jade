@@ -50,6 +50,10 @@ block content
                         i.fa.fa-map-marker.orange.user-loca
                         |    #{user.suburb}
                       li
+                      if(user.gender == 'Female')
+                        i.fa.fa-female.orange.user-gender
+                        |    #{user.gender}
+                      else
                         i.fa.fa-male.orange.user-gender
                         |    #{user.gender}
                       li
