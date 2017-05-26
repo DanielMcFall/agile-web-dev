@@ -4,6 +4,10 @@ var Conversation = mongoose.model('Conversation');
 var mongodb = require('mongodb');
 var mongoUrl = "mongodb://admin:password@ds133231.mlab.com:33231/agile-web-dev";
 
+//Other controllers
+var ctrlGeneral = require('../controllers/general')
+var ctrlAccount = require('../controllers/account')
+
 module.exports.connect = function(socket){
   console.log('User connected');
 }
@@ -180,6 +184,22 @@ module.exports.getMessage = function(req, res){
           });
         }
       });
+  }
+  if(!req.user) res.redirect('/');
+}
+
+module.exports.initiateConversation = function(req, res){
+  if(req.user) {
+    user1 = req.user.email;
+    user2 = ctrlAccount.getEmail(req.body.id);
+    var convID = findConversation(user1, user2);
+    if(convID) {
+      res.render('message', { title: 'Fitness Friends', user: req.user, convID : convID });
+    }
+    else {
+      createConversation(user1, user2);
+      res.render('message', { title: 'Fitness Friends', user: req.user, convID : convID });
+    }
   }
   if(!req.user) res.redirect('/');
 }

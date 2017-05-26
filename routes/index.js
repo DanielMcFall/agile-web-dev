@@ -14,83 +14,18 @@ var mongoUrl = "mongodb://admin:password@ds133231.mlab.com:33231/agile-web-dev";
 var datejs = require('../private/js/date');
 var ctrlChat = require('../controllers/chat')
 var ctrlGeneral = require('../controllers/general')
+var ctrlAccount = require('../controllers/account')
 
 var upload = multer({ dset: './uploads/' });
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  if(req.user) {
-    res.render('index', { title: 'Fitness Friends', user: req.user, age: datejs.calculateAge(req.user.birthdate)});
-  }
-  if(!req.user) res.render('index', { title: 'Fitness Friends'});
-});
+router.get('/', ctrlGeneral.getIndex);
 
-router.get('/photo/:id', function(req, res) {
-  console.log('photo id', req.params.id);
+router.get('/photo/:id', ctrlAccount.getPhoto);
 
-  Account.findOne({ _id: req.params.id }, function(err, account) {
-    var photo = account && account.photo || {};
-    console.log('photo =', photo);
-    res.contentType(photo.contentType || 'text/plain');
-    res.send(photo.data || '');
-  })
-});
+router.get('/match', ctrlGeneral.generateMatches);
 
-router.get('/listing', function(req, res) {
-
-  var MongoClient = mongodb.MongoClient;
-
-  MongoClient.connect(mongoUrl, function (err, db) {
-  if (err) {
-    console.log(err);
-  } else {
-    console.log('(Read) Connection established to', mongoUrl);
-
-    var collection = db.collection('accounts');
-
-    /*if range is less than distance between user's lat, lng
-     and database user lat, lng
-    */
-    collection.find({ $and: [
-        { 'level' : req.user.level},
-        { 'activity': req.user.activity},
-        { 'email': { $ne : req.user.email}},
-        { 'range' : { $lt : (geolib.getDistance(
-          { latitude: req.user.latitude, longitude: req.user.longitude},
-          { latitude: -31.961310, longitude: 115.806648} ))/1000 }
-        }
-      ]
-    }).toArray(function (err, result) {
-      if (err) {
-        console.log(err);
-      } else if (result.length) {
-
-        //filter based on location
-        console.log( (geolib.getDistance({latitude : -31.984533 , longitude : 115.816075}, {latitude: -31.961310, longitude:115.806648}))/1000 +'km' );
-
-
-        res.render('listing', {
-          // Pass back to Jade
-          userlist : result,
-          username : req.user.name,
-          useremail : req.user.email,
-          userid: req.user._id
-        });
-      } else {
-        res.send('No user documents found');
-      }
-
-      db.close();
-    });
-  }
-  });
-});
-
-router.get('/register', function(req, res){
-    res.render('register', {title: 'Fitness Friends | Sign Up' });
-});
-
-
+router.get('/register', ctrlGeneral.getRegister);
 
 router.post('/register', upload.single('photo'), function(req, res){
 
@@ -122,46 +57,14 @@ router.post('/register', upload.single('photo'), function(req, res){
     console.log('user registered!');
 
     passport.authenticate('local')(req, res, function () {
-      res.redirect('listing');
+      res.redirect('match');
     });
   });
 });
 
-router.get('/settings', function(req, res, next) {
-  if(req.user) res.render('profile', { title: 'Fitness Friends', user: req.user, age: req.user.date});
-  if(!req.user) res.redirect('/');
-});
+router.get('/settings', ctrlGeneral.getSettings);
 
-router.post('/settings',  function(req, res){
-  if(req.user){
-
-    Account.update({ email: req.user.email },{
-      name: req.body.name,
-      birthdate: req.body.date,
-      gender: req.body.gender,
-      suburb: req.body.suburb,
-      postcode: req.body.postcode,
-      range: req.body.range,
-      level: req.body.level,
-      activity: req.body.activity,
-      bio: req.body.bio,
-      //latitude : req.body.latitude,
-      //longitude : req.body.longitude
-    },
-    function(err, account) {
-      if(err) {
-        console.log(err);
-        res.redirect('/');
-      }
-
-      console.log('user settings updated');
-      res.redirect('/');
-    });
-  }
-  else{
-    res.redirect('/');
-  }
-});
+router.post('/settings',  ctrlAccount.update);
 
 
 router.post('/login', passport.authenticate('local'), function(req, res) {
@@ -173,10 +76,10 @@ router.get('/logout', function(req, res) {
     res.redirect('/');
 });
 
-router.get('/listing-detail/:userId', function (req, res) {
+router.get('/match-detail/:userId', function (req, res) {
   // Look up the user Id in the database
   Account.findOne({ _id: req.params.userId }, function(err, account) {
-    res.render('listing-detail', { matchUser: account, username: req.user.name, useremail: req.user.email });
+    res.render('match-detail', { matchUser: account, username: req.user.name, useremail: req.user.email });
   })
 });
 
@@ -251,21 +154,7 @@ router.get('/messages', function(req, res){
   if(!req.user) res.redirect('/');
  });
 
-router.post('/message', function(req, res){
-  if(req.user) {
-    user1 = req.user.email;
-    user2 = ctrlGeneral.getEmail(req.body.id);
-    var convID = ctrlChat.findConversation(user1, user2);
-    if(convID) {
-      res.render('message', { title: 'Fitness Friends', user: req.user, convID : convID });
-    }
-    else {
-      ctrlChat.createConversation(user1, user2);
-      res.render('message', { title: 'Fitness Friends', user: req.user, convID : convID });
-    }
-  }
-  if(!req.user) res.redirect('/');
-})
+router.post('/message', ctrlChat.initiateConversation);
 
 
 module.exports = router;
