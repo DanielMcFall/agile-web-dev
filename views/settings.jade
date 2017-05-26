@@ -16,7 +16,7 @@ block content
                     a(href='#')
                       img.rounded-circle(src='images/team/noname.jpg', alt='team', width='550', height='550')
                     .mt-4
-                      h4.text-white Username
+                      h4.text-white #{user.name}
                 .col-sm-1
                 .col-sm-3.col-xs-12.mt-5
                   ul.sidebar-menu.mt-5
@@ -33,8 +33,8 @@ block content
                   ul.sidebar-menu.mt-5
                     li
                       a(href='#')
-                        i.fa.fa-bell.mr-20
-                        |    Notifications
+                        i.fa.fa-comments.mr-20
+                        |    Messages
                     li
                       a(href='/logout')
                         i.fa.fa-power-off.mr-20
@@ -46,16 +46,16 @@ block content
                     li
                       a(href='/') Home
                     li
-                      a(href='#') About Website
+                      a(href='/about') About Website
                     li
-                      a(href='#') Algorithm
+                      a(href='/algorithm') Algorithm
                     li
-                      a(href='references.html') References
+                      a(href='/references') References
           button.hamburger-menu-btn.pull-right.for-fullscreen.hamburger-circle
             span toggle menu
 
           .pull-right
-            .email-display
+            #email-display
               p #{user.email}
       //- End Header
       .page-container
@@ -72,13 +72,16 @@ block content
                   input(type='name', name='name', value='#{user.name}')
                 .col-sm-3.col-xs-6
                   label Gender:
-                  select.form-control(name='gender', value='#{user.gender}')
+                  select.form-control(name='gender')
                     option Male
-                    option Female
+                    if(user.gender == 'Female')
+                      option(selected) Female
+                    else
+                      option Female
                 .col-sm-3.col-xs-6
                   label Birthdate:
                   #datePicker.input-group.input-append.date
-                    input.form-control(type='text', name='date', value='#{user.birthdate}')
+                    input.form-control(type='text', name='date', value='#{user.birthdate.toDateString()}')
                     span.add-on
               .row.mt_10
                 .col-sm-6.col-xs-12
@@ -93,17 +96,32 @@ block content
               .row.mt_10
                 .col-sm-3.col-xs-6
                   label Fitness level:
-                  select.form-control(name='level', value='#{user.level}')
+                  select.form-control(name='level')
                     option Beginner
-                    option Intermediate
-                    option Advanced
+                    if(user.level == 'Intermediate')
+                      option(selected) Intermediate
+                    else
+                      option Intermediate
+                    if(user.level == 'Advanced')
+                      option(selected) Advanced
+                    else
+                      option Advanced
                 .col-sm-3.col-xs-6
                   label Fitness activity:
                   select.form-control(name='activity', value='#{user.activity}')
                     option Cardio
-                    option Strength
-                    option Flexibility
-                    option Sports
+                    if(user.activity == 'Strength')
+                      option(selected) Strength
+                    else
+                      option Strength
+                    if(user.activity == 'Flexibility')
+                      option(selected) Flexibility
+                    else
+                      option Flexibility
+                    if(user.activity == 'Sports')
+                      option(selected) Sports
+                    else
+                      option Sports
                 .col-sm-5.col-xs-10
                   label Area range within:
                   .range
