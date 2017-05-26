@@ -29,7 +29,7 @@ html(lang='en')
         .full-width-container
           a.navbar-brand(href='/')
             img(src='images/logo.png', width='400', height='45', alt='Logo')
-          .fullscreen-menu-holder
+          .fullscreen-menu-holder.home-menu
             .d-flex.align-items-center
               ul.sidebar-menu
                 li
@@ -74,10 +74,10 @@ html(lang='en')
                 h2 the Matching Algorithm Works
                 .separator
                 p.lead
-                span.orange To find your perfect Fitness Friend, we implement a special tailor designed algorithm to find your potential matches.
+                  span.orange To find your perfect Fitness Friend, we implement a special tailor designed algorithm to find your potential matches.
                 br
                 br
-                | Using your information, we will cross reference you with millions of other users to present to you your top matches based on our matching criteria.
+                p.lead Using your information, we will cross reference you with millions of other users to present to you your top matches based on our matching criteria.
           .mt_60.mb_60
             .row
               .col-md-12
@@ -92,13 +92,11 @@ html(lang='en')
                       #collapseOne.collapse.show(role='tabpanel', aria-labelledby='headingOne')
                         .card-block
                         .align-justify
-                          | During registration we ask that you enable your current location tracking as we implement Google Maps API
-                          | to enable us to pin point your exact location. We store this location in our secure database and use it to
-                          | to find you the perfect match just moments away. We also ask that you select what distance you are willing to
-                          | travel from between 0 and 20km, defaulting to 10km if no value is selected. Using this, and your geomapped location,
-                          | we calculate the distance between you and every other user to find someone within your distance range.
-                          | If you do not wish to enable the location tracking, you can also manually enter your postcode and your suburb,
-                          | however we do strongly recommend you allow location tracking.
+                          p.lead During registration we ask that you enable your current location tracking as we implement Google Maps API
+                            | to enable us to pin point your exact location. We store this location in our secure database and use it to
+                            | to find you the perfect match just moments away. We also ask that you select what distance you are willing to
+                            | travel from between 0 and 20km, defaulting to 10km if no value is selected. Using this, and your geomapped location,
+                            | we calculate the distance between you and every other user to find someone within your distance range.
                     .card.border-0
                       #headingTwo.card-header(role='tab')
                         h5.mb-0
@@ -107,9 +105,9 @@ html(lang='en')
                       #collapseTwo.collapse(role='tabpanel', aria-labelledby='headingTwo')
                         .card-block
                         .align-justify
-                          | Users may select from three different fitness levels: beginner, intermediate and advanced, as well as three different fitness activities: cardio, strength and sports.
-                          | Using this information, we will only display to you other users of the same fitness level and same interest in fitness activity
-                          | to ensure the quality of all our matches.
+                          p.lead Users may select from three different fitness levels: beginner, intermediate and advanced, as well as three different fitness activities: cardio, strength and sports.
+                            | Using this information, we will only display to you other users of the same fitness level and same interest in fitness activity
+                            | to ensure the quality of all our matches.
                     .card.border-0
                       #headingThree2.card-header(role='tab')
                         h5.mb-0
@@ -118,9 +116,9 @@ html(lang='en')
                       #collapseThree.collapse(role='tabpanel', aria-labelledby='headingThree2')
                         .card-block
                         .align-justify
-                          | We currently do not have support for matching based on gender and age,
-                          | however in the match listing we display the genders and ages of all our users
-                          | to make it easier for you to find the right match.
+                          p.lead We currently do not have support for matching based on gender and age,
+                            | however in the match listing we display the genders and ages of all our users
+                            | to make it easier for you to find the right match.
         // End About content
       // Footer
       footer.bg-orange.mt_150.whole-container-text-white

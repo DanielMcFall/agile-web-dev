@@ -15,8 +15,7 @@ var datejs = require('../private/js/date');
 var ctrlChat = require('../controllers/chat')
 var ctrlGeneral = require('../controllers/general')
 
-module.exports.getEmail = function(id){
-
+module.exports.getEmail = function(id, cb){
   var MongoClient = mongodb.MongoClient;
 
   MongoClient.connect(mongoUrl, function (err, db) {
@@ -26,10 +25,12 @@ module.exports.getEmail = function(id){
     else {
       console.log('(Read) Connection established to', mongoUrl);
 
-      Account.findOne({ _id: id }, function(err, account) {
-        return account.email;
-      })
-      }
+      Account.findOne({ _id : id }, function(err, account) {
+        if(!account) return 'unknown';
+        var accountEmail = account.email;
+        cb(accountEmail);
+      });
+    }
 
   });
 }
@@ -47,7 +48,7 @@ module.exports.update = function(req, res){
       gender: req.body.gender,
       suburb: req.body.suburb,
       postcode: req.body.postcode,
-      range: req.body.range,
+      range: req.body.sliderValue,
       level: req.body.level,
       activity: req.body.activity,
       bio: req.body.bio,
@@ -87,9 +88,10 @@ module.exports.getPhoto = function(req, res) {
 }
 
 module.exports.accountDetail = function (req, res) {
+  if(!req.user) res.redirect('/');
   // Look up the user id in the database
   Account.findOne({ _id: req.params.userId }, function(err, account) {
-    res.render('match-detail', { matchUser: account, username: req.user.name, useremail: req.user.email, age: datejs.calculateAge(account.birthdate)});
+    res.render('match-detail', { matchUser: account, user: req.user, age: datejs.calculateAge(account.birthdate)});
   })
 }
 
@@ -98,6 +100,7 @@ module.exports.login = function(req, res) {
 }
 
 module.exports.register = function(req, res){
+  console.log("value is "+req.body.curLabel);
 
   Account.register( new Account ( {
     email : req.body.email,
@@ -106,7 +109,7 @@ module.exports.register = function(req, res){
     gender: req.body.gender,
     suburb: req.body.suburb,
     postcode: req.body.postcode,
-    range: req.body.range,
+    range: req.body.sliderValue,
     level: req.body.level,
     activity: req.body.activity,
     bio: req.body.bio,
@@ -119,7 +122,8 @@ module.exports.register = function(req, res){
     }
 
 //    console.log('req.file', req.file);
-
+    console.log(req.body.sliderValue);
+    
     account.photo.data = req.file.buffer;
     account.photo.contentType = 'image/png';
     account.save();

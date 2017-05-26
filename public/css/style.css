@@ -1723,8 +1723,8 @@ select.form-control:not([size]):not([multiple]) {height: calc(2.7rem + 2px);}
 .range-labels .active.selected::before {
   display: none;
 }
-.row_manage>.col-md-6 {min-height: 285px;}
-
+.row_manage>.col-md-6 {min-height: 285px;height: 285px;}
+.row_manage>.col-md-6 img {height: 100%}
 /* About page */
 
 .inner_banner{height:50vh;  background-size: cover !important; background-position: center !important;}

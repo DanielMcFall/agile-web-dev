@@ -92,7 +92,7 @@ module.exports.sendUpdate = function(id, io){
 });
 }
 
-module.exports.findConversation = function(user1, user2){
+module.exports.findConversation = function(user1, user2, cb){
   var MongoClient = mongodb.MongoClient;
 
   MongoClient.connect(mongoUrl, function (err, db) {
@@ -104,29 +104,29 @@ module.exports.findConversation = function(user1, user2){
 
       //var collection = db.collection('conversations');
 
-      Conversation.findOne( $or [{ $and: [{'user1' : user1}, {'user2': user2} ] },{ $and: [{'user1' : user2}, {'user2': user1} ] } ], function(err, conv) {
+      Conversation.findOne( {$or:
+        [{ $and:
+          [{'user1' : user1}, {'user2': user2} ]
+        },{ $and:
+          [{'user1' : user2}, {'user2': user1} ]
+        }]}, function(err, conv) {
         if (err) {
           console.log(err);
         }
         else{
           db.close();
-          return conv._id;
+          if(conv)
+            cb(conv._id);
+          else cb(null);
         }
-      })
-
-      //var id = collection.find($or [{ $and: [{'user1' : user1}, {'user2': user2} ] },{ $and: [{'user1' : user2}, {'user2': user1} ] } ]).id;
-
-      //db.close();
-
-      //if(id) return id;
-      //return null;
+      });
     }
   });
 }
 
-module.exports.createConversation = function(user1, user2){
+module.exports.createConversation = function(user1, user2, cb){
   var MongoClient = mongodb.MongoClient;
-  var id;
+
   MongoClient.connect(mongoUrl, function (err, db) {
     if (err) {
       console.log(err);
@@ -148,6 +148,8 @@ module.exports.createConversation = function(user1, user2){
          {$or:[{email : user1}, {email : user2}]},
          {$push: {conversations : id}}
        );
+
+       cb();
       });
 
     }
@@ -177,7 +179,6 @@ module.exports.getMessage = function(req, res){
             else if (result.length) {
 
               db.close();
-              console.log(result);
               var conversationArray = result;
               res.render('message', { title: 'Fitness Friends', user: req.user, conversations: result });
             }
@@ -190,16 +191,24 @@ module.exports.getMessage = function(req, res){
 
 module.exports.initiateConversation = function(req, res){
   if(req.user) {
-    user1 = req.user.email;
-    user2 = ctrlAccount.getEmail(req.body.id);
-    var convID = findConversation(user1, user2);
-    if(convID) {
-      res.render('message', { title: 'Fitness Friends', user: req.user, convID : convID });
-    }
-    else {
-      createConversation(user1, user2);
-      res.render('message', { title: 'Fitness Friends', user: req.user, convID : convID });
-    }
+    var user1 = req.user.email;
+    console.log("getting email from " + req.params.id);
+    ctrlAccount.getEmail(req.params.id, function(resa){
+      var user2 = resa;
+      module.exports.findConversation(user1, user2, function(result){
+        var convID = result;
+        if(convID) {
+          console.log('found existing conversation');
+          res.redirect('/messages')
+        }
+        else {
+          console.log('creating conversation: ' + user1 + " " + user2);
+          module.exports.createConversation(user1, user2, function(){
+            res.redirect('/messages');
+          });
+        }
+      });
+    });
   }
   if(!req.user) res.redirect('/');
 }
