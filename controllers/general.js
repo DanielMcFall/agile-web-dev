@@ -17,7 +17,7 @@ var ctrlAccount = require('../controllers/account')
 
 module.exports.getRegister = function(req, res){
   if(req.user) redirect('/')
-  res.render('register', {title: 'Fitness Friends | Sign Up' });
+  else res.render('register', {title: 'Fitness Friends | Sign Up' });
 }
 
 module.exports.getIndex = function(req, res, next){
@@ -33,51 +33,55 @@ module.exports.getSettings = function(req, res, next) {
 }
 
 module.exports.generateMatches = function(req, res) {
-  if(!req.user) res.redirect('/');
-  var MongoClient = mongodb.MongoClient;
+  if(req.user){
+    var MongoClient = mongodb.MongoClient;
 
-  MongoClient.connect(mongoUrl, function (err, db) {
-  if (err) {
-    console.log(err);
-  } else {
-    console.log('(Read) Connection established to', mongoUrl);
+    MongoClient.connect(mongoUrl, function (err, db) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('(Read) Connection established to', mongoUrl);
 
-    var collection = db.collection('accounts');
+      var collection = db.collection('accounts');
 
-    /*if range is less than distance between user's lat, lng
-     and database user lat, lng
-    */
-    collection.find({ $and: [
-        { 'level' : req.user.level},
-        { 'activity': req.user.activity},
-        { 'email': { $ne : req.user.email}},
-        { 'range' : { $gt : (geolib.getDistance(
-          { latitude: req.user.latitude, longitude: req.user.longitude},
-          { latitude: -31.961310, longitude: 115.806648} ))/1000 }
+      /*if range is less than distance between user's lat, lng
+       and database user lat, lng
+      */
+      collection.find({ $and: [
+          { 'level' : req.user.level},
+          { 'activity': req.user.activity},
+          { 'email': { $ne : req.user.email}},
+          { 'range' : { $gt : (geolib.getDistance(
+            { latitude: req.user.latitude, longitude: req.user.longitude},
+            { latitude: -31.961310, longitude: 115.806648} ))/1000 }
+          }
+        ]
+      }).toArray(function (err, result) {
+        if (err) {
+          console.log(err);
+        } else if (result.length) {
+
+          res.render('match', {
+            // Pass back to Jade
+            user: req.user,
+            userlist : result,
+          });
+        } else {
+          res.render('match', {
+            // Pass back to Jade
+            userlist : result,
+            user: req.user
+          });
         }
-      ]
-    }).toArray(function (err, result) {
-      if (err) {
-        console.log(err);
-      } else if (result.length) {
 
-        res.render('match', {
-          // Pass back to Jade
-          user: req.user,
-          userlist : result,
-        });
-      } else {
-        res.render('match', {
-          // Pass back to Jade
-          userlist : result,
-          user: req.user
-        });
-      }
-
-      db.close();
+        db.close();
+      });
+    }
     });
   }
-  });
+  else{
+     res.redirect('/');
+  }
 }
 
 module.exports.references = function(req, res){
