@@ -98,8 +98,12 @@ html(lang='en')
 											i.fa.fa-map-marker.orange
 											|    #{matchingUser.postcode}
 										div
-											i.fa.fa-male.orange
-											|    #{matchingUser.gender}
+											if(matchingUser.gender == 'Female')
+												i.fa.fa-female.orange.user-gender
+												|    #{matchingUser.gender}
+											else
+												i.fa.fa-male.orange
+												|    #{matchingUser.gender}
 										div
 											i.fa.fa-futbol-o.orange(style='font-size:10px')
 											|    #{matchingUser.activity}
