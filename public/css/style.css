@@ -1465,7 +1465,7 @@ select.form-control:not([size]):not([multiple]) {height: calc(2.7rem + 2px);}
   -webkit-transition: border 0.5s linear;
   transition: border 0.5s linear;
   position:relative;
-  
+
   background-size: cover;
   background-position: center center;
 
@@ -1800,4 +1800,10 @@ select.form-control:not([size]):not([multiple]) {height: calc(2.7rem + 2px);}
 
 .contact-button {
   border:1px solid #bbb;
+}
+
+.locationmax {
+  position: relative;
+  right: 80px;
+  top: 10px;
 }
