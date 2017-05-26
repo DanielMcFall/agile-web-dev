@@ -104,7 +104,7 @@ module.exports.findConversation = function(user1, user2){
 
       //var collection = db.collection('conversations');
 
-      Conversation.findOne( $or [{ $and: [{'user1' : user1}, {'user2': user2} ] },{ $and: [{'user1' : user2}, {'user2': user1} ] } ], function(err, conv) {
+      Conversation.findOne( $or: [{ $and: [{'user1' : user1}, {'user2': user2} ] },{ $and: [{'user1' : user2}, {'user2': user1} ] } ], function(err, conv) {
         if (err) {
           console.log(err);
         }
@@ -112,7 +112,7 @@ module.exports.findConversation = function(user1, user2){
           db.close();
           return conv._id;
         }
-      })
+      });
 
       //var id = collection.find($or [{ $and: [{'user1' : user1}, {'user2': user2} ] },{ $and: [{'user1' : user2}, {'user2': user1} ] } ]).id;
 
@@ -192,12 +192,12 @@ module.exports.initiateConversation = function(req, res){
   if(req.user) {
     user1 = req.user.email;
     user2 = ctrlAccount.getEmail(req.body.id);
-    var convID = findConversation(user1, user2);
+    var convID = module.exports.findConversation(user1, user2);
     if(convID) {
       res.render('message', { title: 'Fitness Friends', user: req.user, convID : convID });
     }
     else {
-      createConversation(user1, user2);
+      module.exports.createConversation(user1, user2);
       res.render('message', { title: 'Fitness Friends', user: req.user, convID : convID });
     }
   }

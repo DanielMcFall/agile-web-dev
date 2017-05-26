@@ -87,6 +87,7 @@ module.exports.getPhoto = function(req, res) {
 }
 
 module.exports.accountDetail = function (req, res) {
+  if(!req.user) res.redirect('/');
   // Look up the user id in the database
   Account.findOne({ _id: req.params.userId }, function(err, account) {
     res.render('match-detail', { matchUser: account, user: req.user, age: datejs.calculateAge(account.birthdate)});

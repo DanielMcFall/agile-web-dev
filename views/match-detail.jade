@@ -82,7 +82,7 @@ block content
                     ul
                       li
                         i.fa.fa-map-marker.orange
-                        |    #{matchUser.suburb}
+                        |    #{matchUser.postcode}
                       li
                         if(matchUser.gender == 'Female')
                           i.fa.fa-female.orange.user-gender
@@ -100,11 +100,11 @@ block content
                         i.fa.fa-bolt.orange
                         |    #{matchUser.level}
                   div
-                    a.top_link.top_link_pad.text-big.pt-3.pb-3.pr-4.pl-4.mr-4(href='#')
+                    a.top_link.top_link_pad.text-big.pt-3.pb-3.pr-4.pl-4.mr-4(href='/message/#{matchUser._id}')
                       i.fa.fa-comments.mr-1
                       | Chat
                   div
-                    a.top_link.top_link_pad.text-big.pt-3.pb-3.pr-4.pl-4(href='mailto:abc@gmail.com?Subject=Hello! Greetings from Fitness Friends')
+                    a.top_link.top_link_pad.text-big.pt-3.pb-3.pr-4.pl-4(href='mailto:#{matchUser.email}?Subject=Hello! Greetings from Fitness Friends')
                       i.fa.fa-envelope.mr-2
                       | E-Mail
               // End Profile info

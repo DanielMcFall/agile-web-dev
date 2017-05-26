@@ -66,8 +66,11 @@ block content
         .col-md-1
         //- Area for current matches
         .col-md-3#contacts-area
-          if(user.conversations[0])
+          if(convID)
+            p#active-chat.hidden #{convID}
+          else if(user.conversations[0])
             p#active-chat.hidden #{user.conversations[0]}
+
           else
             a.btn.btn-default.btn-auto.contact-button(href="/match") No conversations! Find your match!
           if(conversations)
