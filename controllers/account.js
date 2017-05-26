@@ -5,6 +5,7 @@ var mongodb = require('mongodb');
 var mongoUrl = "mongodb://admin:password@ds133231.mlab.com:33231/agile-web-dev";
 var Account = require('../models/account');
 var geocoding = require('../public/js/geocoding.js');
+var passport = require('passport');
 
 //seperate js files
 var datejs = require('../private/js/date');

@@ -1,16 +1,15 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
-var Account = require('../models/account');
 var multer = require('multer');
-// var fs = require('fs');
+
 var geocoding = require('../public/js/geocoding.js');
+
 //Mongo variables
 var mongodb = require('mongodb');
 var mongoUrl = "mongodb://admin:password@ds133231.mlab.com:33231/agile-web-dev";
 
-//seperate js files
-var datejs = require('../private/js/date');
+//Controller files
 var ctrlChat = require('../controllers/chat')
 var ctrlGeneral = require('../controllers/general')
 var ctrlAccount = require('../controllers/account')
