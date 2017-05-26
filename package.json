@@ -13,6 +13,7 @@
     "debug": "~2.6.3",
     "express": "~4.15.2",
     "express-session": "^1.10.1",
+    "geolib": "^2.0.22",
     "jade": "~1.11.0",
     "kerberos": "~0.0.23",
     "mocha": "~1.14.0",
