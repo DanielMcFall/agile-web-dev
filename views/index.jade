@@ -58,6 +58,7 @@ block content
                       a(href='/references') References
           button.hamburger-menu-btn.pull-right.for-fullscreen.hamburger-circle
             span toggle menu
+<<<<<<< HEAD
             .pull-right
               #email-display
                 p #{user.email}
@@ -128,6 +129,78 @@ block content
         script(src='js/bootstrap.min.js ')
         script(type='text/javascript', src='js/owl.carousel.js')
         script(type='text/javascript', src='js/main.js')
+=======
+          .pull-right
+            #email-display
+              p #{user.email}
+      //- End Header
+      .page-container
+        // Profile detail
+        .container
+          .row.mt_40.mb_40
+            // Profile photos
+            .col-lg-6.col-md-6.col-sm-12.col-xs-12
+              if user.photo
+                img.rounded-circle(src='/photo/#{user._id}', alt='team', width='800', height='800')
+              else if(user.gender == 'Male')
+                img.user-pic.img-responsive.img-rounded(src='images/male.jpg', alt='picture', height = '570', width = '1200')
+              else if(user.gender == 'Female')
+                img.user-pic.img-responsive.img-rounded(src='images/female.jpg', alt='picture', height = '570', width = '1200')
+            // End Profile photos
+            //- Profile info
+            .col-lg-6.col-md-6.col-sm-12.col-xs-12
+              .sticky-top.mt_10.ml-4
+                  h1.font-weight-normal.user-name #{user.name}, #{age}
+                  h3.font-weight-normal
+                    .separator
+                    blockquote.user-bio #{user.bio}
+                    ul
+                      li
+                        i.fa.fa-map-marker.orange.user-loca
+                        |    #{user.suburb}
+                      li
+                      if(user.gender == 'Female')
+                        i.fa.fa-female.orange.user-gender
+                        |    #{user.gender}
+                      else
+                        i.fa.fa-male.orange.user-gender
+                        |    #{user.gender}
+                      li
+                        i.fa.fa-star.orange.user-activity(style='position: relative; right: 5px')
+                        |    #{user.activity}
+                      li
+                        i.fa.fa-bolt.orange.user-level
+                        |    #{user.level}
+            //- End Profile info
+          //-End Profile detail
+          //- Navigation-bottom
+          .row.mt_20
+            .col-lg-3.col-md-3.col-sm-6.col-xs-6
+              a.btn.btn-default.btn-lg.btn-auto(href='/')
+                i.fa.fa-user-circle.lg-font
+                p.lg-font Home
+            .col-lg-3.col-md-3.col-sm-6.col-xs-6
+              a.btn.btn-default.btn-lg.btn-auto(href='/match')
+                i.fa.fa-user-plus.lg-font
+                p.lg-font Match
+            .col-lg-3.col-md-3.col-sm-6.col-xs-6
+              a.btn.btn-default.btn-lg.btn-auto(href='/messages')
+                i.fa.fa-comments.lg-font
+                p.lg-font Messages
+            .col-lg-3.col-md-3.col-sm-6.col-xs-6
+              a.btn.btn-default.btn-lg.btn-auto(href='/settings')
+                i.fa.fa-wrench.lg-font
+                p.lg-font Settings
+          //- End Navigation-bottom
+        //- Footer
+        footer.bg-orange.mt_150.whole-container-text-white
+          | Copyright 2017 © University of Western Australia
+      //- Placed js files at the end of the document so the pages load faster
+      script(type='text/javascript', src='js/jquery.min.js')
+      script(src='js/bootstrap.min.js ')
+      script(type='text/javascript', src='js/owl.carousel.js')
+      script(type='text/javascript', src='js/main.js')
+>>>>>>> 4256cd89756c4ae5e5fc03df62775c4ce342b5ff
 
   if (!user)
     #main-content.m-scene

@@ -16,7 +16,8 @@ var ctrlChat = require('../controllers/chat')
 var ctrlAccount = require('../controllers/account')
 
 module.exports.getRegister = function(req, res){
-    res.render('register', {title: 'Fitness Friends | Sign Up' });
+  if(req.user) redirect('/')
+  res.render('register', {title: 'Fitness Friends | Sign Up' });
 }
 
 module.exports.getIndex = function(req, res, next){
@@ -32,7 +33,7 @@ module.exports.getSettings = function(req, res, next) {
 }
 
 module.exports.generateMatches = function(req, res) {
-
+  if(!req.user) res.redirect('/');
   var MongoClient = mongodb.MongoClient;
 
   MongoClient.connect(mongoUrl, function (err, db) {
@@ -69,7 +70,13 @@ module.exports.generateMatches = function(req, res) {
           loginuser: req.user
         });
       } else {
-        res.send('No user documents found');
+        res.render('match', {
+          // Pass back to Jade
+          userlist : result,
+          username : req.user.name,
+          useremail : req.user.email,
+          userid: req.user._id
+        });
       }
 
       db.close();
