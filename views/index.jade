@@ -2,25 +2,62 @@ extends layout
 
 block content
   if (user)
-    #main-content.m-scene
-      //- Header
-      nav.navbar
-        .full-width-container
-          a.navbar-brand(href='/')
-            img(src='/images/logo.png', width='400', height='45', alt='Logo')
-          .fullscreen-menu-holder
-            .d-flex.align-items-center
-              ul.sidebar-menu
-                li
-                  a(href='/match') Match
-                li
-                  a(href='/messages') Messages
-                li
-                  a(href='/settings') Settings
-                li
-                  a(href="/logout") Logout
-          button.hamburger-menu-btn.pull-right.for-fullscreen.hamburger-circle
-            span toggle menu
+  #main-content.m-scene
+    // Header
+    nav.navbar
+      .full-width-container
+        a.navbar-brand(href='/')
+          img(src='images/logo.png', width='400', height='45', alt='Logo')
+        .fullscreen-menu-holder
+          .align-items-center
+            .row.col-sm-12.mt-5
+              .col-sm-3.col-xs-12.mt-5
+                .align-center
+                  a(href='/')
+                    if user.photo.length
+                      img.rounded-circle(src='/photo/#{userid}', alt='team', width='800', height='800')
+                    else if(user.gender == 'Male')
+                      img.user-pic.img-responsive.rounded-circle(src='images/male.jpg', alt='picture', height = '570', width = '1200')
+                    else if(user.gender == 'Female')
+                      img.user-pic.img-responsive.img-rounded-circle(src='images/female.jpg', alt='picture', height = '570', width = '1200')
+                  .mt-4
+                    h4.text-white #{user.name}
+              .col-sm-1
+              .col-sm-3.col-xs-12.mt-5
+                ul.sidebar-menu.mt-5
+                  li
+                    a(href='/settings')
+                      i.fa.fa-edit.mr-20
+                      | Edit Profile
+                  li
+                    a(href='/match')
+                      i.fa.fa-list.mr-20
+                      |    My Matches
+              .col-sm-1
+              .col-sm-3.col-xs-12.mt-5
+                ul.sidebar-menu.mt-5
+                  li
+                    a(href='#')
+                      i.fa.fa-comments.mr-20
+                      |    Messages
+                  li
+                    a(href='/logout')
+                      i.fa.fa-power-off.mr-20
+                      |    Logout
+            .row.col-sm-12.mt_150
+              .col-sm-12.col-xs-12
+                hr
+                ul.bottom-menu
+                  li
+                    a(href='/') Home
+                  li
+                    a(href='/about') About Website
+                  li
+                    a(href='/algorithm') Algorithm
+                  li
+                    a(href='/references') References
+        button.hamburger-menu-btn.pull-right.for-fullscreen.hamburger-circle
+          span toggle menu
           .pull-right
             #email-display
               p #{user.email}
