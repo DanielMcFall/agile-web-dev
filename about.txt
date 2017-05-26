@@ -1,0 +1,69 @@
+Architecture:
+
+The site is designed as a node.js web app and is centered around a Model-view-controller architecture. Routes/index.js responds to HTTP requests by calling
+an appropriate function in the controllers. There are two models: one for user accounts and another for conversations between users.
+
+Design choices:
+
+///
+Login/Authorization
+
+This is handled with passport-local-mongoose. An Account schema defines the user fields with email as unique and password being salted/hashed.
+passport-local-mongoose also handles login sessions: user data is passed through index.js as req.user which distributes this information to the controller
+or frontend as necessary. There is a logout request which terminates the session.
+
+This decision was chosen because it encapsulates and simplifies the entire authorization process. Handling sessions and salting/hashing with just
+vanilla passport would not reap a lot of benefit considering the additional complexity and limited project timeframe.
+
+Some difficulties were introduced when trying to add facebook authentication/signup. This was due to a combination of OAuth errors on the facebook end
+and issues with the Account schema on the passport-local end.
+
+///
+Views
+
+The app uses jade as a view engine. The controller specifies which template to render. User information and other javascript objects are sent to
+the template to dynamically render certain information (for example: lists of conversations, lists of matches). Jade is also used in some cases to check
+if variables are present and show defaults if they are not (for example: default pictures if the user does not have a custom picture, or custom message
+if the user is not a part of any conversations)
+
+Jade is a powerful and commonly used standard that synergizes well with MEAN stack. It was an obvious choice for the project criteria.
+
+///
+Database
+
+A mongodb database is implemented which is hosted on mlab. The database is enforced by two mongoose schemas. Again, Mongodb is an integral part of
+the MEAN stack and was easily the most suitable option.
+
+There were a lot of difficulties with mongodb. None of our members had knowledge of how to form queries and so a lot of knowledge was built from
+scratch - trial and error. The project required a huge variety of different queries for different scenarios (Model update/find, database find/update, matching algorithm
+etc). Eventually there was success - even for more complicated queries involving nested arrays of objects and nested $or/$and operators.
+
+The huge advantage of using mongodb was being able to directly retrieve js objects from queries as well as update quickly on the fly.
+
+Unfortunately, the database is not really designed to store pictures. In a normal situation, pictures or other binary data would be stored on a cloud
+server or regular filesystem and retrieved from there, rather than being stored inside the database. Due to the cost of external server solutions though,
+we stored the object in the db and used a temporary reference url to get a http request that could respond with the file in base64 format. Success!
+but not ideal. Extra requests like this caused page requests to take a long time (especially for larger files and especially because of the budget mlab db)
+
+///
+Geolocation matching and algorithm
+
+We used Google Maps javascrip API to fetch user's current location and save it into the database. We also used geolib npm package to get distance between two co-ordinates and find the nearby matches.
+
+To find user's within a range, we used geolib getDistance() function and used it to calculate the distance between two points for each of the entry in the database.
+
+There was some difficulty in ensuring everyone had a valid location if they chose not to reveal their location in register. The algorithm tries to accomodate for this.
+
+///
+Live chat
+
+Chat is implemented using socket IO to emit realtime messages between users that share a conversation ID.
+
+Users browse matches based on their preferences, profile and location. If they like a match, they can initiate a conversation.
+This creates a conversation id and directs the user to the messages page which shows on the left a list of conversations and in the middle a chat window.
+
+On load, an active conversation is loaded into the chat window. Clicking on any of the chats will change the active chat id and reload the messages.
+All messages are emitted via a socket to the recipient.
+
+There were a lot of difficulties with the chat system due to the complexity of the queries and amount of DOM manipulation required to generate messages over
+different active chat windows.
