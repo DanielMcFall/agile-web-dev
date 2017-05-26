@@ -37,7 +37,9 @@ html(lang='en')
                 li
                   a(href='/match') My Matches
                 li
-                  a(href='#') About Us
+                  a(href='/about') About Us
+                li
+                  a(href='/algorithm') Matching Algorithm
                 li
                   a(href='/testing') Testing
                 li
@@ -45,7 +47,7 @@ html(lang='en')
           button.hamburger-menu-btn.pull-right.for-fullscreen.hamburger-circle
             span toggle menu
           .pull-right
-            a.top_link(href='register') Register
+            a.top_link(href='/register') Register
             a.top_link(href='#login') Login
           #login.overlay
             .popup
@@ -53,12 +55,13 @@ html(lang='en')
                 h2.text-center Login
               a.close(href='#') ×
               .content
-                .col-sm-12.col-xs-12.mb-3
-                  input(type='email', name='name', placeholder='Username')
-                .col-sm-12.col-xs-12
-                  input(type='text', name='name', placeholder='Password')
-                .pull-right.pop_btn
-                  a.top_link(href='#') Login
+                form.login_form(role='form', action="/login", method="post")
+                  .col-sm-12.col-xs-12.mb-3
+                    input(type='email', name='email', placeholder='Email')
+                  .col-sm-12.col-xs-12
+                    input(type='password', name='password', placeholder='Password')
+                  .pull-right.pop_btn
+                    button.top_link(type="submit") Login
       // End Header
       .page-container
         // Banner
