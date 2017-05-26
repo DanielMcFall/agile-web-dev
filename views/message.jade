@@ -26,13 +26,12 @@ block content
       //- End Header
       //- Main content
       .row.mt_20
-        .col-md-1
         //- Area for current matches
-        .col-md-2#contacts-area
+        .col-md-3#contacts-area
           p#active-chat.hidden #{user.conversations[0]}
           each conversation in conversations
-            a.btn.btn-default.btn-auto(href='/messages')
-              i.fa.fa-comment.lg-font
+            a.btn.btn-default.btn-auto.contact-button(href="javascript: updateActiveChat('#{conversation.id}');")
+              i.fa.fa-comment
               if conversation.user2 == user.email
                 p #{conversation.user1}
               else

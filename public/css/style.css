@@ -1793,3 +1793,7 @@ select.form-control:not([size]):not([multiple]) {height: calc(2.7rem + 2px);}
 .hidden {
   visibility: hidden;
 }
+
+.contact-button {
+  border:1px solid #bbb;
+}
