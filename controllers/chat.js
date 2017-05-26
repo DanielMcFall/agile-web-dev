@@ -194,12 +194,12 @@ module.exports.initiateConversation = function(req, res){
     user2 = ctrlAccount.getEmail(req.params.id);
     var convID = module.exports.findConversation(user1, user2);
     if(convID) {
-      res.render('message', { title: 'Fitness Friends', user: req.user, convID : convID });
+      res.redirect('/messages')
     }
     else {
       console.log('got here');
       module.exports.createConversation(user1, user2);
-      res.render('message', { title: 'Fitness Friends', user: req.user, convID : convID });
+      res.redirect('/messages')
     }
   }
   if(!req.user) res.redirect('/');
