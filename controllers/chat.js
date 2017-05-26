@@ -230,6 +230,9 @@ module.exports.renderMessages = function(req, res){
               console.log(result);
               res.render('message', { title: 'Fitness Friends', user: req.user, conversations: result });
             }
+            else{
+              res.render('message', { title: 'Fitness Friends', user: req.user});
+            }
           });
         }
       });

@@ -50,6 +50,10 @@ block content
                         i.fa.fa-map-marker.orange.user-loca
                         |    #{user.suburb}
                       li
+                      if(user.gender == 'Female')
+                        i.fa.fa-female.orange.user-gender
+                        |    #{user.gender}
+                      else
                         i.fa.fa-male.orange.user-gender
                         |    #{user.gender}
                       li
@@ -99,11 +103,15 @@ block content
             .d-flex.align-items-center
               ul.sidebar-menu
                 li
-                  a(href='') Home
+                  a(href='/') Home
                 li
-                  a(href='#') My Matches
+                  a(href='listing') My Matches
                 li
-                  a(href='#') About Us
+                  a(href='/about') About Us
+                li
+                  a(href='/algorithm') Matching Algorithm
+                li
+                  a(href='/testing') Testing
                 li
                   a(href='#') Contact Us
           button.hamburger-menu-btn.pull-right.for-fullscreen.hamburger-circle
@@ -195,23 +203,29 @@ block content
             .row.mt_50
               .col-md-4.col-lg-4
                 .align-center
-                  .team-image
+                 .team-image
+                  a(href='/keyur')
                     img.rounded-circle(src='images/team/keyur.jpg', alt='team', width='550', height='550')
                   .mt-4
+                  .align-center
                     h5 Keyur Modi
                     p Student ID: 21845191
               .col-md-4.col-lg-4
                 .align-center
-                  .team-image
+                .team-image
+                  a(href='/madeline')
                     img.rounded-circle(src='images/team/madeline.jpg', alt='team', width='550', height='550')
                   .mt-4
+                  .align-center
                     h5 Madeline King
                     p Student ID: 21493664
               .col-md-4.col-lg-4
                 .align-center
-                  .team-image
+                .team-image
+                  a(href='/daniel')
                     img.rounded-circle(src='images/team/daniel.jpg', alt='team', width='550', height='550')
                   .mt-4
+                  .align-center
                     h5 Daniel McFall
                     p Student ID: 21312007
         //- End Team

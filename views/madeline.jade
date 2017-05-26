@@ -27,23 +27,25 @@ html(lang='en')
       // Header
       nav.navbar
         .full-width-container
-          a.navbar-brand(href='index.html')
-            img(src='images/logo.png', width='162', height='45', alt='Logo')
+          a.navbar-brand(href='/')
+            img(src='images/logo.png', width='400', height='45', alt='Logo')
           .fullscreen-menu-holder
             .d-flex.align-items-center
               ul.sidebar-menu
                 li
-                  a(href='index.html') Home
+                  a(href='/') Home
                 li
-                  a(href='listing.html') My Matches
+                  a(href='/matches') My Matches
                 li
-                  a(href='#') About Us
+                  a(href='/about') About Us
                 li
-                  a(href='#') Contact Us
+                  a(href='/algorithm') Matching Algorithm
+                li
+                  a(href='/testing') Testing
           button.hamburger-menu-btn.pull-right.for-fullscreen.hamburger-circle
             span toggle menu
           .pull-right
-            a.top_link(href='register.html') Register
+            a.top_link(href='/register') Register
             a.top_link(href='#login') Login
           #login.overlay
             .popup
@@ -51,17 +53,18 @@ html(lang='en')
                 h2.text-center Login
               a.close(href='#') ×
               .content
-                .col-sm-12.col-xs-12.mb-3
-                  input(type='email', name='name', placeholder='Username')
-                .col-sm-12.col-xs-12
-                  input(type='text', name='name', placeholder='Password')
-                .pull-right.pop_btn
-                  a.top_link(href='#') Login
+                form.login_form(role='form', action="/login", method="post")
+                  .col-sm-12.col-xs-12.mb-3
+                    input(type='email', name='email', placeholder='Email')
+                  .col-sm-12.col-xs-12
+                    input(type='password', name='password', placeholder='Password')
+                  .pull-right.pop_btn
+                    button.top_link(type="submit") Login
       // End Header
       .page-container
         // Page title
         .bg-orange.mb_120.whole-container-text-white.text-center.pt-4.pb-4
-          h2 Madeline
+          h2 Madeline King
         // End page title
         // Profile detail
         .mt_80.mb_50
@@ -78,10 +81,16 @@ html(lang='en')
                   .details_list.mt_40.mb_40
                     ul
                       li
+                        i.fa.fa-graduation-cap.orange(style='font-size:13px')
+                        |     21493664
+                      li
+                        i.fa.fa-book.orange(style='font-size:14px')
+                        |    CITS3403
+                      li
                         i.fa.fa-map-marker.orange
                         |    Perth, WA
                       li
-                        i.fa.fa-male.orange
+                        i.fa.fa-female.orange
                         |    Female
                       li
                         i.fa.fa-birthday-cake.orange(style='font-size:10px')

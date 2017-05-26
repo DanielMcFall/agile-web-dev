@@ -6,6 +6,7 @@ var mongoUrl = "mongodb://admin:password@ds133231.mlab.com:33231/agile-web-dev";
 var Account = require('../models/account');
 var geolib = require('geolib');
 var geocoding = require('../public/js/geocoding.js');
+var datejs = require('../private/js/date');
 
 //seperate js files
 var datejs = require('../private/js/date');

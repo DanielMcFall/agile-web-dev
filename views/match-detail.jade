@@ -79,8 +79,12 @@ block content
                         i.fa.fa-map-marker.orange
                         |    #{matchUser.postcode}
                       li
-                        i.fa.fa-male.orange
-                        |    #{matchUser.gender}
+                        if(matchUser.gender == 'Female')
+                          i.fa.fa-female.orange.user-gender
+                          |    #{matchUser.gender}
+                        else
+                          i.fa.fa-male.orange
+                          |    #{matchUser.gender}
                       li
                         i.fa.fa-birthday-cake.orange(style='font-size:10px')
                         |    #{matchUser.birthdate}

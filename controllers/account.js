@@ -7,6 +7,7 @@ var Account = require('../models/account');
 var geocoding = require('../public/js/geocoding.js');
 var passport = require('passport');
 var multer = require('multer');
+
 //seperate js files
 var datejs = require('../private/js/date');
 
@@ -84,7 +85,7 @@ module.exports.getPhoto = function(req, res) {
 }
 
 module.exports.accountDetail = function (req, res) {
-  // Look up the user Id in the database
+  // Look up the user id in the database
   Account.findOne({ _id: req.params.userId }, function(err, account) {
     res.render('match-detail', { matchUser: account, username: req.user.name, useremail: req.user.email });
   })

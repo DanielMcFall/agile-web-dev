@@ -26,19 +26,24 @@ block content
       //- End Header
       //- Main content
       .row.mt_20
+        .col-md-1
         //- Area for current matches
         .col-md-3#contacts-area
-          p#active-chat.hidden #{user.conversations[0]}
-          each conversation in conversations
-            a.btn.btn-default.btn-auto.contact-button(href="javascript: updateActiveChat('#{conversation.id}');")
-              i.fa.fa-comment
-              if conversation.user2 == user.email
-                p #{conversation.user1}
-              else
-                p #{conversation.user2}
+          if(user.conversations[0])
+            p#active-chat.hidden #{user.conversations[0]}
+          else
+            a.btn.btn-default.btn-auto.contact-button(href="/match") No conversations! Find your match!
+          if(conversations)
+            each conversation in conversations
+              a.btn.btn-default.btn-auto.contact-button(href="javascript: updateActiveChat('#{conversation.id}');")
+                i.fa.fa-comment
+                if conversation.user2 == user.email
+                  p #{conversation.user1}
+                else
+                  p #{conversation.user2}
 
         //- Area for messages
-        .col-md-8
+        .col-md-7
           .chat
             #chat-messages
               .chat-message
