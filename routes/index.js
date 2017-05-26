@@ -3,7 +3,7 @@ var router = express.Router();
 var passport = require('passport');
 var Account = require('../models/account');
 var multer = require('multer');
-var fs = require('fs');
+// var fs = require('fs');
 var geocoding = require('../public/js/geocoding.js');
 var geolib = require('geolib');
 //Mongo variables
@@ -29,6 +29,8 @@ router.get('/register', ctrlGeneral.getRegister);
 
 router.post('/register', upload.single('photo'), function(req, res){
 
+//  geocoding.reverseGeocoding();
+
   Account.register( new Account ( {
     email : req.body.email,
     name: req.body.name,
@@ -39,20 +41,21 @@ router.post('/register', upload.single('photo'), function(req, res){
     range: req.body.range,
     level: req.body.level,
     activity: req.body.activity,
-    bio: req.body.bio,
-    latitude : req.body.latitude,
-    longitude : req.body.longitude
+    bio: req.body.bio
+//    latitude : req.body.latitude,
+//    longitude : req.body.longitude
   }),
   req.body.password, function(err, account) {
     if(err) {
       return res.render('register', { title: 'Fitness Friends | Sign Up', error: err.message });
     }
+    // account.latitude = req.body.latitude;
 
-//    console.log('req.file', req.file);
+      account.photo.data = req.file.buffer ;
+      account.photo.contentType = 'image/png' ;
 
-    account.photo.data = req.file.buffer;
-    account.photo.contentType = 'image/png';
     account.save();
+
 
     console.log('user registered!');
 
