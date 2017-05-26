@@ -132,9 +132,40 @@ router.get('/settings', function(req, res, next) {
   if(!req.user) res.redirect('/');
 });
 
+router.post('/settings',  function(req, res){
+  if(req.user){
+
+    Account.update({ email: req.user.email },{
+      name: req.body.name,
+      birthdate: req.body.date,
+      gender: req.body.gender,
+      suburb: req.body.suburb,
+      postcode: req.body.postcode,
+      range: req.body.range,
+      level: req.body.level,
+      activity: req.body.activity,
+      bio: req.body.bio,
+      //latitude : req.body.latitude,
+      //longitude : req.body.longitude
+    },
+    function(err, account) {
+      if(err) {
+        console.log(err);
+        res.redirect('/');
+      }
+
+      console.log('user settings updated');
+      res.redirect('/');
+    });
+  }
+  else{
+    res.redirect('/');
+  }
+});
+
 
 router.post('/login', passport.authenticate('local'), function(req, res) {
-    res.redirect('listing');
+    res.redirect('/');
 });
 
 router.get('/logout', function(req, res) {
@@ -188,9 +219,37 @@ router.get('/match', function(req, res){
 });
 
 router.get('/messages', function(req, res){
-  if(req.user) res.render('message', { title: 'Fitness Friends', user: req.user });
+  if(req.user) {
+
+      var MongoClient = mongodb.MongoClient;
+
+      MongoClient.connect(mongoUrl, function (err, db) {
+        if (err) {
+          console.log(err);
+        }
+        else {
+
+          console.log('(Read) Connection established to', mongoUrl);
+
+          var collection = db.collection('conversations');
+
+          collection.find({ id: { $in: req.user.conversations }}).toArray(function (err, result) {
+            if (err) {
+              console.log(err);
+              res.redirect('/')
+            }
+            else if (result.length) {
+
+              db.close();
+              console.log(result);
+              res.render('message', { title: 'Fitness Friends', user: req.user, conversations: result });
+            }
+          });
+        }
+      });
+  }
   if(!req.user) res.redirect('/');
-});
+ });
 
 router.post('/message', function(req, res){
   if(req.user) {

@@ -65,61 +65,55 @@ block content
           .mt_10.mb_20
             h3 Edit profile
             .separator
-            .row
-              .col-sm-6.col-xs-12
-                label Name:
-                input(type='name', name='name', value='#{user.name}')
-              .col-sm-3.col-xs-6
-                label Gender:
-                select.form-control(name='gender', value='#{user.gender}')
-                  option Male
-                  option Female
-              .col-sm-3.col-xs-6
-                label Birthdate:
-                #datePicker.input-group.input-append.date
-                  input.form-control(type='text', name='date', value='#{user.birthdate}')
-                  span.add-on
-            .row.mt_10
-              .col-sm-6.col-xs-12
-                label Suburb:
-                input(type='text', name='suburb', value='#{user.suburb}')
-              .col-sm-5.col-xs-10
-                label Postcode:
-                input(type='text', name='postcode', pattern='[0-9\s]*', value='#{user.postcode}')
-              .col-sm-1.col-xs-2
-                .mt_50.mr-20(onclick='myCurrentPosition()')
-                  img(src='images/gps.png', width='18', height='18')
-            .row.mt_10
-              .col-sm-3.col-xs-6
-                label Fitness level:
-                select.form-control(name='level', value='#{user.level}')
-                  option Beginner
-                  option Intermediate
-                  option Advanced
-              .col-sm-3.col-xs-6
-                label Fitness activity:
-                select.form-control(name='activity', value='#{user.activity}')
-                  option Cardio
-                  option Strength
-                  option Flexibility
-                  option Sports
-              .col-sm-5.col-xs-10
-                label Area range within:
-                .range
-                  input(type='range', min='1', max='6', steps='1', value='1')
-                ul.range-labels
-                  li.active.selected 0km
-                  li 1km
-                  li 2km
-                  li 5km
-                  li 10km
-                  li 20km
-            .row.mt_10
-              .col-sm-12.col-xs-12
-                label Describe yourself:
-                input(type='text' name='bio', value='#{user.bio}')
-            .mt_20.mb_40
-              button.top_link(type='submit') Update
+            form#contact-form.form-fields-bg-alabaster(method='post', action=' ', role='form')
+              .row
+                .col-sm-6.col-xs-12
+                  label Name:
+                  input(type='name', name='name', value='#{user.name}')
+                .col-sm-3.col-xs-6
+                  label Gender:
+                  select.form-control(name='gender', value='#{user.gender}')
+                    option Male
+                    option Female
+                .col-sm-3.col-xs-6
+                  label Birthdate:
+                  #datePicker.input-group.input-append.date
+                    input.form-control(type='text', name='date', value='#{user.birthdate}')
+                    span.add-on
+              .row.mt_10
+                .col-sm-6.col-xs-12
+                  label Suburb:
+                  input(type='text', name='suburb', value='#{user.suburb}')
+                .col-sm-5.col-xs-10
+                  label Postcode:
+                  input(type='text', name='postcode', pattern='[0-9\s]*', value='#{user.postcode}')
+                .col-sm-1.col-xs-2
+                  .mt_50.mr-20(onclick='myCurrentPosition()')
+                    img(src='images/gps.png', width='18', height='18')
+              .row.mt_10
+                .col-sm-3.col-xs-6
+                  label Fitness level:
+                  select.form-control(name='level', value='#{user.level}')
+                    option Beginner
+                    option Intermediate
+                    option Advanced
+                .col-sm-3.col-xs-6
+                  label Fitness activity:
+                  select.form-control(name='activity', value='#{user.activity}')
+                    option Cardio
+                    option Strength
+                    option Flexibility
+                    option Sports
+                .col-sm-5.col-xs-10
+                  label Area range within:
+                  .range
+                    input(type='range', name='range', min='1', max='50', steps='1', value='10')
+              .row.mt_10
+                .col-sm-12.col-xs-12
+                  label Describe yourself:
+                  input(type='text' name='bio', value='#{user.bio}')
+              .mt_20.mb_40
+                button.top_link(type='submit') Update
 
         //- Footer
         footer.bg-orange.mt_180.whole-container-text-white
