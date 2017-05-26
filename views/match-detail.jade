@@ -65,10 +65,7 @@ block content
             .row.mb_60
               // Profile photos
               .col-md-6
-                #main-carousel_two.owl-carousel
                   img(src='/images/team/noname.jpg', alt='picture', width='1200', height='570')
-                  img(src='/images/team/madeline.jpg', alt='picture', width='1200', height='570')
-                  img(src='/images/team/daniel.jpg', alt='picture', width='1200', height='570')
               // End Profile photos
               // Profile info
               .col-md-6
@@ -90,13 +87,21 @@ block content
                           |    #{matchUser.gender}
                       li
                         i.fa.fa-birthday-cake.orange(style='font-size:10px')
-                        |    #{matchUser.birthdate}
+                        |    #{age}
                       li
                         i.fa.fa-futbol-o.orange
                         |    #{matchUser.activity}
                       li
                         i.fa.fa-bolt.orange
                         |    #{matchUser.level}
+                  div
+                    a.top_link.top_link_pad.text-big.pt-3.pb-3.pr-4.pl-4.mr-4(href='#')
+                      i.fa.fa-comments.mr-1
+                      | Chat
+                  div
+                    a.top_link.top_link_pad.text-big.pt-3.pb-3.pr-4.pl-4(href='mailto:abc@gmail.com?Subject=Hello! Greetings from Fitness Friends')
+                      i.fa.fa-envelope.mr-2
+                      | E-Mail
               // End Profile info
 
         // End Profile detail

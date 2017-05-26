@@ -1405,7 +1405,7 @@ background: linear-gradient(-135deg, #EC6EAD, #3494E6); /* W3C, IE 10+/ Edge, Fi
 }
 .popup .content{min-height:210px;padding: 1px 20px;}
 .pop_btn{position:relative; z-index:9; margin-top:21px}
-.top_link_pad{padding: 5px 20px; font-size: 14px; margin-top:20px}
+.top_link_pad{padding: 5px 15px; font-size: 14px; margin-top:20px}
 .no-padding{padding:0}
 
 .left_arrow{background:url(../images/left_arrow.png) no-repeat; position:absolute;width: 27px; height: 36px; top: 43%; right: 0;}

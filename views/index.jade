@@ -68,8 +68,8 @@ block content
           .row.mt_40.mb_40
             // Profile photos
             .col-lg-6.col-md-6.col-sm-12.col-xs-12
-              if user.photo.length
-                img.rounded-circle(src='/photo/#{userid}', alt='team', width='800', height='800')
+              if user.photo
+                img.rounded-circle(src='/photo/#{user._id}', alt='team', width='800', height='800')
               else if(user.gender == 'Male')
                 img.user-pic.img-responsive.img-rounded(src='images/male.jpg', alt='picture', height = '570', width = '1200')
               else if(user.gender == 'Female')
@@ -121,7 +121,8 @@ block content
                 p.lg-font Settings
           //- End Navigation-bottom
         //- Footer
-        footer Copyright 2017 © University of Western Australia
+        footer.bg-orange.mt_150.whole-container-text-white
+          | Copyright 2017 © University of Western Australia
       //- Placed js files at the end of the document so the pages load faster
       script(type='text/javascript', src='js/jquery.min.js')
       script(src='js/bootstrap.min.js ')
