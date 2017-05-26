@@ -125,7 +125,7 @@ router.get('/settings', function(req, res, next) {
 
 
 router.post('/login', passport.authenticate('local'), function(req, res) {
-    res.redirect('listing');
+    res.redirect('/');
 });
 
 router.get('/logout', function(req, res) {
