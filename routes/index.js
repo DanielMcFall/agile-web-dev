@@ -3,7 +3,7 @@ var router = express.Router();
 var passport = require('passport');
 var Account = require('../models/account');
 var multer = require('multer');
-var fs = require('fs');
+// var fs = require('fs');
 var geocoding = require('../public/js/geocoding.js');
 var geolib = require('geolib');
 //Mongo variables

@@ -55,23 +55,24 @@ function error(msg) {
   alert(msg);
 }
 
-function reverseGeocoding () {
+exports.reverseGeocoding =  function (postcodeValue) {
   var geocoder = new google.maps.Geocoder();
   var lat = '';
   var lng = '';
 
-  geocoder.geocode( { 'address': '6009' }, function(results, status) {
-    console.log('results', results);
+  geocoder.geocode({
+    'address': postcodeValue
+  }, function(results, status) {
+
+    // console.log('results', results);
     if (status == google.maps.GeocoderStatus.OK) {
       var location = results[0].geometry.location;
-      console.info('location', location);
-       lat = location.lat();
-       lng = location.lng();
-       console.info(lat, lng);
-    }
-     else {
+
+      lat = location.lat();
+      lng = location.lng();
+      console.info(lat, lng);
+    } else {
       alert("Geocode was not successful for the following reason: " + status);
     }
-    alert('Latitude: ' + lat + ' Logitude: ' + lng);
   });
 }
