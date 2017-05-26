@@ -39,6 +39,8 @@ html(lang='en')
                 li
                   a(href='#') About Us
                 li
+                  a(href='/testing') Testing
+                li
                   a(href='#') Contact Us
           button.hamburger-menu-btn.pull-right.for-fullscreen.hamburger-circle
             span toggle menu
@@ -73,6 +75,7 @@ html(lang='en')
                 p.lead
                 span.orange To find your perfect Fitness Friend, we implement a special tailor designed algorithm to find your potential matches.
                 br
+                br
                 | Using your information, we will cross reference you with millions of other users to present to you your top matches based on our matching criteria.
           .mt_60.mb_60
             .row
@@ -85,31 +88,38 @@ html(lang='en')
                       h5.mb-0
                         a(data-toggle='collapse', data-parent='#accordion', href='#collapseOne', aria-expanded='true', aria-controls='collapseOne')
                           | Location Based
-                    #collapseOne.collapse.show(role='tabpanel', aria-labelledby='headingOne')
-                      .card-block
-                        | In the registration page we ask that you submit your postcode, whereas suburb input is optional.
-                        | However, we also implement geotracking to pin point your location.
-                        | We also ask that you input a distance (km) range of how far you are willing to travel,
-                        | this is not mandatory and will default to 10km if no range is specified.
-                        | Using this data, we find you your perfect match in your surrounding suburbs within the range.
-                  .card.border-0
-                    #headingTwo.card-header(role='tab')
-                      h5.mb-0
-                        a.collapsed(data-toggle='collapse', data-parent='#accordion', href='#collapseTwo', aria-expanded='false', aria-controls='collapseTwo')
-                          | Fitness Level & Activity
-                    #collapseTwo.collapse(role='tabpanel', aria-labelledby='headingTwo')
-                      .card-block
-                        | Users may select from three different fitness levels: beginner, intermediate and advanced, as well as four different fitness activities: cardio, strength, flexibility and sports.
-                        | This allows for us to find you a match with the same fitness level and activity type.
-                  .card.border-0
-                    #headingThree2.card-header(role='tab')
-                      h5.mb-0
-                        a.collapsed(data-toggle='collapse', data-parent='#accordion', href='#collapseThree', aria-expanded='false', aria-controls='collapseThree')
-                          | Age & Gender
-                    #collapseThree.collapse(role='tabpanel', aria-labelledby='headingThree2')
-                      .card-block
-                        | If you have a preference for what age or gender you would like to find in a match, you can also specify this when signing up with Fitness Friends,
-                        | and we will take this into consideration when generating your matches.
+                      #collapseOne.collapse.show(role='tabpanel', aria-labelledby='headingOne')
+                        .card-block
+                        .align-justify
+                          | During registration we ask that you enable your current location tracking as we implement Google Maps API
+                          | to enable us to pin point your exact location. We store this location in our secure database and use it to
+                          | to find you the perfect match just moments away. We also ask that you select what distance you are willing to
+                          | travel from between 0 and 20km, defaulting to 10km if no value is selected. Using this, and your geomapped location,
+                          | we calculate the distance between you and every other user to find someone within your distance range.
+                          | If you do not wish to enable the location tracking, you can also manually enter your postcode and your suburb,
+                          | however we do strongly recommend you allow location tracking.
+                    .card.border-0
+                      #headingTwo.card-header(role='tab')
+                        h5.mb-0
+                          a.collapsed(data-toggle='collapse', data-parent='#accordion', href='#collapseTwo', aria-expanded='false', aria-controls='collapseTwo')
+                            | Fitness Level & Activity
+                      #collapseTwo.collapse(role='tabpanel', aria-labelledby='headingTwo')
+                        .card-block
+                        .align-justify
+                          | Users may select from three different fitness levels: beginner, intermediate and advanced, as well as four different fitness activities: cardio, strength, flexibility and sports.
+                          | Using this information, we will only display to you other users of the same fitness level and same interest in fitness activity
+                          | to ensure the quality of all our matches.
+                    .card.border-0
+                      #headingThree2.card-header(role='tab')
+                        h5.mb-0
+                          a.collapsed(data-toggle='collapse', data-parent='#accordion', href='#collapseThree', aria-expanded='false', aria-controls='collapseThree')
+                            | Age & Gender
+                      #collapseThree.collapse(role='tabpanel', aria-labelledby='headingThree2')
+                        .card-block
+                        .align-justify
+                          | We currently do not have support for matching based on gender and age,
+                          | however in the match listing we display the genders and ages of all our users
+                          | to make it easier for you to find the right match.
         // End About content
       // Footer
       footer.bg-orange.mt_150.whole-container-text-white
