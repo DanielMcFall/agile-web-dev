@@ -6,4 +6,5 @@ https://agile-web-dev.herokuapp.com/
 Run locally (localhost:3000):
 
 npm install
+
 npm start
