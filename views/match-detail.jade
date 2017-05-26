@@ -12,10 +12,15 @@ block content
               .row.col-sm-12.mt-5
                 .col-sm-3.col-xs-12.mt-5
                   .align-center
-                    a(href='#')
-                      img.rounded-circle(src='/images/team/noname.jpg', alt='team', width='550', height='550')
+                    a(href='/')
+                      if (user.photo.data)
+                        img.rounded-circle(src='/photo/#{user._id}', alt='team', width='800', height='800')
+                      else if(user.gender == 'Male')
+                        img.user-pic.img-responsive.rounded-circle(src='images/male.jpg', alt='picture', height = '570', width = '1200')
+                      else if(user.gender == 'Female')
+                        img.user-pic.img-responsive.img-rounded-circle(src='images/female.jpg', alt='picture', height = '570', width = '1200')
                     .mt-4
-                      h4.text-white #{username}
+                      h4.text-white #{user.name}
                 .col-sm-1
                 .col-sm-3.col-xs-12.mt-5
                   ul.sidebar-menu.mt-5
@@ -31,9 +36,9 @@ block content
                 .col-sm-3.col-xs-12.mt-5
                   ul.sidebar-menu.mt-5
                     li
-                      a(href='#')
-                        i.fa.fa-bell.mr-20
-                        |    Notifications
+                      a(href='/messages')
+                        i.fa.fa-comments.mr-20
+                        |    Messages
                     li
                       a(href='/logout')
                         i.fa.fa-power-off.mr-20
@@ -44,8 +49,6 @@ block content
                   ul.bottom-menu
                     li
                       a(href='/') Home
-                    li
-                      a(href='/match') My Matches
                     li
                       a(href='/about') About Website
                     li
@@ -67,7 +70,10 @@ block content
             .row.mb_60
               // Profile photos
               .col-md-6
-                  img(src='/images/team/noname.jpg', alt='picture', width='1200', height='570')
+                  if matchUser.photo.data
+                    img.rounded-circle(src='/photo/#{matchUser._id}', alt='team', width='800', height='800')
+                  else
+                    img(src='images/team/noname.jpg', alt='picture', width='1024', height='674')
               // End Profile photos
               // Profile info
               .col-md-6

@@ -87,7 +87,7 @@ module.exports.getPhoto = function(req, res) {
 module.exports.accountDetail = function (req, res) {
   // Look up the user id in the database
   Account.findOne({ _id: req.params.userId }, function(err, account) {
-    res.render('match-detail', { matchUser: account, username: req.user.name, useremail: req.user.email, age: datejs.calculateAge(account.birthdate)});
+    res.render('match-detail', { matchUser: account, user: req.user, age: datejs.calculateAge(account.birthdate)});
   })
 }
 
@@ -96,6 +96,7 @@ module.exports.login = function(req, res) {
 }
 
 module.exports.register = function(req, res){
+  console.log("value is "+req.body.curLabel);
 
   Account.register( new Account ( {
     email : req.body.email,
@@ -104,7 +105,7 @@ module.exports.register = function(req, res){
     gender: req.body.gender,
     suburb: req.body.suburb,
     postcode: req.body.postcode,
-    range: req.body.range,
+    range: req.body.val,
     level: req.body.level,
     activity: req.body.activity,
     bio: req.body.bio,
