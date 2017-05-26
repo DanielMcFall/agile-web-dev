@@ -32,31 +32,36 @@ html(lang='en')
           .fullscreen-menu-holder
             .d-flex.align-items-center
               ul.sidebar-menu
-                li
-                  a(href='/') Home
-                li
-                  a(href='/match') My Matches
-                li
-                  a(href='#') About Us
-                li
-                  a(href='#') Contact Us
-          button.hamburger-menu-btn.pull-right.for-fullscreen.hamburger-circle
-            span toggle menu
-          .pull-right
-            a.top_link(href='register') Register
-            a.top_link(href='#login') Login
-          #login.overlay
-            .popup
-              .popover-title.popup_header
-                h2.text-center Login
-              a.close(href='#') ×
-              .content
+              li
+                a(href='/') Home
+              li
+                a(href='/match') My Matches
+              li
+                a(href='/about') About Us
+              li
+                a(href='/algorithm') Matching Algorithm
+              li
+                a(href='/testing') Testing
+              li
+                a(href='#') Contact Us
+        button.hamburger-menu-btn.pull-right.for-fullscreen.hamburger-circle
+          span toggle menu
+        .pull-right
+          a.top_link(href='/register') Register
+          a.top_link(href='#login') Login
+        #login.overlay
+          .popup
+            .popover-title.popup_header
+              h2.text-center Login
+            a.close(href='#') ×
+            .content
+              form.login_form(role='form', action="/login", method="post")
+                .col-sm-12.col-xs-12.mb-3
+                  input(type='email', name='email', placeholder='Email')
                 .col-sm-12.col-xs-12
-                  input(type='email', name='name', placeholder='Email')
-                .col-sm-12.col-xs-12
-                  input(type='text', name='name', placeholder='Password')
+                  input(type='password', name='password', placeholder='Password')
                 .pull-right.pop_btn
-                  a.top_link(href='#') Login
+                  button.top_link(type="submit") Login
       // End Header
       .page-container
         // Banner
