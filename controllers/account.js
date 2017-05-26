@@ -15,7 +15,7 @@ var datejs = require('../private/js/date');
 var ctrlChat = require('../controllers/chat')
 var ctrlGeneral = require('../controllers/general')
 
-module.exports.getEmail = function(id){
+module.exports.getEmail = function(id, cb){
   var MongoClient = mongodb.MongoClient;
 
   MongoClient.connect(mongoUrl, function (err, db) {
@@ -25,12 +25,12 @@ module.exports.getEmail = function(id){
     else {
       console.log('(Read) Connection established to', mongoUrl);
 
-      Account.findOne({ _id: id }, function(err, account) {
+      Account.findOne({ _id : id }, function(err, account) {
         if(!account) return 'unknown';
-        console.log('email: ' + account.email);
-        return account.email;
-      })
-      }
+        var accountEmail = account.email;
+        cb(accountEmail);
+      });
+    }
 
   });
 }

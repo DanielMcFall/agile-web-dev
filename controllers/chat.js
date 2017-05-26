@@ -92,7 +92,7 @@ module.exports.sendUpdate = function(id, io){
 });
 }
 
-module.exports.findConversation = function(user1, user2){
+module.exports.findConversation = function(user1, user2, cb){
   var MongoClient = mongodb.MongoClient;
 
   MongoClient.connect(mongoUrl, function (err, db) {
@@ -116,17 +116,17 @@ module.exports.findConversation = function(user1, user2){
         else{
           db.close();
           if(conv)
-            return conv._id;
-          else return null;
+            cb(conv._id);
+          else cb(null);
         }
       });
     }
   });
 }
 
-module.exports.createConversation = function(user1, user2){
+module.exports.createConversation = function(user1, user2, cb){
   var MongoClient = mongodb.MongoClient;
-  var id;
+
   MongoClient.connect(mongoUrl, function (err, db) {
     if (err) {
       console.log(err);
@@ -148,6 +148,8 @@ module.exports.createConversation = function(user1, user2){
          {$or:[{email : user1}, {email : user2}]},
          {$push: {conversations : id}}
        );
+
+       cb();
       });
 
     }
@@ -177,7 +179,6 @@ module.exports.getMessage = function(req, res){
             else if (result.length) {
 
               db.close();
-              console.log(result);
               var conversationArray = result;
               res.render('message', { title: 'Fitness Friends', user: req.user, conversations: result });
             }
@@ -190,17 +191,24 @@ module.exports.getMessage = function(req, res){
 
 module.exports.initiateConversation = function(req, res){
   if(req.user) {
-    user1 = req.user.email;
-    user2 = ctrlAccount.getEmail(req.params.id);
-    var convID = module.exports.findConversation(user1, user2);
-    if(convID) {
-      res.redirect('/messages')
-    }
-    else {
-      console.log('got here');
-      module.exports.createConversation(user1, user2);
-      res.redirect('/messages')
-    }
+    var user1 = req.user.email;
+    console.log("getting email from " + req.params.id);
+    ctrlAccount.getEmail(req.params.id, function(resa){
+      var user2 = resa;
+      module.exports.findConversation(user1, user2, function(result){
+        var convID = result;
+        if(convID) {
+          console.log('found existing conversation');
+          res.redirect('/messages')
+        }
+        else {
+          console.log('creating conversation: ' + user1 + " " + user2);
+          module.exports.createConversation(user1, user2, function(){
+            res.redirect('/messages');
+          });
+        }
+      });
+    });
   }
   if(!req.user) res.redirect('/');
 }
