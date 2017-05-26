@@ -66,6 +66,11 @@ module.exports.update = function(req, res){
   }
 }
 
+module.exports.logout = function(req, res) {
+    req.logout();
+    res.redirect('/');
+}
+
 module.exports.getPhoto = function(req, res) {
   console.log('photo id', req.params.id);
 
@@ -75,4 +80,50 @@ module.exports.getPhoto = function(req, res) {
     res.contentType(photo.contentType || 'text/plain');
     res.send(photo.data || '');
   })
+}
+
+module.exports.accountDetail = function (req, res) {
+  // Look up the user Id in the database
+  Account.findOne({ _id: req.params.userId }, function(err, account) {
+    res.render('match-detail', { matchUser: account, username: req.user.name, useremail: req.user.email });
+  })
+}
+
+module.exports.login = function(req, res) {
+    res.redirect('/');
+}
+
+module.exports.register = function(req, res){
+
+  Account.register( new Account ( {
+    email : req.body.email,
+    name: req.body.name,
+    birthdate: req.body.date,
+    gender: req.body.gender,
+    suburb: req.body.suburb,
+    postcode: req.body.postcode,
+    range: req.body.range,
+    level: req.body.level,
+    activity: req.body.activity,
+    bio: req.body.bio,
+    latitude : req.body.latitude,
+    longitude : req.body.longitude
+  }),
+  req.body.password, function(err, account) {
+    if(err) {
+      return res.render('register', { title: 'Fitness Friends | Sign Up', error: err.message });
+    }
+
+//    console.log('req.file', req.file);
+
+    account.photo.data = req.file.buffer;
+    account.photo.contentType = 'image/png';
+    account.save();
+
+    console.log('user registered!');
+
+    passport.authenticate('local')(req, res, function () {
+      res.redirect('match');
+    });
+  });
 }

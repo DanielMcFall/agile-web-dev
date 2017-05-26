@@ -203,3 +203,36 @@ module.exports.initiateConversation = function(req, res){
   }
   if(!req.user) res.redirect('/');
 }
+
+module.exports.renderMessages = function(req, res){
+  if(req.user) {
+
+      var MongoClient = mongodb.MongoClient;
+
+      MongoClient.connect(mongoUrl, function (err, db) {
+        if (err) {
+          console.log(err);
+        }
+        else {
+
+          console.log('(Read) Connection established to', mongoUrl);
+
+          var collection = db.collection('conversations');
+
+          collection.find({ id: { $in: req.user.conversations }}).toArray(function (err, result) {
+            if (err) {
+              console.log(err);
+              res.redirect('/')
+            }
+            else if (result.length) {
+
+              db.close();
+              console.log(result);
+              res.render('message', { title: 'Fitness Friends', user: req.user, conversations: result });
+            }
+          });
+        }
+      });
+  }
+  if(!req.user) res.redirect('/');
+ }

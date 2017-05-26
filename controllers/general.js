@@ -77,3 +77,31 @@ module.exports.generateMatches = function(req, res) {
   }
   });
 }
+
+module.exports.references = function(req, res){
+    res.render('references', {title:  '' });
+}
+
+module.exports.keyur = function(req, res){
+    res.render('keyur', {title:  '' });
+}
+
+module.exports.madeline = function(req, res){
+    res.render('madeline', {title:  '' });
+}
+
+module.exports.daniel = function(req, res){
+    res.render('daniel', {title:  '' });
+}
+
+module.exports.about = function(req, res){
+    res.render('about', {title:  '' });
+}
+
+module.exports.testing = function(req, res){
+    res.render('testing',{title: ''});
+}
+
+module.exports.algorithm = function(req, res){
+    res.render('algorithm', {title:  '' });
+}
