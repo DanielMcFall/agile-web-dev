@@ -51,8 +51,10 @@ module.exports.update = function(req, res){
       level: req.body.level,
       activity: req.body.activity,
       bio: req.body.bio,
-      latitude : req.body.latitude,
-      longitude : req.body.longitude
+
+      //Ensure latitude and longitude are not undefined before submitting
+      //latitude : req.body.latitude,
+      //longitude : req.body.longitude
     },
     function(err, account) {
       if(err) {
