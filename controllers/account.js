@@ -5,7 +5,8 @@ var mongodb = require('mongodb');
 var mongoUrl = "mongodb://admin:password@ds133231.mlab.com:33231/agile-web-dev";
 var Account = require('../models/account');
 var geocoding = require('../public/js/geocoding.js');
-
+var passport = require('passport');
+var multer = require('multer');
 //seperate js files
 var datejs = require('../private/js/date');
 
@@ -49,8 +50,8 @@ module.exports.update = function(req, res){
       level: req.body.level,
       activity: req.body.activity,
       bio: req.body.bio,
-      //latitude : req.body.latitude,
-      //longitude : req.body.longitude
+      latitude : req.body.latitude,
+      longitude : req.body.longitude
     },
     function(err, account) {
       if(err) {
@@ -73,13 +74,12 @@ module.exports.logout = function(req, res) {
 }
 
 module.exports.getPhoto = function(req, res) {
-  console.log('photo id', req.params.id);
+  //console.log('photo id', req.params.id);
 
   Account.findOne({ _id: req.params.id }, function(err, account) {
     var photo = account && account.photo || {};
-    console.log('photo =', photo);
     res.contentType(photo.contentType || 'text/plain');
-    res.send(photo.data || '');
+    res.send(photo.data);
   })
 }
 

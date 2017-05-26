@@ -59,16 +59,13 @@ module.exports.generateMatches = function(req, res) {
         console.log(err);
       } else if (result.length) {
 
-        //filter based on location
-        console.log( (geolib.getDistance({latitude : -31.984533 , longitude : 115.816075}, {latitude: -31.961310, longitude:115.806648}))/1000 +'km' );
-
-
         res.render('match', {
           // Pass back to Jade
           userlist : result,
           username : req.user.name,
           useremail : req.user.email,
-          userid: req.user._id
+          userid: req.user._id,
+          loginuser: req.user
         });
       } else {
         res.send('No user documents found');
