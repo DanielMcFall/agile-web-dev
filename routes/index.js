@@ -53,7 +53,7 @@ router.get('/references', ctrlGeneral.references);
 
 router.get('/messages', ctrlChat.renderMessages);
 
-router.post('/message', ctrlChat.initiateConversation);
+router.get('/message/:id', ctrlChat.initiateConversation);
 
 
 module.exports = router;

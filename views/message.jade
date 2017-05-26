@@ -1,7 +1,6 @@
 extends layout
 
 block content
-  if (user)
   #main-content.m-scene
     // Header
     nav.navbar
@@ -14,8 +13,8 @@ block content
               .col-sm-3.col-xs-12.mt-5
                 .align-center
                   a(href='/')
-                    if (user.photo.length)
-                      img.rounded-circle(src='/photo/#{userid}', alt='team', width='800', height='800')
+                    if (user.photo)
+                      img.rounded-circle(src='/photo/#{user._id}', alt='team', width='800', height='800')
                     else if(user.gender == 'Male')
                       img.user-pic.img-responsive.rounded-circle(src='images/male.jpg', alt='picture', height = '570', width = '1200')
                     else if(user.gender == 'Female')
@@ -67,8 +66,11 @@ block content
         .col-md-1
         //- Area for current matches
         .col-md-3#contacts-area
-          if(user.conversations[0])
+          if(convID)
+            p#active-chat.hidden #{convID}
+          else if(user.conversations[0])
             p#active-chat.hidden #{user.conversations[0]}
+
           else
             a.btn.btn-default.btn-auto.contact-button(href="/match") No conversations! Find your match!
           if(conversations)

@@ -13,11 +13,11 @@ block content
               li
                 a(href='/') Home
               li
-                a(href='listing') My Matches
+                a(href='/about') About Website
               li
-                a(href='#') About Us
+                a(href='/algorithm') Matching Algorithm
               li
-                a(href='#') Contact Us
+                a(href='/testing') Testing
         button.hamburger-menu-btn.pull-right.for-fullscreen.hamburger-circle
           span toggle menu
         .pull-right
@@ -88,13 +88,13 @@ block content
                         input#repeat-password(type='password', name='repeat-password', required='')
                 .form-group.row.mb-5.mt-5
                   .col-sm-4.col-xs-12
-                    label Suburb:
-                    input#suburb(type='text', name='suburb')
-                  .col-sm-3.col-xs-12
-                    label
+                    label 
                       span.orange *
-                      |  Postcode:
-                    input#postcode(type='text', name='postcode', pattern='[0-9\s]*', required='', value='')
+                      |  Suburb:
+                    input#suburb(type='text', name='suburb', required='')
+                  .col-sm-3.col-xs-12
+                    label Postcode:
+                    input#postcode(type='text', name='postcode', pattern='[0-9\s]*', value='')
                   .mr-60.mt_50(onclick='myCurrentPosition()')
                     img(src='images/gps.png', width='18', height='18')
                   .col-sm-4.col-xs-12
@@ -126,7 +126,6 @@ block content
                     select.form-control(name='activity')
                       option Cardio
                       option Strength
-                      option Flexibility
                       option Sports
                   .col-sm-3.col-xs-12
                     label

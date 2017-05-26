@@ -14,8 +14,8 @@ block content
                 .col-sm-3.col-xs-12.mt-5
                   .align-center
                     a(href='/')
-                      if (user.photo.length)
-                        img.rounded-circle(src='/photo/#{userid}', alt='team', width='800', height='800')
+                      if (user.photo)
+                        img.rounded-circle(src='/photo/#{user._id}', alt='team', width='800', height='800')
                       else if(user.gender == 'Male')
                         img.user-pic.img-responsive.rounded-circle(src='images/male.jpg', alt='picture', height = '570', width = '1200')
                       else if(user.gender == 'Female')
@@ -37,7 +37,7 @@ block content
                 .col-sm-3.col-xs-12.mt-5
                   ul.sidebar-menu.mt-5
                     li
-                      a(href='#')
+                      a(href='/messages')
                         i.fa.fa-comments.mr-20
                         |    Messages
                     li
@@ -53,9 +53,9 @@ block content
                     li
                       a(href='/about') About Website
                     li
-                      a(href='/algorithm') Algorithm
+                      a(href='/algorithm') Matching Algorithm
                     li
-                      a(href='/references') References
+                      a(href='/testing') Testing
           button.hamburger-menu-btn.pull-right.for-fullscreen.hamburger-circle
             span toggle menu
 
@@ -130,7 +130,7 @@ block content
                 .col-sm-4.col-xs-8
                   label Area range within:
                   .range 0km
-                    input(type='range', name='range', min='1', max='50', steps='1', value='10')
+                    input(type='range', name='range', min='1', max='50', steps='1', value='#{user.range}')
                 .col-sm-1.col-xs-2
                   p.locationmax.mt_30 50km
               .row.mt_10

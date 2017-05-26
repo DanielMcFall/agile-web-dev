@@ -51,8 +51,10 @@ module.exports.update = function(req, res){
       level: req.body.level,
       activity: req.body.activity,
       bio: req.body.bio,
-      latitude : req.body.latitude,
-      longitude : req.body.longitude
+
+      //Ensure latitude and longitude are not undefined before submitting
+      //latitude : req.body.latitude,
+      //longitude : req.body.longitude
     },
     function(err, account) {
       if(err) {
@@ -85,6 +87,7 @@ module.exports.getPhoto = function(req, res) {
 }
 
 module.exports.accountDetail = function (req, res) {
+  if(!req.user) res.redirect('/');
   // Look up the user id in the database
   Account.findOne({ _id: req.params.userId }, function(err, account) {
     res.render('match-detail', { matchUser: account, user: req.user, age: datejs.calculateAge(account.birthdate)});
@@ -126,7 +129,7 @@ module.exports.register = function(req, res){
     console.log('user registered!');
 
     passport.authenticate('local')(req, res, function () {
-      res.redirect('match');
+      res.redirect('/');
     });
   });
 }
