@@ -37,7 +37,7 @@ block content
                 .col-sm-3.col-xs-12.mt-5
                   ul.sidebar-menu.mt-5
                     li
-                      a(href='#')
+                      a(href='/messages')
                         i.fa.fa-comments.mr-20
                         |    Messages
                     li
@@ -68,7 +68,7 @@ block content
           .row.mt_40.mb_40
             // Profile photos
             .col-lg-6.col-md-6.col-sm-12.col-xs-12
-              if user.photo
+              if (user.photo.length)
                 img.rounded-circle(src='/photo/#{user._id}', alt='team', width='800', height='800')
               else if(user.gender == 'Male')
                 img.user-pic.img-responsive.img-rounded(src='images/male.jpg', alt='picture', height = '570', width = '1200')

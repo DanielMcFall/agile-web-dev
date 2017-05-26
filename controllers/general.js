@@ -51,7 +51,7 @@ module.exports.generateMatches = function(req, res) {
         { 'level' : req.user.level},
         { 'activity': req.user.activity},
         { 'email': { $ne : req.user.email}},
-        { 'range' : { $lt : (geolib.getDistance(
+        { 'range' : { $gt : (geolib.getDistance(
           { latitude: req.user.latitude, longitude: req.user.longitude},
           { latitude: -31.961310, longitude: 115.806648} ))/1000 }
         }
@@ -63,19 +63,14 @@ module.exports.generateMatches = function(req, res) {
 
         res.render('match', {
           // Pass back to Jade
+          user: req.user,
           userlist : result,
-          username : req.user.name,
-          useremail : req.user.email,
-          userid: req.user._id,
-          loginuser: req.user
         });
       } else {
         res.render('match', {
           // Pass back to Jade
           userlist : result,
-          username : req.user.name,
-          useremail : req.user.email,
-          userid: req.user._id
+          user: req.user
         });
       }
 
