@@ -13,8 +13,13 @@ block content
               .row.col-sm-12.mt-5
                 .col-sm-3.col-xs-12.mt-5
                   .align-center
-                    a(href='#')
-                      img.rounded-circle(src='images/team/noname.jpg', alt='team', width='550', height='550')
+                    a(href='/')
+                      if user.photo.length
+                        img.rounded-circle(src='/photo/#{userid}', alt='team', width='800', height='800')
+                      else if(user.gender == 'Male')
+                        img.user-pic.img-responsive.rounded-circle(src='images/male.jpg', alt='picture', height = '570', width = '1200')
+                      else if(user.gender == 'Female')
+                        img.user-pic.img-responsive.img-rounded-circle(src='images/female.jpg', alt='picture', height = '570', width = '1200')
                     .mt-4
                       h4.text-white #{user.name}
                 .col-sm-1
