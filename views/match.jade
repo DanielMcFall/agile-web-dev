@@ -1,118 +1,118 @@
 extends layout
 
 block content
-	if (user)
-		#main-content.m-scene
-			// Header
-			nav.navbar
-				.full-width-container
-					a.navbar-brand(href='/')
-						img(src='images/logo.png', width='400', height='45', alt='Logo')
-					.fullscreen-menu-holder
-						.align-items-center
-							.row.col-sm-12.mt-5
-								.col-sm-3.col-xs-12.mt-5
-									.align-center
-										a(href='/')
-											if (user.photo)
-												img.rounded-circle(src='/photo/#{userid}', alt='team', width='800', height='800')
-											else if(user.gender == 'Male')
-												img.user-pic.img-responsive.rounded-circle(src='images/male.jpg', alt='picture', height = '570', width = '1200')
-											else if(user.gender == 'Female')
-												img.user-pic.img-responsive.img-rounded-circle(src='images/female.jpg', alt='picture', height = '570', width = '1200')
-										.mt-4
-											h4.text-white #{user.name}
-								.col-sm-1
-								.col-sm-3.col-xs-12.mt-5
-									ul.sidebar-menu.mt-5
-										li
-											a(href='/settings')
-												i.fa.fa-edit.mr-20
-												| Edit Profile
-										li
-											a(href='/match')
-												i.fa.fa-list.mr-20
-												|    My Matches
-								.col-sm-1
-								.col-sm-3.col-xs-12.mt-5
-									ul.sidebar-menu.mt-5
-										li
-											a(href='/messages')
-												i.fa.fa-comments.mr-20
-												|    Messages
-										li
-											a(href='/logout')
-												i.fa.fa-power-off.mr-20
-												|    Logout
-							.row.col-sm-12.mt_150
-								.col-sm-12.col-xs-12
-									hr
-									ul.bottom-menu
-										li
-											a(href='/') Home
-										li
-											a(href='/about') About Website
-										li
-											a(href='/algorithm') Algorithm
-										li
-											a(href='/testing') Testing
-					button.hamburger-menu-btn.pull-right.for-fullscreen.hamburger-circle
-						span toggle menu
-					.pull-right
-						#email-display
-							p #{user.email}
-
-				// End Header
-				.page-container
-					// Page title
-					.bg-orange.mb_120.whole-container-text-white.text-center.pt-4.pb-4
-						h2 Profile Match
-					// End page title
-					// Matches listing
-					.container
-						.row
-							// iterate through each user
-							each matchingUser in userlist
-								.col-md-6.float-left.row_manage.no-padding
-									.col-md-6.no-padding.float-left
+	#main-content.m-scene
+		// Header
+		nav.navbar
+			.full-width-container
+				a.navbar-brand(href='/')
+					img(src='images/logo.png', width='400', height='45', alt='Logo')
+				.fullscreen-menu-holder
+					.align-items-center
+						.row.col-sm-12.mt-5
+							.col-sm-3.col-xs-12.mt-5
+								.align-center
+									a(href='/')
+										if (user.photo.data)
+											img.rounded-circle(src='/photo/#{user._id}', alt='team', width='800', height='800')
+										else if(user.gender == 'Male')
+											img.user-pic.img-responsive.rounded-circle(src='images/male.jpg', alt='picture', height = '570', width = '1200')
+										else if(user.gender == 'Female')
+											img.user-pic.img-responsive.img-rounded-circle(src='images/female.jpg', alt='picture', height = '570', width = '1200')
+									.mt-4
+										h4.text-white #{user.name}
+							.col-sm-1
+							.col-sm-3.col-xs-12.mt-5
+								ul.sidebar-menu.mt-5
+									li
+										a(href='/settings')
+											i.fa.fa-edit.mr-20
+											| Edit Profile
+									li
+										a(href='/match')
+											i.fa.fa-list.mr-20
+											|    My Matches
+							.col-sm-1
+							.col-sm-3.col-xs-12.mt-5
+								ul.sidebar-menu.mt-5
+									li
+										a(href='/messages')
+											i.fa.fa-comments.mr-20
+											|    Messages
+									li
+										a(href='/logout')
+											i.fa.fa-power-off.mr-20
+											|    Logout
+						.row.col-sm-12.mt_150
+							.col-sm-12.col-xs-12
+								hr
+								ul.bottom-menu
+									li
+										a(href='/') Home
+									li
+										a(href='/about') About Website
+									li
+										a(href='/algorithm') Algorithm
+									li
+										a(href='/testing') Testing
+				button.hamburger-menu-btn.pull-right.for-fullscreen.hamburger-circle
+					span toggle menu
+				.pull-right
+					#email-display
+						p #{user.email}
+			// End Header
+		.page-container
+			// Page title
+			.bg-orange.mb_120.whole-container-text-white.text-center.pt-4.pb-4
+				h2 Profile Match
+			// End page title
+			// Matches listing
+			.container
+				.row
+					// iterate through each user
+					each matchingUser in userlist
+						.col-md-6.float-left.row_manage.no-padding
+							.col-md-6.no-padding.float-left
+									if (matchingUser.photo)
+										img.rounded-circle(src='/photo/#{matchingUser._id}', alt='team', width='800', height='800')
+									else
 										img(src='images/team/noname.jpg', alt='picture', width='1024', height='674')
 										.left_arrow
-									.col-md-6.float-left
-										.mt-3.ml-4
-											h4.font-weight-normal #{matchingUser.name}
-											.separator
-											div
-												i.fa.fa-map-marker.orange
-												|    #{matchingUser.suburb}
-											div
-												if(matchingUser.gender == 'Female')
-													i.fa.fa-female.orange.user-gender
-													|    #{matchingUser.gender}
-												else
-													i.fa.fa-male.orange
-													|    #{matchingUser.gender}
-											div
-												i.fa.fa-futbol-o.orange(style='font-size:10px')
-												|    #{matchingUser.activity}
-											div
-												i.fa.fa-bolt.orange
-												|    #{matchingUser.level}
-											div
-												a.top_link.top_link_pad(href='match-detail/#{matchingUser._id}') Read More
-											div
-												a.top_link.top_link_pad(href='/message/#{matchingUser._id}')
-													i.fa.fa-comments.mr-1
-													| Chat
+							.col-md-6.float-left
+								.mt-3.ml-4
+									h4.font-weight-normal #{matchingUser.name}
+									.separator
+									div
+										i.fa.fa-map-marker.orange
+										|    #{matchingUser.postcode}
+									div
+										if(matchingUser.gender == 'Female')
+											i.fa.fa-female.orange.user-gender
+											|    #{matchingUser.gender}
+										else
+											i.fa.fa-male.orange
+											|    #{matchingUser.gender}
+									div
+										i.fa.fa-futbol-o.orange(style='font-size:10px')
+										|    #{matchingUser.activity}
+									div
+										i.fa.fa-bolt.orange
+										|    #{matchingUser.level}
+									div
+										a.top_link.top_link_pad(href='match-detail/#{matchingUser._id}') Read More
+									div
+										a.top_link.top_link_pad(href='#')
+											i.fa.fa-comments.mr-1
+											| Chat
 
-
-				// End Matches listing
-				// Footer
-				footer.bg-orange.mt_150.whole-container-text-white
-					| Copyright 2017 © University of Western Australia
-				// End Footer
-				// ==================================================
-				// Placed js files at the end of the document so the pages load faster
-				script(type='text/javascript', src='js/jquery.min.js')
-				script(src='js/bootstrap.min.js ')
-				script(type='text/javascript', src='js/main.js')
+		// End Matches listing
+		// Footer
+		footer.bg-orange.mt_150.whole-container-text-white
+			| Copyright 2017 © University of Western Australia
+		// End Footer
+		// ==================================================
+		// Placed js files at the end of the document so the pages load faster
+		script(type='text/javascript', src='js/jquery.min.js')
+		script(src='js/bootstrap.min.js ')
+		script(type='text/javascript', src='js/main.js')
 // Localized
