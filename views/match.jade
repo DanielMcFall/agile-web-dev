@@ -23,21 +23,27 @@ html(lang='en')
 			script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
 			script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
 	body
+	if(user)
 		#main-content.m-scene
 			// Header
 			nav.navbar
 				.full-width-container
-					a.navbar-brand(href='')
+					a.navbar-brand(href='/')
 						img(src='images/logo.png', width='400', height='45', alt='Logo')
 					.fullscreen-menu-holder
 						.align-items-center
 							.row.col-sm-12.mt-5
 								.col-sm-3.col-xs-12.mt-5
 									.align-center
-										a(href='#')
-											img.rounded-circle(src='/photo/#{userid}', alt='team', width='550', height='550')
+										a(href='/')
+											if user.photo.length
+												img.rounded-circle(src='/photo/#{userid}', alt='team', width='800', height='800')
+											else if(user.gender == 'Male')
+												img.user-pic.img-responsive.rounded-circle(src='images/male.jpg', alt='picture', height = '570', width = '1200')
+											else if(user.gender == 'Female')
+												img.user-pic.img-responsive.img-rounded-circle(src='images/female.jpg', alt='picture', height = '570', width = '1200')
 										.mt-4
-											h4.text-white #{username}
+											h4.text-white #{user.name}
 								.col-sm-1
 								.col-sm-3.col-xs-12.mt-5
 									ul.sidebar-menu.mt-5
@@ -54,8 +60,8 @@ html(lang='en')
 									ul.sidebar-menu.mt-5
 										li
 											a(href='#')
-												i.fa.fa-bell.mr-20
-												|    Notifications
+												i.fa.fa-comments.mr-20
+												|    Messages
 										li
 											a(href='/logout')
 												i.fa.fa-power-off.mr-20
@@ -65,15 +71,18 @@ html(lang='en')
 									hr
 									ul.bottom-menu
 										li
-											a(href='#') Home
+											a(href='/') Home
 										li
-											a(href='#') About Website
+											a(href='/about') About Website
 										li
-											a(href='#') Algorithm
+											a(href='/algorithm') Algorithm
 										li
-											a(href='references.html') References
+											a(href='/references') References
 					button.hamburger-menu-btn.pull-right.for-fullscreen.hamburger-circle
 						span toggle menu
+
+					.pull-right
+						#email-display #{user.email}
 
 			// End Header
 			.page-container
