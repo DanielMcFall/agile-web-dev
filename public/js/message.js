@@ -1,8 +1,7 @@
 //Adopted from code from Resource : https://www.youtube.com/watch?v=QISU14OrRbI
 
 function updateActiveChat(newId){
-  var activeChat = document.getElementById('active-chat');
-  activeChat.innerHTML = newId;
+  activeChat = newId;
   if(socket !== undefined){
     socket.emit('update', { id : newId });
   }
@@ -12,7 +11,7 @@ function chat(){
   var inputArea = document.getElementById('new-message');
   var outputArea = document.getElementById('chat-messages');
   var emailAddr = document.getElementById('email-display').innerHTML;
-  var activeChat = document.getElementById('active-chat').innerHTML;
+  activeChat = document.getElementById('active-chat').innerHTML;
 
   socket.emit('update', { id : activeChat });
 
@@ -61,6 +60,7 @@ function chat(){
 }
 
 var socket = io();
+var activeChat;
 
 if(socket !== undefined){
   window.onload = chat;
