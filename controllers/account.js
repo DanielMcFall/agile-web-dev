@@ -48,7 +48,7 @@ module.exports.update = function(req, res){
       gender: req.body.gender,
       suburb: req.body.suburb,
       postcode: req.body.postcode,
-      range: req.body.sliderValue,
+      range: req.body.range,
       level: req.body.level,
       activity: req.body.activity,
       bio: req.body.bio,
@@ -123,7 +123,7 @@ module.exports.register = function(req, res){
 
 //    console.log('req.file', req.file);
     console.log(req.body.sliderValue);
-    
+
     account.photo.data = req.file.buffer;
     account.photo.contentType = 'image/png';
     account.save();
