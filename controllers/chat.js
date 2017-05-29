@@ -132,7 +132,7 @@ module.exports.createConversation = function(user1, user2, cb){
       console.log(err);
     }
     else {
-      console.log('(Read) Connection established to', mongoUrl);
+      console.log('(Write) Connection established to', mongoUrl);
 
       var conversations = db.collection('conversations');
       var newConversation = new Conversation({user1: user1, user2: user2});
@@ -192,7 +192,6 @@ module.exports.getMessage = function(req, res){
 module.exports.initiateConversation = function(req, res){
   if(req.user) {
     var user1 = req.user.email;
-    console.log("getting email from " + req.params.id);
     ctrlAccount.getEmail(req.params.id, function(resa){
       var user2 = resa;
       module.exports.findConversation(user1, user2, function(result){
@@ -236,7 +235,6 @@ module.exports.renderMessages = function(req, res){
             else if (result.length) {
 
               db.close();
-              console.log(result);
               res.render('message', { title: 'Fitness Friends', user: req.user, conversations: result });
             }
             else{
