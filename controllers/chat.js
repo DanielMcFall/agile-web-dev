@@ -132,26 +132,27 @@ module.exports.createConversation = function(user1, user2, cb){
       console.log(err);
     }
     else {
-      console.log('(Write) Connection established to', mongoUrl);
+      console.log('Connected to DB, Adding conversation');
 
       var conversations = db.collection('conversations');
       var newConversation = new Conversation({user1: user1, user2: user2});
       newConversation.id = newConversation._id;
 
       conversations.insert(newConversation, function(err){
-       if (err) return;
+       if (err) console.log(err);
 
-       var id = newConversation._id;
-
+       var id = newConversation.id;
+       console.log(id);
        var accounts = db.collection('accounts');
        accounts.update(
-         {$or:[{email : user1}, {email : user2}]},
-         {$push: {conversations : id}}
+         {$or:[{'email' : user1}, {'email' : user2}]},
+         {$push: {conversations : id}},
+         { multi: true },
+         function(req, res){
+           cb();
+         }
        );
-
-       cb();
       });
-
     }
   });
 }
@@ -179,6 +180,7 @@ module.exports.getMessage = function(req, res){
             else if (result.length) {
 
               db.close();
+              console.log(result);
               var conversationArray = result;
               res.render('message', { title: 'Fitness Friends', user: req.user, conversations: result });
             }
@@ -228,9 +230,10 @@ module.exports.renderMessages = function(req, res){
           var collection = db.collection('conversations');
 
           collection.find({ id: { $in: req.user.conversations }}).toArray(function (err, result) {
+            console.log(result);
             if (err) {
               console.log(err);
-              res.redirect('/')
+              res.redirect('/');
             }
             else if (result.length) {
 
