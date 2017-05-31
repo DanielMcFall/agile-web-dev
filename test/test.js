@@ -11,7 +11,7 @@ var Schema = mongoose.Schema;
 var assert = require('assert');
 var express = require('express');
 var app = express();
-var request = require('supertest');
+//var request = require('supertest');
 
 var testSchema = new Schema({
   name: {type: String, require: true},
