@@ -196,6 +196,17 @@ html(lang='en')
                           br
                           | There were a lot of difficulties with the chat system due to the complexity of the queries and amount of DOM manipulation required to generate messages over
                           | different active chat windows.
+                  .card.border-0
+                      #headingFour2.card-header(role='tab')
+                        h5.mb-0
+                          a.collapsed(data-toggle='collapse', data-parent='#accordion', href='#collapseFour', aria-expanded='false', aria-controls='collapseFour')
+                            | References
+                      #collapseFour.collapse(role='tabpanel', aria-labelledby='headingFour2')
+                        .card-block
+                          p.lead
+                            a(href='http://stackoverflow.com/a/21984136') ‣ Calculate Age in JavaScript
+                            br
+                            a(href='https://medium.com/nongaap/beginners-guide-to-writing-mongodb-mongoose-unit-tests-using-mocha-chai-ab5bdf3d3b1d') ‣ Beginners Guide to Writing MongoDB Mongoose Unit Tests Using Mocha Chai
         // End About content
       // Footer
       footer.bg-orange.mt_150.whole-container-text-white
