@@ -93,14 +93,31 @@ html(lang='en')
                         p.lead The site is designed as a node.js web app and is centered around the
                           span.orange  Model-View-Controller Architecture
                           |.
-                        p.lead Routes/index.js responds to HTTP requests by calling
-                          | an appropriate function in the controllers. There are two models: one for user accounts and another for conversations between users.
-                        p.lead The app uses jade as a view engine. The controller specifies which template to render. User information and other javascript objects are sent to
+                          br
+                        p.lead
+                          span.orange Model
+                          br
+                          | The two models we have created for our application are the user account model and the conversations model.
+                          | These are both defined with a mongoose schema within the models directory.
+                          | Data from these models are grabbed by the controllers and passed to the views.
+                          br
+                        p.lead
+                          span.orange View
+                          br
+                          | The app uses Jade as the view engine.
+                          | User information and other javascript objects are sent to
                           | the template to dynamically render certain information (for example: lists of conversations, lists of matches). Jade is also used in some cases to check
                           | if variables are present and show defaults if they are not (for example: default pictures if the user does not have a custom picture, or custom message
                           | if the user is not a part of any conversations)
-                          | Jade is a powerful and commonly used standard that synergizes well with MEAN stack. It was an obvious choice for the project criteria.
-                  .card.border-0
+                          br
+                        p.lead
+                          span.orange Controller
+                          br
+                          | The controller specifies which view to render, and that template is rendered accordingly, with the passing of appropriate models.
+                          | routes/index.js responds to HTTP requests by calling an appropriate function in the controllers, and models are passed through in controllers/account.js,
+                          | controllers/chat.js and controllers/general.js.
+
+
                     #headingTwo.card-header(role='tab')
                       h5.mb-0
                         a.collapsed(data-toggle='collapse', data-parent='#accordion', href='#collapseTwo', aria-expanded='false', aria-controls='collapseTwo')
