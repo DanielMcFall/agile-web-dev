@@ -90,7 +90,10 @@ html(lang='en')
                           | Architecture
                     #collapseOne.collapse.show(role='tabpanel', aria-labelledby='headingOne')
                       .card-block
-                        p.lead The site is designed as a node.js web app and is centered around a model-view-controller architecture. Routes/index.js responds to HTTP requests by calling
+                        p.lead The site is designed as a node.js web app and is centered around the
+                          span.orange  Model-View-Controller Architecture
+                          |.
+                        p.lead Routes/index.js responds to HTTP requests by calling
                           | an appropriate function in the controllers. There are two models: one for user accounts and another for conversations between users.
                         p.lead The app uses jade as a view engine. The controller specifies which template to render. User information and other javascript objects are sent to
                           | the template to dynamically render certain information (for example: lists of conversations, lists of matches). Jade is also used in some cases to check
