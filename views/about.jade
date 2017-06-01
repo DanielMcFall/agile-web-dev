@@ -27,7 +27,7 @@ html(lang='en')
       // Header
       nav.navbar
         .full-width-container
-          a.navbar-brand(href='index.html')
+          a.navbar-brand(href='/')
             img(src='images/logo.png', width='400', height='45', alt='Logo')
           .fullscreen-menu-holder.home-menu
             .d-flex.align-items-center
@@ -196,17 +196,62 @@ html(lang='en')
                           br
                           | There were a lot of difficulties with the chat system due to the complexity of the queries and amount of DOM manipulation required to generate messages over
                           | different active chat windows.
+
                   .card.border-0
-                      #headingFour2.card-header(role='tab')
-                        h5.mb-0
-                          a.collapsed(data-toggle='collapse', data-parent='#accordion', href='#collapseFour', aria-expanded='false', aria-controls='collapseFour')
-                            | References
-                      #collapseFour.collapse(role='tabpanel', aria-labelledby='headingFour2')
-                        .card-block
-                          p.lead
-                            a(href='http://stackoverflow.com/a/21984136') ‣ Calculate Age in JavaScript
-                            br
-                            a(href='https://medium.com/nongaap/beginners-guide-to-writing-mongodb-mongoose-unit-tests-using-mocha-chai-ab5bdf3d3b1d') ‣ Beginners Guide to Writing MongoDB Mongoose Unit Tests Using Mocha Chai
+                    #headingFour.card-header(role='tab')
+                      h5.mb-0
+                        a.collapsed(data-toggle='collapse', data-parent='#accordion', href='#references', aria-expanded='false', aria-controls='references')
+                          | References
+                    #references.collapse(role='tabpanel', aria-labelledby='headingFour')
+                      .card-block
+                        p.lead.line-height
+                          span.orange.font-bold Images :
+                          br
+                          a.small.blue_link(href='http://www.freepik.com/free-photo/group-of-people-performing-stretching-exercise_1009179.htm#term=fitness&page=2&position=18', target='_blank')
+                            | http://www.freepik.com/free-photo/group-of-people-performing-stretching-exercise_1009179.htm#term=fitness&page=2&position=18
+                          br
+                          a.small.blue_link(href='http://www.freepik.com/free-photo/adventurer-cycle-adventure-equipment-men_1108659.htm#term=fitness&page=2&position=9', target='_blank')
+                            | http://www.freepik.com/free-photo/adventurer-cycle-adventure-equipment-men_1108659.htm#term=fitness&page=2&position=9
+                          br
+                          a.small.blue_link(href='http://www.freepik.com/free-photo/couple-training-in-the-morning_866655.htm#term=fitness&page=4&position=27', target='_blank')
+                            | http://www.freepik.com/free-photo/couple-training-in-the-morning_866655.htm#term=fitness&page=4&position=27
+                        p.lead.line-height
+                          span.orange.font-bold Toggle Menu :
+                          br
+                          a.small.blue_link(href='http://cssdeck.com/labs/3fo47n21', target='_blank') http://cssdeck.com/labs/3fo47n21
+                        p.lead.line-height
+                          span.orange.font-bold Image Slider :
+                          br
+                          a.small.blue_link(href='https://owlcarousel2.github.io/OwlCarousel2/', target='_blank') https://owlcarousel2.github.io/OwlCarousel2/
+                        p.lead.line-height
+                          span.orange.font-bold Date Picker :
+                          br
+                          a.small.blue_link(href='https://uxsolutions.github.io/bootstrap-datepicker/?markup=input&format=&weekStart=&startDate=&endDate=&startView=0&minViewMode=0&maxViewMode=4&todayBtn=false&clearBtn=false&language=en&orientation=auto&multidate=&multidateSeparator=&keyboardNavigation=on&forceParse=on#sandbox', target='_blank') https://uxsolutions.github.io/bootstrap-datepicker
+                        p.lead.line-height
+                          span.orange.font-bold Photo Upload :
+                          br
+                          a.small.blue_link(href='https://codepen.io/JonasBadalic/pen/CiLhw', target='_blank') https://codepen.io/JonasBadalic/pen/CiLhw
+                        p.lead.line-height
+                          span.orange.font-bold Area Range :
+                          br
+                          a.small.blue_link(href='https://codepen.io/trevanhetzel/pen/rOVrGK', target='_blank') https://codepen.io/trevanhetzel/pen/rOVrGK
+                        p.lead.line-height
+                          span.orange.font-bold Google Maps API for Geolocation :
+                          br
+                          a.small.blue_link(href='https://developers.google.com/maps/documentation/javascript/', target='_blank') https://developers.google.com/maps/documentation/javascript/
+                        p.lead.line-height
+                          span.orange.font-bold Accordion :
+                          br
+                          a.small.blue_link(href='http://getbootstrap.com/javascript/#collapse-example-accordion', target='_blank') http://getbootstrap.com/javascript/#collapse-example-accordion
+                        p.lead.line-height
+                          span.orange.font-bold Calculate Age in JavaScript :
+                          br
+                          a.small.blue_link(href='http://stackoverflow.com/a/21984136', target='_blank') http://stackoverflow.com/a/21984136
+                        p.lead.line-height
+                          span.orange.font-bold Unit Testing :
+                          br
+                          a.small.blue_link(href='https://medium.com/nongaap/beginners-guide-to-writing-mongodb-mongoose-unit-tests-using-mocha-chai-ab5bdf3d3b1d', target='_blank') https://medium.com/nongaap/beginners-guide-to-writing-mongodb-mongoose-unit-tests-using-mocha-chai-ab5bdf3d3b1d
+
         // End About content
       // Footer
       footer.bg-orange.mt_150.whole-container-text-white
